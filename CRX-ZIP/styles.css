@@ -29,8 +29,8 @@ h1 {
   animation: move-dashed 10s infinite;
 }
 @keyframes move-dashed{
-	0%{rotate(0deg)}
-	100%{rotate(360deg)}
+	0%{transform:rotate(0deg);}
+	100%{transform:rotate(360deg);}
 }
 .box.is-dragover {
   outline-offset: -20px;
