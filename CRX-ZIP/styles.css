@@ -1,5 +1,5 @@
 body {
-  background-color: #e5edf1;
+  background-color: #38b9f4;
   font-family: -apple-system, Helvetica, Arial, sans-serif;
 }
 
@@ -18,14 +18,19 @@ h1 {
 
 .box {
   font-size: 20px;
-  background-color: #c8dadf;
+  background-color: #f29437;
   position: relative;
   padding: 100px 20px 50px;
 }
 .box.has-advanced-upload {
-  outline: 2px dashed #92b0b3;
+  outline: 2px dashed #e02323;
   outline-offset: -10px;
   transition: outline-offset .15s ease-in-out, background-color .15s linear;
+  animation: move-dashed 10s infinite;
+}
+@keyframes move-dashed{
+	0%{rotate(0deg)}
+	100%{rotate(360deg)}
 }
 .box.is-dragover {
   outline-offset: -20px;
