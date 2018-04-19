@@ -1,5 +1,6 @@
 body {
   background: url(https://upload.wikimedia.org/wikipedia/commons/5/5f/Seamless_grass.jpg) fixed bottom #38b9f4 no-repeat;
+  background-size:100% 50px;
   font-family: -apple-system, Helvetica, Arial, sans-serif;
 }
 
