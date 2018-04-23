@@ -1,6 +1,6 @@
 //Code for Ad!
 //Made by Nicholas Huaman
-    function Ad(){
+    function Ad(mytext){
         var num1=800;
         var num2=700;
         var fnum1=40;
@@ -11,10 +11,10 @@
             num1--;
           num2--;
             document.getElementById("Ad").style.backgroundSize = num1 + "px " + num2 + "px";
-          if (num1==0){scaleDownText();}
+          if (num1==0){scaleDownText(mytext);}
         }
-        function scaleDownText(){
-            document.getElementById("Ad").innerHTML="<br><br><br><br><br><br><br><br><br><br><p style='user-select:none;font-size:"+fnum1+"px;'>Made by the creator of</p><h1 style='user-select:none;font-size:"+fnum2+"px'>HuamanGames</h1>";
+        function scaleDownText(text){
+            document.getElementById("Ad").innerHTML="<br><br><br><br><br><br><br><br><br><br><p style='user-select:none;font-size:"+fnum1+"px;'>"+ text;
         }
     }
     function FinishAd(){
