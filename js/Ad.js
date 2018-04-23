@@ -5,7 +5,8 @@
     var fnum1=40;
     var fnum2=65;
     setInterval(scaleDownLogo, 1);
-    setTimeout(FinishAd,7000);
+    if (window.location=="nhnet.github.io"){setTimeout(FinishAd,7000);}
+    if (window.location=="nhnet.github.io/twitch"){setTimeout(FinishAdWithTwitch,7000);}
     
     function scaleDownLogo(){
         num1--;
@@ -20,4 +21,9 @@
         document.body.style.background="white";
         document.body.style.color="black";
         document.body.innerHTML='<span style="user-select:none;"><h1 style="font-size:50px;">NH Net Browser</h1><br><br><p>This page allows you to go on most sites without it saving in your history or on your network. All you shall see there is this website! :)</p><p>WARNING: Extensions (Like Omnito and Netop) can see this... All Google webpages do not work. Look it up, and paste the link of the website you want to visit here.</p><p>FIND THE CORRECT LINK! Any errors will cause your page not to load...</p><br><br><p>Press the keys alt+H to search without pressing the button. (More discreet)</p><p>To view youtube videos you visit "</span><span style="user-select:all; background:purple; color:white;">https://youtube.com/embed/</span><span style="user-select:none;">" and add the video ID.</p><p>To view twitch streams you copy the purple: "</span><span style="user-select:all;background:purple; color:white;">https://player.twitch.tv/?channel=</span><span style="user-select:none;">" and add the streamer name and then </span><span style="user-select:all;background:purple; color:white;"> "allowfullscreen="true</span>".</p><p>If you' + " don't" +' understand Attributes go to this link here on <a href="https://www.w3schools.com/tags/tag_iframe.asp">W3 Attributes for Iframes...</a></p><br><br><span style="user-select:none;"><input style="width:30%;" class="Box" placeholder="Add the website here!" type="text" value="https://"><input placeholder="(Optional) Add extra html!" style="width:15%;" class="Box2" type="text"><input placeholder="Close off your html..." style="width:10%;" class="Box3" type="text"><input placeholder="(Optional) Add any iframe attributes..." style="width:17%;" class="Box4" type="text"><button accesskey="h" onclick="SUBMIT();">Submit Chromebook Fullscreen</button></span>'
+    }
+    function FinishAdWithTwitch(){
+        document.body.style.background="white";
+        document.body.style.color="black";
+        document.body.innerHTML='<span style="user-select:none;"><h1 style="font-size:50px;">NH Twitch</h1><br><br><p>This page allows you to view live twitch streams without it saving in your history or on your network. All you shall see there is this website! :)</p><p>WARNING: Extensions (Like Omnito and Netop) can see this... <br><br><p>Press the keys alt+H to search without pressing the button. (More discreet)</p><p>If you' + " don't" +' understand Attributes go to this link here on <a href="https://www.w3schools.com/tags/tag_iframe.asp">W3 Attributes for Iframes...</a></p><br><br><span style="user-select:none;"><div>Twitch Streamer:<input style="width:30%;" class="Box" placeholder="eg. Ninja" type="text"></div><div>Add any attributes (Options):<input placeholder="eg. allowfullscreen=(quotes here)true(quotes here)" style="width:17%;" class="Box2" type="text"><button accesskey="h" onclick="SUBMITtwitch();">Submit Chromebook Fullscreen</button></span>'
     }
