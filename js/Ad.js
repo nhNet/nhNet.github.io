@@ -20,7 +20,7 @@
     function FinishAd(){
         document.body.style.background="#4c4c39";
         document.body.style.color="black";
-        document.body.innerHTML='<span style="user-select:none;"><h1 style="font-size:50px;color:white;font-family: "Black Han Sans", sans-serif;">NH Net Browser</h1></span><div style="width:10%;height:10%;"><img height="90%" width="100%" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Twitch_mit_Glitch.png"><div style="background:white;color:black; font-size:30px">Twitch</div></div>'
+        document.body.innerHTML='<span style="user-select:none;"><h1 style="font-size:50px;color:white;font-family: "Black Han Sans", sans-serif;">NH Net Browser</h1></span><a href="twitch"><div style="background:white;border:5px black;width:10%;height:10%;"><img height="90%" width="100%" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Twitch_mit_Glitch.png"><div style="color:black; font-size:30px">NH Twitch</div></div></a>'
     }
     function FinishAdWithTwitch(){
         document.body.style.background="white";
