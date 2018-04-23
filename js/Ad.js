@@ -5,8 +5,6 @@
     var fnum1=40;
     var fnum2=65;
     setInterval(scaleDownLogo, 1);
-    if (window.location=="https://nhnet.github.io"){setTimeout(FinishAd,7000);}
-    if (window.location=="https://nhnet.github.io/twitch"){setTimeout(FinishAdWithTwitch,7000);}
     
     function scaleDownLogo(){
         num1--;
