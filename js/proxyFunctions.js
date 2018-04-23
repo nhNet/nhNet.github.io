@@ -1,5 +1,5 @@
 function SUBMIT(){
-    OpenIframe(document.querySelector('.Box').value, document.querySelector('.Box2').value, document.querySelector('.Box3').value,document.querySelector('.Box4').value);
+    OpenIframe(document.querySelector('.Box').value, document.querySelector('.Box2').value, document.querySelector('.Box3').value, document.querySelector('.Box4').value);
 }
 function OpenIframe(web, thisishtml, thisisclosing, attr2){
     document.body.style.background="url(http://www.solidbackgrounds.com/images/950x350/950x350-black-solid-color-background.jpg) no-repeat fixed top";
