@@ -1,1 +1,3 @@
-# other_projects
+# No history problems, always find a way!
+Problems to fix: 
+ - Add a searching system so that not only links work...
