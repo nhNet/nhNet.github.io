@@ -11,10 +11,12 @@
             num1--;
           num2--;
             document.getElementById("Ad").style.backgroundSize = num1 + "px " + num2 + "px";
+            document.getElementById("Twit").style.backgroundSize = num1 + "px " + num2 + "px";
           if (num1==0){scaleDownText();}
         }
         function scaleDownText(){
             document.getElementById("Ad").innerHTML="<br><br><br><br><br><br><br><br><br><br><p style='user-select:none;font-size:"+fnum1+"px;'>Made by the creator of</p><h1 style='user-select:none;font-size:"+fnum2+"px'>HuamanGames</h1>";
+            document.getElementById("Twit").innerHTML="<br><br><br><br><br><br><br><br><br><br><p style='user-select:none;font-size:"+fnum1+"px;'>HuamanGames,</p><p> in partnership with</p><h1 style='user-select:none;font-size:"+fnum2+"px'>Twitch</h1>";
         }
     }
     function FinishAd(){
