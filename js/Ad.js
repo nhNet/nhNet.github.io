@@ -11,18 +11,16 @@
             num1--;
           num2--;
             document.getElementById("Ad").style.backgroundSize = num1 + "px " + num2 + "px";
-            document.getElementById("Twit").style.backgroundSize = num1 + "px " + num2 + "px";
           if (num1==0){scaleDownText();}
         }
         function scaleDownText(){
             document.getElementById("Ad").innerHTML="<br><br><br><br><br><br><br><br><br><br><p style='user-select:none;font-size:"+fnum1+"px;'>Made by the creator of</p><h1 style='user-select:none;font-size:"+fnum2+"px'>HuamanGames</h1>";
-            document.getElementById("Twit").innerHTML="<br><br><br><br><br><br><br><br><br><br><p style='user-select:none;font-size:"+fnum1+"px;'>HuamanGames,</p><p> in partnership with</p><h1 style='user-select:none;font-size:"+fnum2+"px'>Twitch</h1>";
         }
     }
     function FinishAd(){
         document.body.style.background="#4c4c39";
         document.body.style.color="black";
-        document.body.innerHTML='<span style="user-select:none;"><h1 style="font-size:50px;color:white;font-family: "Black Han Sans", sans-serif;">NH Net Browser</h1></span><a href="https://google.com"><div style="margin-left:-7.4px;background:white;border:2px solid black;width:50%;height:300px;"><img height="90%" width="100%" src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"></div></a><a href="youtube"><div style="margin-left:50%;margin-top:-302.5px;background:white;border:2px solid black;width:50%;height:300px;"><img height="90%" width="100%" src="http://www.underconsideration.com/brandnew/archives/youtube_logo_detail.png"></div></a><a href="twitch"><div style="margin-left:-7.4px;background:white;border:2px solid black;width:50%;height:300px;"><img height="90%" width="100%" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Twitch_mit_Glitch.png"></div></a><a href="info"><div style="margin-left:50%;margin-top:-328.5px;background:white;border:2px solid black;width:50%;height:300px;"><img height="90%" width="100%" src="https://upload.wikimedia.org/wikipedia/en/5/54/Information.png"></div></a>';
+        document.body.innerHTML='<span style="user-select:none;"><h1 style="font-size:50px;color:white;font-family: "Black Han Sans", sans-serif;">NH Net Browser</h1></span><a href="https://google.com"><div style="margin-left:-7.4px;background:white;border:2px solid black;width:50%;height:300px;"><img height="90%" width="100%" src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"></div></a><a href="youtube"><div style="margin-left:50%;margin-top:-303.5px;background:white;border:2px solid black;width:50%;height:300px;"><img height="90%" width="100%" src="http://www.underconsideration.com/brandnew/archives/youtube_logo_detail.png"></div></a><a href="twitch"><div style="margin-left:-7.4px;background:white;border:2px solid black;width:50%;height:300px;"><img height="90%" width="100%" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Twitch_mit_Glitch.png"></div></a><a href="info"><div style="margin-left:50%;margin-top:-303.5px;background:white;border:2px solid black;width:50%;height:300px;"><img height="90%" width="100%" src="https://upload.wikimedia.org/wikipedia/en/5/54/Information.png"></div></a>';
     }
     function FinishAdWithTwitch(){
         document.body.style.background="white";
