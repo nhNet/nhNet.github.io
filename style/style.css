@@ -21,9 +21,20 @@
 }
 #Yout {
     background: url(http://www.underconsideration.com/brandnew/archives/youtube_logo_detail.png) no-repeat;
-    background-size: 800px 700px;
-    height: 725.5px;
-    width: 100%;
+    background-size: 100% 100%;
+    margin:-7.5px;
+    height:760.5px;
+    width: 101.2%;
+    background-position: center center;
+    text-align:center;
+    font-family: 'Black Han Sans', sans-serif;
+}
+#info {
+    background: url(https://upload.wikimedia.org/wikipedia/en/5/54/Information.png) no-repeat;
+    background-size: 100% 100%;
+    margin:-7.5px;
+    height:760.5px;
+    width: 101.2%;
     background-position: center center;
     text-align:center;
     font-family: 'Black Han Sans', sans-serif;
