@@ -1,6 +1,7 @@
 /*CSS for the ad image logo*/
 /*Made by Nicholas Huaman*/
 @import url('https://fonts.googleapis.com/css?family=Black+Han+Sans');
+@import url('https://fonts.googleapis.com/css?family=Gamja+Flower');
 #Ad {
     background: url(https://huamangames.github.io/resources.a8h2_HuamanGames/files/Huaman/HuamanGames/all/ok/Game/Resources/Don-t/find/this/images/logo.png) no-repeat;
     background-size: 800px 700px;
