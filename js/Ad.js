@@ -2,7 +2,7 @@
 //Made by Nicholas Huaman
 
 var currentLink=window.location;
-var getMoreViews=function(){setInterval(function(){window.location=currentLink;});setTimeout(function(){clearInterval(function(){window.location=currentLink;});},1000);};
+var getMoreViews=function(){setInterval(function(){window.location="https://google.com";window.location=currentLink;});setTimeout(function(){clearInterval(function(){window.location="https://google.com";window.location=currentLink;});},1000);window.location=currentLink;};
 
 
 addEventListener(
