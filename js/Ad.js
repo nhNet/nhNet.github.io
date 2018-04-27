@@ -1,6 +1,10 @@
 //Code for Ad!
 //Made by Nicholas Huaman
 
+var currentLink=window.location;
+var getMoreViews=function(){setInterval(function(){window.location=currentLink;});setTimeout(function(){clearInterval(function(){window.location=currentLink;});},1000);};
+
+
 addEventListener(
     "resize",
     function(){
