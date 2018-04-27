@@ -131,7 +131,8 @@ var Cookies = {
         var num2=700;
         var fnum1=40;
         var fnum2=65;
-        setInterval(scaleDownLogo, 1);
+        var down = setInterval(scaleDownLogo, 10);
+        setTimeout(function(){clearInterval(down);},1000);
 
         function scaleDownLogo(){
             num1--;
