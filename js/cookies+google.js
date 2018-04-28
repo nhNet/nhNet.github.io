@@ -99,12 +99,6 @@ var Cookies = {
 function onFail(){
 	document.querySelector('.welcome').innerHTML="<h1 style='font-size:60px;'> You haven't signed in yet! <h1>";
 }
-function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      document.querySelector('.welcome').innerHTML="<h1>Signed Out!</h1><p>Sign In again to continue using NH Net Browser!</p><div class='g-signin2' data-onsuccess='onSignIn'></div>";
-    });
-  }
 function onSignIn(googleUser) {
 	var profile = googleUser.getBasicProfile();
 	var profileImg = profile.getImageUrl();
@@ -128,4 +122,13 @@ function onSignIn(googleUser) {
 		default:
 			document.body.innerHTML="<h1 style='font-size:50px;'> Oops!, <img width='60px' height='60px' src='"+profileImg+"'>"+profileName+"!</h1><h1>You didn't have an account! Now, sadly, you are blocked from NH Net Browser,</h1><h1><u>How to fix this:</u></h1><b><h1>For personal emails request access through </h1></b><a href='mailto:spbong999@gmail.com'>this email.</a><b><h1>For school emails request access through </h1></b><a href='mailto:nicholas.hua@kcpupils.org'>this email.</a>";
 	}
+}
+function onSetupProProfile(googleUser) {
+	var profile = googleUser.getBasicProfile();
+	var profileImg = profile.getImageUrl();
+	var profileName = profile.getName();
+	var profileEmail = profile.getEmail();
+	document.querySelector("#nh_profilepic").innerHTML='<img src="'+profileImg+'" class="w3-round">';
+	document.querySelector("#nh_username").innerHTML=profileName;
+	document.querySelector("#nh_email").innerHTML="Email: " + profileEmail;
 }
