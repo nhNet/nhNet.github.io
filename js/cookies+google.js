@@ -110,14 +110,22 @@ function onSignIn(googleUser) {
 	var profileImg = profile.getImageUrl();
 	var profileName = profile.getName();
 	var profileEmail = profile.getEmail();
-	switch (profileEmail){
-		case "spbong999@gmail.com":
-			Ad();
-			document.body.innerHTML='<div class="welcome"></div><div id="Ad"></div>';
-			setTimeout(FinishAd,7000);
-			document.querySelector('.welcome').innerHTML="<div><h1 style='font-size:20px;'> Welcome, <img width='20px' height='20px' src='"+profileImg+"'>"+profileName+"!</h1><button style='position:right;margin-top:-20px;' onclick='signOut();'>Sign out</button></div>";
+	switch (profileEmail){						//check if account exists
+		case "spbong999@gmail.com":				//list of accounts
+		case "nicholashuaman@gmail.com":
+		case "nicholas.hua@kcpupils.org":
+		case "patrickthomas.sch@kcpupils.org":
+			if(profileEmail=="spbong999@gmail.com" || profileEmail=="patrickthomas.sch@kcpupils.org"){	//check if account is pro
+				window.location="https://nhnet.github.io/pro/"
+			}else{
+				Ad();
+				document.body.innerHTML='<div class="welcome"></div><div id="Ad"></div>';
+				setTimeout(FinishAd,7000);
+				document.querySelector('.welcome').innerHTML="<div style='text-align:right;'><h1 style='font-size:20px;'> Welcome, <img width='20px' height='20px' src='"+profileImg+"'>"+profileName+"!</h1></div>";
+				break;
+			}
 			break;
 		default:
-			document.body.innerHTML="<h1 style='font-size:50px;'> Oops!, <img width='60px' height='60px' src='"+profileImg+"'>"+profileName+"!</h1><b><u><h1>For personal emails request access through </h1></u></b><a href='mailto:spbong999@gmail.com'>this email.</a><b><u><h1>For school emails request access through </h1></u></b><a href='mailto:nicholas.hua@kcpupils.org'>this email.</a><button onclick='signOut();'>Sign out</button></div>";
+			document.body.innerHTML="<h1 style='font-size:50px;'> Oops!, <img width='60px' height='60px' src='"+profileImg+"'>"+profileName+"!</h1><h1>You didn't have an account! Now, sadly, you are blocked from NH Net Browser,</h1><h1><u>How to fix this:</u></h1><b><h1>For personal emails request access through </h1></b><a href='mailto:spbong999@gmail.com'>this email.</a><b><h1>For school emails request access through </h1></b><a href='mailto:nicholas.hua@kcpupils.org'>this email.</a>";
 	}
 }
