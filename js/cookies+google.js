@@ -115,7 +115,7 @@ function onSignIn(googleUser) {
 			Ad();
 			document.body.innerHTML='<div class="welcome"></div><div id="Ad"></div>';
 			setTimeout(FinishAd,7000);
-			document.querySelector('.welcome').innerHTML="<div><h1 style='font-size:20px;'> Welcome, <img width='20px' height='20px' src='"+profileImg+"'>"+profileName+"!</h1><button onclick='signOut();'>Sign out</button></div>";
+			document.querySelector('.welcome').innerHTML="<div><h1 style='font-size:20px;'> Welcome, <img width='20px' height='20px' src='"+profileImg+"'>"+profileName+"!</h1><button style='position:right;margin-top:20px;' onclick='signOut();'>Sign out</button></div>";
 			break;
 		default:
 			document.body.innerHTML="<h1 style='font-size:50px;'> Oops!, <img width='60px' height='60px' src='"+profileImg+"'>"+profileName+"!<h1><b><u><h1>For personal emails request access through <h1></u></b><a href='mailto:spbong999@gmail.com'>this email.</a><b><u><h1>For school emails request access through <h1></u></b><a href='mailto:nicholas.hua@kcpupils.org'>this email.</a>";
