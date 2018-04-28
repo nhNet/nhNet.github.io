@@ -99,6 +99,12 @@ var Cookies = {
 function onFail(){
 	document.querySelector('.welcome').innerHTML="<h1 style='font-size:60px;'> You haven't signed in yet! <h1>";
 }
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      document.querySelector('.welcome').innerHTML="<h1>Signed Out!</h1><p>Sign In again to continue using NH Net Browser!</p><div class='g-signin2' data-onsuccess='onSignIn'></div>";
+    });
+  }
 function onSignIn(googleUser) {
 	var profile = googleUser.getBasicProfile();
 	var profileImg = profile.getImageUrl();
@@ -109,7 +115,7 @@ function onSignIn(googleUser) {
 			Ad();
 			document.body.innerHTML='<div class="welcome"></div><div id="Ad"></div>';
 			setTimeout(FinishAd,7000);
-			document.querySelector('.welcome').innerHTML="<div><h1 style='font-size:5px;'> Welcome, <img width='60px' height='60px' src='"+profileImg+"'>"+profileName+"!<h1><button onclick='signOut();'>Sign out</button></div>";
+			document.querySelector('.welcome').innerHTML="<div><h1 style='font-size:20px;'> Welcome, <img width='20px' height='20px' src='"+profileImg+"'>"+profileName+"!<h1><button onclick='signOut();'>Sign out</button></div>";
 			break;
 		default:
 			document.body.innerHTML="<h1 style='font-size:50px;'> Oops!, <img width='60px' height='60px' src='"+profileImg+"'>"+profileName+"!<h1><b><u><h1>For personal emails request access through <h1></u></b><a href='mailto:spbong999@gmail.com'>this email.</a><b><u><h1>For school emails request access through <h1></u></b><a href='mailto:nicholas.hua@kcpupils.org'>this email.</a>";
