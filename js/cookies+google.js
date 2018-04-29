@@ -110,7 +110,10 @@ function onSignIn(googleUser) {
 		case "nicholas.hua@kcpupils.org":
 		case "patrickthomas.sch@kcpupils.org":
 			if(profileEmail=="spbong999@gmail.com" || profileEmail=="patrickthomas.sch@kcpupils.org"){	//check if account is pro
-				window.location="https://nhnet.github.io/pro/"
+				setTimeout(function(){window.location="https://nhnet.github.io/pro/";},7000);
+				Ad();
+				document.body.innerHTML='<div class="welcome"></div><div id="Ad"></div>';
+				document.querySelector('.welcome').innerHTML="<div style='text-align:right;'><h1 style='font-size:20px;'> Welcome, <img width='20px' height='20px' src='"+profileImg+"'>"+profileName+"!</h1></div>";
 			}else{
 				Ad();
 				document.body.innerHTML='<div class="welcome"></div><div id="Ad"></div>';
@@ -128,7 +131,7 @@ function onSetupProProfile(googleUser) {
 	var profileImg = profile.getImageUrl();
 	var profileName = profile.getName();
 	var profileEmail = profile.getEmail();
-	document.querySelector("#nh_profilepic").innerHTML='<img src="'+profileImg+'" class="w3-round">';
-	document.querySelector("#nh_username").innerHTML=profileName;
-	document.querySelector("#nh_email").innerHTML="Email: " + profileEmail;
+	document.getElementById("nh_profilepic").innerHTML='<img src="'+profileImg+'" class="w3-round">';
+	document.getElementById("nh_username").innerHTML=profileName;
+	document.getElementById("nh_email").innerHTML="Email: " + profileEmail;
 }
