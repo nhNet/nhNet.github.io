@@ -109,21 +109,21 @@ function onSignIn(googleUser) {
 		case "nicholashuaman@gmail.com":
 		case "nicholas.hua@kcpupils.org":
 		case "patrickthomas.sch@kcpupils.org":
-			if(profileEmail=="spbong999@gmail.com" || profileEmail=="patrickthomas.sch@kcpupils.org"){	//check if account is pro
+			if(profileEmail=="spbong999@gmail.com" || profileEmail=="nicholas.hua@kcpupils.org" ||profileEmail=="patrickthomas.sch@kcpupils.org"){	//check if account is pro
 				setTimeout(function(){window.location="https://nhnet.github.io/pro/";},7000);
 				Ad();
 				document.body.innerHTML='<div class="welcome"></div><div id="Ad"></div>';
-				document.querySelector('.welcome').innerHTML="<div style='margin-left:60%;'><h1 style='font-size:20px;'> Welcome, <img width='20px' height='20px' src='"+profileImg+"'>"+profileName+"!&nbsp;</h1></div><div style='margin-top:-50px;margin-left:97%;'><div style='font-size:10px; width:25px;height:15px;background:#FF5000;border:1px solid white;'>Pro</div></div>";
+				document.querySelector('.welcome').innerHTML="<div style='margin-left:70%;'><h1 style='font-size:20px;'> Welcome, <img width='20px' height='20px' src='"+profileImg+"'> "+profileName+"!&nbsp;</h1></div><div style='margin-top:-50px;margin-left:97%;'><div style='font-size:10px; width:25px;height:15px;background:#FF5000;border:1px solid white;'>Pro</div></div>";
 			}else{
 				Ad();
 				document.body.innerHTML='<div class="welcome"></div><div id="Ad"></div>';
 				setTimeout(FinishAd,7000);
-				document.querySelector('.welcome').innerHTML="<div style='margin-left:60%;'><h1 style='font-size:20px;'> Welcome, <img width='20px' height='20px' src='"+profileImg+"'>"+profileName+"!&nbsp;</h1></div><div style='margin-top:-30px;margin-left:97%;'><div style='font-size:10px; width:25px;height:15px;background:#5e8696;border:1px solid white;'>Basic</div></div>";
+				document.querySelector('.welcome').innerHTML="<div style='margin-left:70%;'><h1 style='font-size:20px;'> Welcome, <img width='20px' height='20px' src='"+profileImg+"'> "+profileName+"!&nbsp;</h1></div><div style='margin-top:-30px;margin-left:97%;'><div style='font-size:10px; width:25px;height:15px;background:#5e8696;border:1px solid white;'>Basic</div></div>";
 				break;
 			}
 			break;
 		default:
-			document.body.innerHTML="<h1 style='font-size:50px;'> Oops!, <img width='60px' height='60px' src='"+profileImg+"'>"+profileName+"!</h1><h1>You didn't have an account! Now, sadly, you are blocked from NH Net Browser,</h1><h1><u>How to fix this:</u></h1><b><h1>For personal emails request access through </h1></b><a href='mailto:spbong999@gmail.com'>this email.</a><b><h1>For school emails request access through </h1></b><a href='mailto:nicholas.hua@kcpupils.org'>this email.</a>";
+			document.body.innerHTML="<h1 style='font-size:50px;'> Oops!, <img width='60px' height='60px' src='"+profileImg+"'> "+profileName+"!</h1><h1>You didn't have an account! Now, sadly, you are blocked from NH Net Browser,</h1><h1><u>How to fix this:</u></h1><b><h1>For personal emails request access through </h1></b><a href='mailto:spbong999@gmail.com'>this email.</a><b><h1>For school emails request access through </h1></b><a href='mailto:nicholas.hua@kcpupils.org'>this email.</a>";
 	}
 }
 function onSetupProProfile(googleUser) {
