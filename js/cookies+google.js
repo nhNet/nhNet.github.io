@@ -118,7 +118,7 @@ function onSignIn(googleUser) {
 				Ad();
 				document.body.innerHTML='<div class="welcome"></div><div id="Ad"></div>';
 				setTimeout(FinishAd,7000);
-				document.querySelector('.welcome').innerHTML="<div style='text-align:right;'><h1 style='font-size:20px;'> Welcome, <img width='20px' height='20px' src='"+profileImg+"'>"+profileName+"!&nhsp;</h1></div><div style='font-size:10px; width:25px;height:15px;background:#5e8696;border:1px solid white;'>Basic</div>";
+				document.querySelector('.welcome').innerHTML="<div style='text-align:right;'><h1 style='font-size:20px;'> Welcome, <img width='20px' height='20px' src='"+profileImg+"'>"+profileName+"!&nbsp;</h1></div><div style='text-align:right;'><div style='font-size:10px; width:25px;height:15px;background:#5e8696;border:1px solid white;'>Basic</div></div>";
 				break;
 			}
 			break;
