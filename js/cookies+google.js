@@ -100,7 +100,7 @@ function onFail(){
 	document.querySelector('.welcome').innerHTML="<h1 style='font-size:60px;'> You haven't signed in yet! <h1>";
 }
 function onSignIn(googleUser) {
-	var profile = googleUser.getBasicProfile();
+	var profile = googleUser.getBasicProfile.getImageUrl();
 	var profileImg = profile.getImageUrl();
 	var profileName = profile.getName();
 	var profileEmail = profile.getEmail();
@@ -131,7 +131,6 @@ function onSignIn(googleUser) {
 				document.body.innerHTML='<div class="welcome"></div><div id="Ad"></div>';
 				setTimeout(FinishAd,7000);
 				document.querySelector('.welcome').innerHTML="<div style='margin-left:70%;'><h1 style='font-size:20px;'> Welcome, <img width='20px' height='20px' src='"+profileImg+"'> "+profileName+"!</h1></div><div style='margin-top:-30px;margin-left:97%;'><div style='font-size:10px; width:25px;height:15px;background:#5e8696;border:1px solid white;'>Basic</div></div>";
-				break;
 			}
 			break;
 		default:
