@@ -109,7 +109,8 @@ function onSignIn(googleUser) {
 		case "nicholashuaman@gmail.com":
 		case "nicholas.hua@kcpupils.org":
 		case "patrickthomas.sch@kcpupils.org":
-			if(profileEmail=="spbong999@gmail.com" || profileEmail=="nicholas.hua@kcpupils.org" ||profileEmail=="patrickthomas.sch@kcpupils.org"){	//check if account is pro
+		case "antonio.sie.per@kcppils.org":
+			if(profileEmail=="spbong999@gmail.com" || profileEmail=="nicholas.hua@kcpupils.org" ||profileEmail=="patrickthomas.sch@kcpupils.org"||profileEmail=="antonio.sie.per@kcppils.org"){	//check if account is pro
 				setTimeout(function(){window.location="https://nhnet.github.io/pro/";},7000);
 				Ad();
 				document.body.innerHTML='<div class="welcome"></div><div id="Ad"></div>';
