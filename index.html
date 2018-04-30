@@ -13,14 +13,129 @@
         <script src="js/cookies+google.js"></script>
         <link rel="shortcut icon" type="image/png" href="https://image.flaticon.com/icons/png/512/12/12195.png" />
         <link rel="stylesheet" href="style/style.css">
-        
+        <title>NH Net Browser</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+        body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+        .myLink {display: none}
+        </style>
     </head>
     <!--
     heights: (chromebook no fullscreen = 629px), (chromebook fullscreen = 767.5px);
     -->
     
-    <body id="body" style="background:black;color:white;text-align:center;overflow:hidden;"><br><br>
-        <div class="welcome"></div><div style="margin-top:2.5%;height:630px;font-family:'Gamja Flower', cursive;background:#004000;margin-left:20%;width:60%;border-radius:50px;border:3px solid white;"><img style="margin-left:-450px;margin-top:25px;width:120px;height:120px;" src="https://huamangames.github.io/resources.a8h2_HuamanGames/files/Huaman/HuamanGames/all/ok/Game/Resources/Don-t/find/this/images/logo.png"><h1 style="margin-left:150px;margin-top:-100px;font-size:50px;"><u><b>NH Net Browser - v2.0</b></u></h1><div style="margin-top:100px;margin-left:-400px"><h1><u>Update Releases:</u></h1><div style="margin-left:-50px;"><h3>&middot;Google Signup</h3><h3>&middot;Pro Accounts</h3><h3>&middot;Web Statistics</h3><h3>&middot;Analytics</h3><h3>&middot;Plans for future Browser Apps</h3><h3>&middot;Credits</h3></div></div><div style="margin-top:-350px;margin-left:400px"><h1><u><b>Login</b></u></h1><h2 style="margin-top:-30px;"><span style="color:red;">Warning:</span> Do NOT do this until you are perfectly sure that you have a reserved account. If you press this button without knowing, you shall probably find yourself blocked out of this browser forever.</h2><div style="margin-left:100px;" class="g-signin2" data-onsuccess="onSignIn" data-onfailure="onFail"></div><button onclick="setTimeout(login,7000);signOut();">Sign Out</button></div></div>
+    <body id="body" class="w3-light-grey">
+        
+<!-- Navigation Bar -->
+<div class="w3-bar w3-white w3-border-bottom w3-xlarge">
+  <a href="#" class="w3-bar-item w3-button w3-text-black w3-hover-blue"><b><img width="70px" src="https://huamangames.github.io/resources.a8h2_HuamanGames/files/Huaman/HuamanGames/all/ok/Game/Resources/Don-t/find/this/images/logo.png">&nbsp;&nbsp;NH Net Browser v.2.0</b></a>
+  <a href="#" onclick="login();" style="margin-top:-25px;height:100px;" class="w3-bar-item w3-button w3-right w3-hover-red w3-text-grey"><br>Login</a>
+</div>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-hide-small" style="max-width:1500px">
+  <img style="margin-top:-137px;margin-left:140px;transform:rotate(-90deg);" class="w3-image" src="img/NHNet.jpg" width="1100" height="700">
+  <div class="w3-display-middle" style="border:5px solid black;width:65%">
+    <div class="w3-bar w3-black">
+      <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Flight');">Login</button>
+      <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Hotel');">Signup</button>
+    </div>
+
+    <!-- Tabs -->
+    <div id="Flight" class="w3-container w3-white w3-padding-16 myLink">
+      <h3>Login to NH Net Browser</h3>
+      <div class="w3-row-padding" style="margin:0 -16px;">
+        <div class="w3-half">
+          <label>This will take you to the login page:</label>
+          <button class="w3-button w3-dark-grey" onclick="login();">Login</button>
+        </div>
+       </div>
+    </div>
+
+    <div id="Hotel" class="w3-container w3-white w3-padding-16 myLink">
+      <h3>Currently, there is no way to sign up.</h3>
+      <p>Please send me an email with your email inside the message.</p>
+      <p>I will add you and will reply shortly after.</p>
+      <p><a href="mailto:spbong999@gmail.com"><button class="w3-button w3-dark-grey">Send Email</button></a></p>
+    </div>
+  </div>
+</header>
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:1100px;">
+
+  <!-- Good offers -->
+  <div class="w3-container w3-margin-top">
+    <h3>Screenshots of the immersive experience of NH Net Browser<strong><span style="color:#FF5000;"> Pro</span></strong>:</h3>
+    <h6>Don't miss the new offer: Up to <strong>100%</strong> discount on <strong><span style="color:#FF5000;">Pro</span></strong> accounts. (Only 5 hrs left)</h6>
+  </div>
+  <div class="w3-row-padding w3-text-white w3-large">
+    <div class="w3-half w3-margin-bottom">
+      <div class="w3-display-container">
+        <img src="img/Dashboard.png" alt="Pro Dashboard" style="border:2px solid black;width:100%">
+        <span style="text-align:center; width:100%;" class="w3-display-bottomleft w3-black w3-padding">Pro Dashboard</span>
+      </div>
+    </div>
+    <div class="w3-half">
+      <div class="w3-row-padding" style="margin:0 -16px">
+        <div class="w3-half w3-margin-bottom">
+          <div class="w3-display-container">
+            <img src="img/Twitch.png" alt="Twitch" style="border:2px solid black;width:100%">
+            <span style="text-align:center; height:37px;width:100%;" class="w3-display-bottomleft w3-black w3-padding">Twitch Stream App</span>
+          </div>
+        </div>
+        <div class="w3-half w3-margin-bottom">
+          <div class="w3-display-container">
+            <img src="img/WebDev.png" alt="WebDev" style="border:2px solid black; height: 145px;width:100%">
+            <span style="text-align:center; height:37px;width:100%;" class="w3-display-bottomleft w3-black w3-padding">Web Development App</span>
+          </div>
+        </div>
+      </div>
+      <div class="w3-row-padding w3-large" style="margin:0 -16px">
+        <div class="w3-half w3-margin-bottom">
+          <div class="w3-display-container">
+            <img src="img/Coming Soon.png" alt="Coming Soon..." style="border:2px solid black; height: 145px;width:207%">
+            <span style="color:black;text-align:center; font-size:20px; height:35px;width:207%;" class="w3-display-bottomleft w3-padding">Eg. HuamanGames</span>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+
+<!-- Footer -->
+<footer class="w3-container w3-center w3-opacity w3-margin-bottom">
+  <h2>Find Me On:</h2>
+  <div class="w3-xlarge w3-padding-16">
+    <a href="https://instagram.com/spbong999/"><i class="fa fa-instagram w3-hover-opacity"> SPBong999's Instagram</i></a>  <p style="font-size:20px;">(Link not working yet)</p>
+  </div>
+  <div style="margin-bottom:-5%;margin-left:-13.906%; width:127.8105%;" class="w3-black  w3-xlarge"><p>NH Net Code on <a href="https://github.com/nhnet/" target="_blank" class="w3-hover-text-blue">Github</a></p></div>
+</footer>
+
+<script>
+// Tabs
+function openLink(evt, linkName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("myLink");
+  for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(linkName).style.display = "block";
+  evt.currentTarget.className += " w3-red";
+}
+// Click on the first tablink on load
+document.getElementsByClassName("tablink")[0].click();
+</script>
         <!-- Default Statcounter code for Main Browser Page https://nhnet.github.io -->
         <script type="text/javascript">
         var sc_project=11694146; 
