@@ -100,7 +100,7 @@ function onFail(){
 	document.querySelector('.welcome').innerHTML="<h1 style='font-size:60px;'> You haven't signed in yet! <h1>";
 }
 function onSignIn(googleUser) {
-	var profile = googleUser.getBasicProfile.getImageUrl();
+	var profile = googleUser.getBasicProfile();
 	var profileImg = profile.getImageUrl();
 	var profileName = profile.getName();
 	var profileEmail = profile.getEmail();
