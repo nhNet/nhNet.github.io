@@ -4,13 +4,7 @@
 addEventListener(
     "resize",
     function(){
-        addEventListener(
-            "resize",
-            function(){
-                return Resize();
-            },
-            10
-        );
+        return Resize();
     },
     10
 );
@@ -18,25 +12,7 @@ addEventListener(
     function Resize(){
         document.body.style.background="black";
         document.body.style.color="white";
-        document.body.innerHTML="<h1 style='font-size:100px;'>Wait a minute...</h1><h1 style='font-size:100px;'>Are u trying to change my size?</h1><p style='font-size:50px;'>Please don't do it. It will ruin the structure of my website.</p><p style='font-size:50px'>Reset the size of the browser to the correct one, then close and reopen the browser to start again...</p>";
-    }
-    function Ad(){
-        var num1=800;
-        var num2=700;
-        var fnum1=40;
-        var fnum2=65;
-        var down = setInterval(scaleDownLogo, 1);
-        setTimeout(function(){clearInterval(down);},7000);
-
-        function scaleDownLogo(){
-            num1--;
-          num2--;
-            document.getElementById("Ad").style.backgroundSize = num1 + "px " + num2 + "px";
-          if (num1==0){scaleDownText();}
-        }
-        function scaleDownText(){
-            document.getElementById("Ad").innerHTML="<br><br><br><br><br><br><br><br><br><br><p style='user-select:none;font-size:"+fnum1+"px;'>Made by the creator of</p><h1 style='user-select:none;font-size:"+fnum2+"px'>HuamanGames</h1>";
-        }
+        document.body.innerHTML="<h1 style='font-size:100px;'>Please make this window full screen...</h1><h1 style='font-size:100px;'>To enjoy the experience of my browser</h1><p style='font-size:50px;'>Please do so. If not, it will ruin the structure of my browser Apps.</p><p>Reload this page.</p>";
     }
     function FinishAd(){
         document.body.style.background="#4c4c39";
