@@ -133,6 +133,7 @@ function onSignIn(googleUser) {
 				setTimeout(function(){window.location="https://nhnet.github.io/pro/";},7000);
 				window.location="https://nhnet.github.io/logincodeanimation/";
 			}else{
+				document.body.innerHTML="<h1>Go Pro to see what is happening now in the background.</h1>";
 				setTimeout(FinishAd,7000);
 			}
 			break;
