@@ -130,7 +130,6 @@ function onSignIn(googleUser) {
 		case "nicolas.arr.gra@kcpupils.org":	//Add Nico2
 		case "rodrigo.alv.bor@kcpupils.org":	//Add Rodrigo A
 			if(profileEmail=="spbong999@gmail.com" || profileEmail=="nicholas.hua@kcpupils.org" ||profileEmail=="patrickthomas.sch@kcpupils.org"||profileEmail=="antonio.sie.per@kcpupils.org" || profileEmail=="lucasgabriel.sal.bev@kcpupils.org" || profileEmail=="jorgegabriel.jof.vic@kcpupils.org"|| profileEmail=="nathan.wal.san@kcpupils.org"){	//check if account is pro
-				setTimeout(function(){window.location="https://nhnet.github.io/pro/";},7000);
 				window.location="https://nhnet.github.io/logincodeanimation/";
 			}else{
 				document.body.innerHTML="<h1>Go Pro to see what is happening now in the background.</h1>";
