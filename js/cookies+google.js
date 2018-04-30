@@ -99,6 +99,12 @@ var Cookies = {
 function onFail(){
 	document.querySelector('.welcome').innerHTML="<h1 style='font-size:60px;'> You haven't signed in yet! <h1>";
 }
+function signOut() {
+	var auth2 = gapi.auth2.getAuthInstance();
+	auth2.signOut().then(function () {
+	document.querySelector('.welcome').innerHTML="<h1 style='font-size:60px;'> You signed out! <h1>";
+	});
+}
 function onSignIn(googleUser) {
 	var profile = googleUser.getBasicProfile();
 	var profileImg = profile.getImageUrl();
