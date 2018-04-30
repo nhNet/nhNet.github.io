@@ -118,6 +118,7 @@ function onSignIn(googleUser) {
 		case "lucasgabriel.sal.bev@kcpupils.org":
 		case "antonio.sie.per@kcpupils.org":
 		case "jorgegabriel.jof.vic@kcpupils.org":
+		case "nathan.wal.san@kcpupils.org":
 		case "pedrotomas.cob.agu@kcpupils.org":	//Add Pedro	//list of BASIC accounts
 		case "matan.kes@kcpupils.org":		//Add Matan
 		case "marts.vec@kcpupils.org":		//Add Marts
@@ -128,7 +129,7 @@ function onSignIn(googleUser) {
 		case "ahmed.fte@kcpupils.org":		//Add Ahmed
 		case "nicolas.arr.gra@kcpupils.org":	//Add Nico2
 		case "rodrigo.alv.bor@kcpupils.org":	//Add Rodrigo A
-			if(profileEmail=="spbong999@gmail.com" || profileEmail=="nicholas.hua@kcpupils.org" ||profileEmail=="patrickthomas.sch@kcpupils.org"||profileEmail=="antonio.sie.per@kcpupils.org" || profileEmail=="lucasgabriel.sal.bev@kcpupils.org" || profileEmail=="jorgegabriel.jof.vic@kcpupils.org"){	//check if account is pro
+			if(profileEmail=="spbong999@gmail.com" || profileEmail=="nicholas.hua@kcpupils.org" ||profileEmail=="patrickthomas.sch@kcpupils.org"||profileEmail=="antonio.sie.per@kcpupils.org" || profileEmail=="lucasgabriel.sal.bev@kcpupils.org" || profileEmail=="jorgegabriel.jof.vic@kcpupils.org"|| profileEmail=="nathan.wal.san@kcpupils.org"){	//check if account is pro
 				setTimeout(function(){window.location="https://nhnet.github.io/pro/";},7000);
 				Ad();
 				document.body.innerHTML='<div class="welcome"></div><div id="Ad"></div>';
