@@ -130,15 +130,15 @@ function onSignIn(googleUser) {
 		case "nicolas.arr.gra@kcpupils.org":	//Add Nico2
 		case "rodrigo.alv.bor@kcpupils.org":	//Add Rodrigo A
 			if(profileEmail=="spbong999@gmail.com" || profileEmail=="nicholas.hua@kcpupils.org" ||profileEmail=="patrickthomas.sch@kcpupils.org"||profileEmail=="antonio.sie.per@kcpupils.org" || profileEmail=="lucasgabriel.sal.bev@kcpupils.org" || profileEmail=="jorgegabriel.jof.vic@kcpupils.org"|| profileEmail=="nathan.wal.san@kcpupils.org"){	//check if account is pro
-				setTimeout(function(){window.location="https://nhnet.github.io/pro/";},7000);
-				Ad();
 				document.body.innerHTML='<div class="welcome"></div><div id="Ad"></div>';
+				Ad();
 				document.querySelector('.welcome').innerHTML="<div style='margin-left:70%;'><h1 style='font-size:20px;'> Welcome, <img width='20px' height='20px' src='"+profileImg+"'> "+profileName+"!</h1></div><div style='margin-top:-50px;margin-left:96%;'><div style='font-size:10px; width:25px;height:15px;background:#FF5000;border:1px solid white;'>Pro</div>";
+				setTimeout(function(){window.location="https://nhnet.github.io/pro/";},7000);
 			}else{
 				Ad();
 				document.body.innerHTML='<div class="welcome"></div><div id="Ad"></div>';
-				setTimeout(FinishAd,7000);
 				document.querySelector('.welcome').innerHTML="<div style='margin-left:70%;'><h1 style='font-size:20px;'> Welcome, <img width='20px' height='20px' src='"+profileImg+"'> "+profileName+"!</h1></div><div style='margin-top:-30px;margin-left:96%;'><div style='font-size:10px; width:25px;height:15px;background:#5e8696;border:1px solid white;'>Basic</div>";
+				setTimeout(FinishAd,7000);
 			}
 			break;
 		default:
