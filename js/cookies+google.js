@@ -117,6 +117,7 @@ function onSignIn(googleUser) {
 		case "patrickthomas.sch@kcpupils.org":
 		case "lucasgabriel.sal.bev@kcpupils.org":
 		case "antonio.sie.per@kcpupils.org":
+		case "jorgegabriel.jof.vic@kcpupils.org":
 		case "pedrotomas.cob.agu@kcpupils.org":	//Add Pedro	//list of BASIC accounts
 		case "matan.kes@kcpupils.org":		//Add Matan
 		case "marts.vec@kcpupils.org":		//Add Marts
