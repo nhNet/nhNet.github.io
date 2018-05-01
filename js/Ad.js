@@ -1,19 +1,6 @@
 //Code for Ad!
 //Made by Nicholas Huaman
 
-addEventListener(
-    "resize",
-    function(){
-        return Resize();
-    },
-    10
-);
-
-    function Resize(){
-        document.body.style.background="black";
-        document.body.style.color="white";
-        document.body.innerHTML="<h1 style='font-size:100px;'>Please make this window full screen...</h1><h1 style='font-size:100px;'>To enjoy the experience of my browser</h1><p style='font-size:50px;'>Please do so. If not, it will ruin the structure of my browser Apps.</p><p>Reload this page.</p>";
-    }
     function FinishAd(){
         document.body.style.background="#4c4c39";
         document.body.style.color="black";
