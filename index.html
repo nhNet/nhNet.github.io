@@ -2,6 +2,9 @@
 <html>
 <title>NH Net Browser</title>
 <meta charset="UTF-8">
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id" content="398993796104-lq9k21a411mnehe5p94brocp3rs72dr5.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -25,6 +28,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <div class="w3-bar w3-black">
       <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Flight');">Login</button>
       <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Hotel');">Signup</button>
+      <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'change_Account');">Change Account</button>
     </div>
 
     <!-- Tabs -->
@@ -45,6 +49,15 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       <p><a href="mailto:spbong999@gmail.com"><button class="w3-button w3-dark-grey">Send Email</button></a></p>
     </div>
   </div>
+  <div id="change_Account" class="w3-container w3-white w3-padding-16 myLink">
+      <h3>Change NH Net Browser Account</h3>
+      <div class="w3-row-padding" style="margin:0 -16px;">
+        <div id="changedAccount" class="w3-half">
+          <label>Press this button to Change your NH Net Account</label>
+          <button class="w3-button w3-dark-grey"><div style="margin-left:100px;" class="g-signin2" data-onsuccess="document.getElementById('changedAccount').innerHTML='You changed your account successfully!';"></div></button>
+        </div>
+       </div>
+    </div>
 </header>
 
 <!-- Page content -->
