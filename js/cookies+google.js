@@ -130,7 +130,11 @@ function onSignIn(googleUser) {
 		case "nicolas.arr.gra@kcpupils.org":	//Add Nico2
 		case "rodrigo.alv.bor@kcpupils.org":	//Add Rodrigo A
 			if(profileEmail=="spbong999@gmail.com" || profileEmail=="nicholas.hua@kcpupils.org" ||profileEmail=="patrickthomas.sch@kcpupils.org"||profileEmail=="antonio.sie.per@kcpupils.org" || profileEmail=="lucasgabriel.sal.bev@kcpupils.org" || profileEmail=="jorgegabriel.jof.vic@kcpupils.org"|| profileEmail=="nathan.wal.san@kcpupils.org"){	//check if account is pro
-				window.location="https://nhnet.github.io/logincodeanimation/";
+				setTimeout(function(){window.location="https://nhnet.github.io/pro/"},26000);
+				document.body.innerHTML="<div id='box'><h1 style='text-align:right'>Welcome, <span id='img'></span> <span id='name'></span><div style='text-align:center;margin-left:1318px;width:30px;border:1px solid black;background:#ffac38;font-size:10px;color:black;'>P R O</div><div style='border:1px solid black;background:#FFFFFF;font-size:10px;'>.</div></h1></div><iframe width='100%' height='665px' src='https://nhnet.github.io/logincodeanimation/'></iframe>"
+				document.getElementById('img').innerHTML="<img width='30px' height='30px' src='"+profileImg+"'>";
+				document.getElementById('name').innerHTML= profileName;
+				document.body.style.background="#111111";
 			}else{
 				setTimeout(function(){document.body.innerHTML="<h1 style='text-align:right'>Welcome, <img width='30px' height='30px' src='"+profileImg+"'> "+profileName+"<div style='text-align:center;margin-left:1318px;width:30px;border:1px solid black;background:#93b9d6;font-size:10px;color:black;'>Basic</div><div style='border:1px solid black;background:#FFFFFF;font-size:10px;'>.</div></h1><h1>Go Pro to see what is happening now in the background.</h1><h1 style='font-size:300px;'>7</h1>";},0);
             setTimeout(function(){document.body.innerHTML="<h1 style='text-align:right'>Welcome, <img width='30px' height='30px' src='"+profileImg+"'> "+profileName+"<div style='text-align:center;margin-left:1318px;width:30px;border:1px solid black;background:#93b9d6;font-size:10px;color:black;'>Basic</div><div style='border:1px solid black;background:#FFFFFF;font-size:10px;'>.</div></h1><h1>Go Pro to see what is happening now in the background.</h1><h1 style='font-size:300px;'>6</h1>";},1000);
