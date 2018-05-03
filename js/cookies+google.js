@@ -119,9 +119,10 @@ function onSignIn(googleUser) {
 		case "antonio.sie.per@kcpupils.org":
 		case "jorgegabriel.jof.vic@kcpupils.org":
 		case "nathan.wal.san@kcpupils.org":
+		case "rodrigo.par.rob@kcpupils.org":
 		case "pedrotomas.cob.agu@kcpupils.org":	//Add Pedro	//list of BASIC accounts
 		case "matan.kes@kcpupils.org":		//Add Matan
-		case "marts.vec@kcpupils.org":		//Add Marts
+		case "marts.vec@kcpupils.org":		//Add Marts	
 		case "marcos.car.val@kcpupils.org":	//Add Marcos
 		case "victor.arr.mar@kcpupils.org":	//Add Victor
 		case "nicolas.oli.mon@kcpupils.org":	//Add Nico1
@@ -129,7 +130,7 @@ function onSignIn(googleUser) {
 		case "ahmed.fte@kcpupils.org":		//Add Ahmed
 		case "nicolas.arr.gra@kcpupils.org":	//Add Nico2
 		case "rodrigo.alv.bor@kcpupils.org":	//Add Rodrigo A
-			if(profileEmail=="spbong999@gmail.com" || profileEmail=="nicholas.hua@kcpupils.org" ||profileEmail=="patrickthomas.sch@kcpupils.org"||profileEmail=="antonio.sie.per@kcpupils.org" || profileEmail=="lucasgabriel.sal.bev@kcpupils.org" || profileEmail=="jorgegabriel.jof.vic@kcpupils.org"|| profileEmail=="nathan.wal.san@kcpupils.org"){	//check if account is pro
+			if(profileEmail=="spbong999@gmail.com" || profileEmail=="rodrigo.par.rob@kcpupils.org" || profileEmail=="nicholas.hua@kcpupils.org" ||profileEmail=="patrickthomas.sch@kcpupils.org"||profileEmail=="antonio.sie.per@kcpupils.org" || profileEmail=="lucasgabriel.sal.bev@kcpupils.org" || profileEmail=="jorgegabriel.jof.vic@kcpupils.org"|| profileEmail=="nathan.wal.san@kcpupils.org"){	//check if account is pro
 				setTimeout(function(){window.location="https://nhnet.github.io/pro/"},26000);
 				document.body.innerHTML="<div id='box'><h1 style='text-align:right'>Welcome, <span id='img'></span> <span id='name'></span><div style='text-align:center;margin-left:1318px;width:30px;border:1px solid black;background:#ffac38;font-size:10px;color:black;'>P R O</div><a href='https://nhnet.github.io/pro/'><div style='text-align:center;border:1px solid black;background:#FFFFFF;font-size:10px;'>Skip</div></a></h1></div><iframe width='100%' height='655px' src='https://nhnet.github.io/logincodeanimation/'></iframe>"
 				document.getElementById('img').innerHTML="<img width='30px' height='30px' src='"+profileImg+"'>";
