@@ -2,7 +2,7 @@ function SUBMITtwitch(){
     OpenTwitch(document.querySelector('.Box').value, document.querySelector('.Box2').value);
 }
 function SUBMITyoutube(){
-    OpenYouTube(document.querySelector('.Box').value, document.querySelector('.Box').value);
+    OpenYouTube(document.querySelector('.Box').value, document.querySelector('.Box2').value);
 }
 function OpenTwitch(streamer, attr){
     document.body.style.background="url(http://www.solidbackgrounds.com/images/950x350/950x350-black-solid-color-background.jpg) #EFEEF1 no-repeat fixed top";
