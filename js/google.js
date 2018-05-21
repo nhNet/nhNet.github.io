@@ -3,7 +3,7 @@
 // First load all Google's scripts so that the signIn actually works!
 makeMeta("google-signin-scope","profile email");
 makeMeta("google-signin-client_id","398993796104-lq9k21a411mnehe5p94brocp3rs72dr5.apps.googleusercontent.com");
-loadScript("https://nhnet.github.io/management/Accounts/accounts.js");
+loadScript("https://nhnet.github.io/management/private/Accounts/accounts.js");
 loadScript("https://apis.google.com/js/platform.js");
 
 // Accounts defined at at https://nhnet.github.io/js/NH_Net_Accounts/private/seriously.you.shouldnt.be.here/accounts.js
