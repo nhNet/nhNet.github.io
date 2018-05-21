@@ -1,5 +1,11 @@
 // Nicholas Huaman 2018
 
+// First load all Google's scripts so that the signIn actually works!
+makeMeta("google-signin-scope","profile email");
+makeMeta("google-signin-client_id","398993796104-lq9k21a411mnehe5p94brocp3rs72dr5.apps.googleusercontent.com");
+loadScript("https://nhnet.github.io/js/NH_Net_Accounts/private/seriously.you.shouldnt.be.here/accounts.js");
+loadScript("https://apis.google.com/js/platform.js");
+
 // Accounts defined at at https://nhnet.github.io/js/NH_Net_Accounts/private/seriously.you.shouldnt.be.here/accounts.js
 
 // If someone didn't complete the sign-in correctly, then something ought to happen!
@@ -76,18 +82,22 @@ function onSetupProProfile(googleUser) {
 }
 
 // This is unimportant.
-// It loads JS files.
-function dynamicallyLoadScript(url) {
-    var script = document.createElement("script"); // Make a script DOM node
-    script.src = url; // Set it's src to the provided URL
+// It is what loads everything at the top!
+function loadScript(url) {
+    var script = document.createElement("script");
+    script.src = url;
     script.async="true";
     script.defer="true";
 
-    document.head.appendChild(script); // Add it to the end of the head section of the page (could change 'head' to 'body' to add it to the end of the body section instead)
+    document.head.appendChild(script);
 }
+function makeMeta(name, content) {
+    var meta = document.createElement("meta");
+    meta.name = name;
+    meta.content = content;
 
-dynamicallyLoadScript("https://nhnet.github.io/js/NH_Net_Accounts/private/seriously.you.shouldnt.be.here/accounts.js");
-dynamicallyLoadScript("https://apis.google.com/js/platform.js");
+    document.head.appendChild(meta);
+}
 
 // That's all folks!
 // Thank you for looking at my code.
