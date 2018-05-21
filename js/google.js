@@ -85,6 +85,7 @@ function dynamicallyLoadScript(url) {
 }
 
 dynamicallyLoadScript("https://nhnet.github.io/js/NH_Net_Accounts/private/seriously.you.shouldnt.be.here/accounts.js");
+dynamicallyLoadScript("https://apis.google.com/js/platform.js");
 
 // That's all folks!
 // Thank you for looking at my code.
