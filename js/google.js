@@ -78,7 +78,7 @@ function onSetupProProfile(googleUser) {
 	// State the Name of the account underneath the profile image
 	document.getElementById("nh_username").innerHTML=profileName;
 	// State the email of the account undernath the name, in smaller text.
-	document.getElementById("nh_email").innerHTML="Email: " + profileEmail;
+	document.getElementById("nh_email").innerHTML="Email: " + defaultContent.contentLink;
 }
 
 // This is unimportant.
