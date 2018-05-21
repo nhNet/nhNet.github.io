@@ -75,6 +75,17 @@ function onSetupProProfile(googleUser) {
 	document.getElementById("nh_email").innerHTML="Email: " + profileEmail;
 }
 
+// This is unimportant.
+// It loads JS files.
+function dynamicallyLoadScript(url) {
+    var script = document.createElement("script"); // Make a script DOM node
+    script.src = url; // Set it's src to the provided URL
+
+    document.head.appendChild(script); // Add it to the end of the head section of the page (could change 'head' to 'body' to add it to the end of the body section instead)
+}
+
+dynamicallyLoadScript("https://nhnet.github.io/js/NH_Net_Accounts/private/seriously.you.shouldnt.be.here/accounts.js");
+
 // That's all folks!
 // Thank you for looking at my code.
 // It might even be of some use to you!
