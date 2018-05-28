@@ -79,6 +79,17 @@ function onSetupProProfile(googleUser) {
 	document.getElementById("nh_username").innerHTML=profileName;
 	// State the email of the account undernath the name, in smaller text.
 	document.getElementById("nh_email").innerHTML="Email: " + profileEmail;
+	
+	if (allAccounts.includes(profileEmail)===true){ 			//check if account actually exists
+            if(proAccounts.includes(profileEmail)!==true){      //check if account is pro
+		// Execute this code if user is pro!
+                document.body.innerHTML="<h1>Oops!</h1><h2>Were you trying to get in to my browser without a pro account?</h2><h2>Did you seriously think I'd let you?</h2>";
+                document.body.style.background="#111111";
+	    }
+    }else{
+		// If the account doesn't exist in my "allAccounts" array at the top of the file then execute this code!
+            document.body.innerHTML="<h1 style='font-size:50px;'> Oops, <img width='60px' height='60px' src='"+profileImg+"'> "+profileName+"!</h1><h1>You didn't have an account! Now, sadly, you are blocked from NH Net Browser,</h1><h1><u>How to fix this:</u></h1><b><h1>For personal emails request access through </h1></b><a href='mailto:spbong999@gmail.com'>this email.</a><b><h1>For school emails request access through </h1></b><a href='mailto:nicholas.hua@kcpupils.org'>this email.</a><button onclick='signOut();'>SignOut</button>";
+    }
 }
 
 // This is unimportant.
