@@ -1,3 +1,4 @@
+
 <!--Nicholas Huaman-->
 <!DOCTYPE html>
 <html lang='en' class=''>
@@ -18,7 +19,7 @@
 
     .con {
       width: 100%;
-      background: #002142;
+      background: #111/*#002142*/;
       height: 900px;
       position: relative;
       overflow: hidden;
@@ -252,17 +253,56 @@
         height: 0px;
       }
     }
+    .moons{
+        animation:riseAndFall 5s infinite;
+        
+    }
+    @keyframes riseAndFall{
+        0%{
+            margin-top:-50px;
+            margin-left:-43%;
+        }
+        25%{
+            margin-top:-160px;
+        }
+        50%{
+            margin-top:-50px;
+            margin-left:42%;
+        }
+        75%{
+            margin-top:-160px;
+        }
+        100%{
+            margin-top:-50px;
+            margin-left:-43%;
+        }
+    }
     .moon:nth-child(1) {
       width: 100px;
       height: 100px;
       border-radius: 50%;
       background: #FFF000;
+      animation:riseAndFallColourChange 5s infinite;
       box-shadow: 0px 1px 30px 0px #ffff64;
       opacity: 0.2;
       position: absolute;
       z-index: 10;
       margin-left: calc(50% - 100px/2);
       margin-top: calc(400px - 100px/2);
+    }
+    @keyframes riseAndFallColourChange{
+        0%{
+            background: #FFF000;
+            box-shadow: 0px 1px 30px 0px #ffff64;
+        }
+        50%{
+            background: #666666;
+            box-shadow: 0px 1px 30px 0px #888888;
+        }
+        80%{
+            background: #FFF000;
+            box-shadow: 0px 1px 30px 0px #ffff64;
+        }
     }
 
     .moon:nth-child(1) {
@@ -279,6 +319,7 @@
       height: 200px;
       border-radius: 50%;
       background: #FFF000;
+      animation:riseAndFallColourChange 5s infinite;
       box-shadow: 0px 1px 30px 0px #ffff64;
       opacity: 0.1;
       position: absolute;
@@ -301,6 +342,7 @@
       height: 300px;
       border-radius: 50%;
       background: #FFF000;
+      animation:riseAndFallColourChange 5s infinite;
       box-shadow: 0px 1px 30px 0px #ffff64;
       opacity: 0.0666666667;
       position: absolute;
@@ -323,6 +365,7 @@
       height: 400px;
       border-radius: 50%;
       background: #FFF000;
+      animation:riseAndFallColourChange 5s infinite;
       box-shadow: 0px 1px 30px 0px #ffff64;
       opacity: 0.05;
       position: absolute;
@@ -345,6 +388,7 @@
       height: 500px;
       border-radius: 50%;
       background: #FFF000;
+      animation:riseAndFallColourChange 5s infinite;
       box-shadow: 0px 1px 30px 0px #ffff64;
       opacity: 0.04;
       position: absolute;
@@ -367,6 +411,7 @@
       height: 600px;
       border-radius: 50%;
       background: #FFF000;
+      animation:riseAndFallColourChange 5s infinite;
       box-shadow: 0px 1px 30px 0px #ffff64;
       opacity: 0.0333333333;
       position: absolute;
@@ -389,6 +434,7 @@
       height: 700px;
       border-radius: 50%;
       background: #FFF000;
+      animation:riseAndFallColourChange 5s infinite;
       box-shadow: 0px 1px 30px 0px #ffff64;
       opacity: 0.0285714286;
       position: absolute;
@@ -411,6 +457,7 @@
       height: 800px;
       border-radius: 50%;
       background: #FFF000;
+      animation:riseAndFallColourChange 5s infinite;
       box-shadow: 0px 1px 30px 0px #ffff64;
       opacity: 0.025;
       position: absolute;
@@ -4933,7 +4980,7 @@
     </div>
 <div class="con" style="margin-top:-200px;">
     <div class="header">
-        <h2>NH Net Browser<br> v3.0!</h2>
+        <h2>NH Net Browser<br> v4.0!</h2>
       <small>Created by Nicholas Huaman</small>
       <small>Click on a hill to continue...</small>
       
@@ -4946,8 +4993,9 @@
         <div style="font-family:'Palanquin';font-size:60px;color:white;" onclick="window.location='https://nhnet.github.io/changeuser.html';" class="hill3">&nbsp;Swap Accounts</div>
         <div style="font-family:'Palanquin';font-size:70px;color:white;" onclick="window.location='https://nhnet.github.io/login.html';" class="hill">&nbsp;Login to&nbsp;<br>&nbsp;the Browser</div>
     </div>
+    
     <div class="moons">
-        <div class="moon"></div>
+        <div class="moon"><img style="margin-top:-30px;margin-left:-25px;" width="200" src="http://www.pngmart.com/files/5/Astronaut-PNG-Photos.png"></div>
         <div class="moon"></div>
         <div class="moon"></div>
         <div class="moon"></div>
@@ -4956,6 +5004,7 @@
         <div class="moon"></div>
         <div class="moon"></div>
     </div>
+
     <div class="shoot"></div>
     <div class="shoot"></div>
     <div class="shoot"></div>
