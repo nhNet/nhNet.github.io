@@ -36,7 +36,7 @@ function onSignIn(googleUser) {
             if(proAccounts.includes(profileEmail)===true){      //check if account is pro
 		// Execute this code if user is pro!
                 setTimeout(function(){window.location="https://nhnet.github.io/pro/"},26000);
-                document.body.innerHTML="<div id='box'><h1 style='text-align:right'>Welcome, <span id='img'></span> <span id='name'></span><div style='text-align:center;margin-left:1318px;width:30px;border:1px solid black;background:#ffac38;font-size:10px;color:black;'>P R O</div><a href='https://nhnet.github.io/pro/'><div style='text-align:center;border:1px solid black;background:#FFFFFF;font-size:10px;'>Skip</div></a></h1></div><iframe frameborder="0" width='100%' height='655px' src='https://nhnet.github.io/logincodeanimation/'></iframe>"
+                document.body.innerHTML="<div id='box'><h1 style='text-align:right'>Welcome, <span id='img'></span> <span id='name'></span><div style='text-align:center;margin-left:1318px;width:30px;border:1px solid black;background:#ffac38;font-size:10px;color:black;'>P R O</div><a href='https://nhnet.github.io/pro/'><div style='text-align:center;border:1px solid black;background:#FFFFFF;font-size:10px;'>Skip</div></a></h1></div><iframe frameborder='0' width='100%' height='655px' src='https://nhnet.github.io/logincodeanimation/'></iframe>"
                 document.getElementById('img').innerHTML="<img width='30px' height='30px' src='"+profileImg+"'>";
                 document.getElementById('name').innerHTML= profileName;
                 document.body.style.background="#111111";
