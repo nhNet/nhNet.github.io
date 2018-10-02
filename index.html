@@ -200,15 +200,39 @@ body .options .option .label .info .sub {
          </div>
       </div>
       </div>
-      <div class="NHGames option" style="--optionBackground:url(https://nhnet.github.io/img/NH_shooter.png);">
+      <div class="3D option" style="--optionBackground:url(https://nhnet.github.io/img/NH_shooter.png);">
          <div class="shadow"></div>
          <div class="label">
             <div class="icon">
-               NH Games
+               3D
             </div>
             <div class="info">
-               <div class="main">NH Games</div>
-               <div class="sub">A collection of Games made by the NH Net Developer</div>
+               <div class="main">NH TPS 3D</div>
+               <div class="sub">A 3D shooter</div>
+            </div>
+         </div>
+      </div>
+      <div class="NHTag option" style="--optionBackground:url(https://nhnet.github.io/img/NHTag.png);">
+            <div class="shadow"></div>
+            <div class="label">
+               <div class="icon">
+                  NH Tag
+               </div>
+               <div class="info">
+                  <div class="main">NH Tag</div>
+                  <div class="sub">A boring multiplayer canvas tag game!</div>
+               </div>
+            </div>
+      </div>
+      <div class="2048 option" style="--optionBackground:url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/2048_logo.svg/2000px-2048_logo.svg.png) no-repeat #FF5000;">
+         <div class="shadow"></div>
+         <div class="label">
+            <div class="icon">
+               2048
+            </div>
+            <div class="info">
+               <div class="main">NH 2048</div>
+               <div class="sub">A Multiplayer competitive 2048</div>
             </div>
          </div>
       </div>
@@ -216,7 +240,7 @@ body .options .option .label .info .sub {
          <div class="shadow"></div>
          <div class="label">
             <div class="icon">
-               <i class="fa fa-angry"
+              <i class="far fa-angry"></i>
             </div>
             <div class="info">
                <div class="main">Shellshocked.io</div>
@@ -243,12 +267,16 @@ body .options .option .label .info .sub {
    $(".option").removeClass("active");
    $(this).addClass("active");
 });
-$(".NHGames").click(function () {
-   $('.container').innerHTML = 'Loading...';
-   window.location = 'https://nhnet.github.io/NHGames.html';
+$(".NHTag").click(function () {
+   window.location = 'https://nhtag--nicholashuaman.repl.co/';
+});
+$(".3D").click(function () {
+   window.location = 'https://3d--nicholashuaman.repl.co/';
+});
+$(".2048").click(function () {
+   window.location = 'https://nh-2048-server-1--nicholashuaman.repl.co/';
 });
 $(".ShellShocked").click(function () {
-   $('.container').innerHTML = 'Loading...';
    window.location = 'https://shellshocked.io/';
 });
 $(".NHChat").click(function () {
