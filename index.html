@@ -199,40 +199,16 @@ body .options .option .label .info .sub {
             </div>
          </div>
       </div>
-  
-     <div class="3D option" style="--optionBackground:url(https://nhnet.github.io/img/NH_shooter.png);">
+      </div>
+      <div class="ShellShocked option" style="--optionBackground:url(https://nhnet.github.io/img/NH_shooter.png);">
          <div class="shadow"></div>
          <div class="label">
             <div class="icon">
-               3D
+               <i class="fa fa-angry"
             </div>
             <div class="info">
-               <div class="main">NH TPS 3D</div>
-               <div class="sub">A 3D shooter</div>
-            </div>
-         </div>
-      </div>
-      <div class="NHTag option" style="--optionBackground:url(https://nhnet.github.io/img/NHTag.png);">
-            <div class="shadow"></div>
-            <div class="label">
-               <div class="icon">
-                  NH Tag
-               </div>
-               <div class="info">
-                  <div class="main">NH Tag</div>
-                  <div class="sub">A boring multiplayer canvas tag game!</div>
-               </div>
-            </div>
-      </div>
-      <div class="2048 option" style="--optionBackground:url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/2048_logo.svg/2000px-2048_logo.svg.png) no-repeat #FF5000;">
-         <div class="shadow"></div>
-         <div class="label">
-            <div class="icon">
-               2048
-            </div>
-            <div class="info">
-               <div class="main">NH 2048</div>
-               <div class="sub">A Multiplayer competitive 2048</div>
+               <div class="main">Shellshocked.io</div>
+               <div class="sub">A 3D shooter copied, but with no history</div>
             </div>
          </div>
       </div>
@@ -255,25 +231,19 @@ body .options .option .label .info .sub {
    $(".option").removeClass("active");
    $(this).addClass("active");
 });
-$(".NHTag").click(function () {
+$(".NHGames").click(function () {
    $('.container').innerHTML = 'Loading...';
-   setTimeout(function () {window.location = 'https://nhtag--nicholashuaman.repl.co/';}, 1000);
+   window.location = 'https://nhnet.github.io/NHGames.html';
 });
-$(".3D").click(function () {
+$(".ShellShocked").click(function () {
    $('.container').innerHTML = 'Loading...';
-   setTimeout(function () {window.location = 'https://3d--nicholashuaman.repl.co/';}, 1000);
-});
-$(".2048").click(function () {
-   $('.container').innerHTML = 'Loading...';
-   setTimeout(function () {window.location = 'https://nh-2048-server-1--nicholashuaman.repl.co/';}, 1000);
+   window.location = 'https://shellshocked.io/';
 });
 $(".NHChat").click(function () {
-   $('.container').innerHTML = 'Loading...';
-   setTimeout(function () {window.location = 'https://nhchat-main--nicholashuaman.repl.co/';}, 1000);
+  window.location = 'https://nhchat-main--nicholashuaman.repl.co/';
 });
 $(".NHGoogle").click(function () {
-   $('.container').innerHTML = 'Loading...';
-   setTimeout(function () {window.location = 'https://google.es';}, 1000);
+   window.location = 'https://google.es';
 });
 //# sourceURL=pen.js
 </script>
