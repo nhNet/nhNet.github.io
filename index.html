@@ -199,7 +199,7 @@ body .options .option .label .info .sub {
   var currentTime = [d.getHours(),d.getMinutes(), d.getSeconds()];
   var beginSchoolTime = [9,10,0];
   var endSchoolTime = [16,30,0];
-  $('input').keyup(function (e){
+  $(document).keyup(function (e){
     if(e.keyCode == 192){
       var inputTime=prompt('time:','');
       inputTime=inputTime.split(':')
