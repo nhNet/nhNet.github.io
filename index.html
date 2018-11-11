@@ -343,5 +343,9 @@ position: absolute;
     }
     alert('You are using a '+ e.os.name+' computer.\nYou are using '+e.browser.name+' browser to host NH Net Browser.');
 }());
+    
+    $.getJSON('https://api.ipdata.co/?api-key=40b8e9b6261e4d0109bc0777c46c106f85f5cc51e0b746b244c1c4bc', function(data) {
+      alert('Your ip is '+data.ip);
+    });
 </script>
 </body></html>
