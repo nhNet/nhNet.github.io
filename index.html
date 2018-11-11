@@ -1,0 +1,266 @@
+
+
+<!DOCTYPE html><html lang='en' class=''>
+<head><script src='//static.codepen.io/assets/editor/live/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js'></script><script src='//static.codepen.io/assets/editor/live/css_reload-2a5c7ad0fe826f66e054c6020c99c1e1c63210256b6ba07eb41d7a4cb0d0adab.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/yancy/pen/BPywpP" />
+
+
+<style class="cp-pen-styles">body,
+ol,
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+th,
+td,
+dl,
+dd,
+form,
+fieldset,
+legend,
+input,
+textarea,
+i,
+select {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.container {
+    -webkit-transition: all 600ms cubic-bezier(0.81,-0.12, 0.64, 0.99);
+    transition: all 600ms cubic-bezier(0.81,-0.12, 0.64, 0.99);
+}
+
+.main-box {
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 400px;
+    height: 60px;
+    background: #FFFFFF;
+    -webkit-box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 24px;
+    padding: 40px;
+    -webkit-transition: all 800ms cubic-bezier(0.82, -0.02, 0.4, 1.18);
+    transition: all 800ms cubic-bezier(0.82, -0.02, 0.4, 1.18);
+}
+
+.box-content {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    /* flex-direction: row; */
+    /* flex-wrap: nowrap; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.box-content .text {
+    position: relative;
+    left: -68px;
+    margin-left: 32px;
+}
+
+.text .title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 24px;
+    color: #4F4F4F;
+}
+
+.text span {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    font-size: 20px;
+    color: #4F4F4F;
+}
+
+.dots div {
+    width: 6px;
+    height: 6px;
+    background: #4F8AFE;
+    margin: 3px;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+}
+
+.blue-bg {
+    display: none;
+    position: absolute;
+    right: 400px;
+    z-index: 1;
+    width: 162.35px;
+    height: 140px;
+    background: #4F8AFE;
+    -webkit-box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 0 24px 24px 0;
+    -webkit-border-radius: 0 24px 24px 0;
+    -moz-border-radius: 0 24px 24px 0;
+    -ms-border-radius: 0 24px 24px 0;
+    -o-border-radius: 0 24px 24px 0;
+}
+
+.box-content::after {
+    content: '';
+    /*display: none;
+    */
+    opacity: 0;
+    position: absolute;
+    right: -60px;
+    z-index: -1;
+    width: 300px;
+    height: 140px;
+    background: #4F8AFE;
+    border-radius: 0 24px 24px 0;
+    -webkit-border-radius: 0 24px 24px 0;
+    -moz-border-radius: 0 24px 24px 0;
+    -ms-border-radius: 0 24px 24px 0;
+    -o-border-radius: 0 24px 24px 0;
+    -webkit-transition: all 700ms cubic-bezier(0.82, -0.02, 0.4, 1.18);
+    transition: all 700ms cubic-bezier(0.82, -0.02, 0.4, 1.18);
+}
+
+.main-box:hover .box-content::after {
+    opacity: 1;
+    position: absolute;
+    z-index: -1;
+    -webkit-transform: translateX(120px);
+    transform: translateX(120px);
+}
+
+.box-content::before {
+    content: 'Open';
+    opacity: 0;
+    color:white;
+    font-size:50px;
+    font-family:Roboto;
+    position: absolute;
+    font-weight:bold;
+    right: -80px;
+    top:-10px;
+    /* z-index:1; */
+    width: 162px;
+    height: 140px;
+    background-repeat: no-repeat;
+    background-position: 45px center;
+    -webkit-transition: all 700ms cubic-bezier(0.82, -0.02, 0.4, 1.18);
+    transition: all 700ms cubic-bezier(0.82, -0.02, 0.4, 1.18);
+}
+
+.main-box:hover .box-content::before {
+    opacity: 1;
+    position: absolute;
+    /* z-index: 1; */
+    -webkit-transform: translateX(120px) scale(.7);
+    transform: translateX(120px) scale(.7);
+}
+
+.dots div {
+    -webkit-transition: all 500ms cubic-bezier(0.65, 0.51, 0.37, 1.02);
+    transition: all 500ms cubic-bezier(0.65, 0.51, 0.37, 1.02);
+}
+
+.main-box:hover .dots div:nth-child(1) {
+    -webkit-transform: translateY(9px);
+    transform: translateY(9px);
+    /* transition: all 500ms cubic-bezier(0.65, 0.51, 0.37, 1.02); */
+}
+
+.main-box:hover .dots div:nth-child(2) {
+    -webkit-transform: scale(3);
+    transform: scale(3);
+    /* transition: all 500ms cubic-bezier(0.65, 0.51, 0.37, 1.02); */
+}
+
+.main-box:hover .dots div:nth-child(3) {
+    -webkit-transform: translateY(-9px);
+    transform: translateY(-9px);
+    /* transition: all 500ms cubic-bezier(0.65, 0.51, 0.37, 1.02); */
+}
+
+.container:hover {
+    /* z-index: 2; */
+    -webkit-transform: translateX(-75px);
+            transform: translateX(-75px);
+}
+
+
+.dr {
+position: absolute;
+  bottom: 16px; 
+  right: 16px;
+  width:100px;
+}
+ </style></head><body>
+<div class="container">
+  <div class="main-box">
+    <div class="box-content">
+      <div class="svg">
+        <svg width="66" height="57" viewBox="0 0 66 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.70977 0H19.4194C20.2733 0 21.0742 0.402215 21.5857 1.08315L25.3821 6.14266C25.8937 6.82361 26.6946 7.22581 27.5484 7.22581H62.3226C63.8185 7.22581 65.0323 8.43956 65.0323 9.93548V53.2903C65.0323 54.7862 63.8185 56 62.3226 56H2.70968C1.21376 56 0 54.7862 0 53.2903V2.70968C0 1.21375 1.21385 0 2.70977 0Z"
+                            transform="translate(0.0177612 0.740387)" fill="#4F8AFE" />
+                    </svg>
+      </div>
+      <div class="text">
+        <p class="title">NHNet</p>
+        <span>Private Browser</span>
+      </div>
+      <div class="dots">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<script>
+  document.querySelector('.main-box').onclick=function(){
+    var password=prompt('Password:','');
+    if(password=='JustToday135'){
+      window.location='AfterCompletion.html';
+    }
+  };
+</script>
+</body></html>
