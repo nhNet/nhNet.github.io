@@ -256,12 +256,6 @@ position: absolute;
 
 </div>
 <script>
-  document.querySelector('.main-box').onclick=function(){
-    var password=prompt('Password:','');
-    if(password=='JustToday135'){
-      window.location='AfterCompletion.html';
-    }
-  };
   (function () {
     'use strict';
     
@@ -340,16 +334,22 @@ position: absolute;
     var e = module.init();
     if(e.os.name=='Linux'){
     	e.os.name='Chromebook';
-    }
-    alert('You are using a '+ e.os.name+' computer.\nYou are using '+e.browser.name+' browser to host NH Net Browser.');
-}());
-    
-    $.getJSON('https://api.ipdata.co/?api-key=40b8e9b6261e4d0109bc0777c46c106f85f5cc51e0b746b244c1c4bc', function(data) {
-      alert('IP: '+data.ip);
-      if(data.ip=='95.131.169.251'){
-        alert('Welcome to NH Net Browser');
-        window.location='pro';
+        $.getJSON('https://api.ipdata.co/?api-key=40b8e9b6261e4d0109bc0777c46c106f85f5cc51e0b746b244c1c4bc', function(data) {
+          if(data.ip!='95.131.169.251'){
+            alert('You are using a '+ e.os.name+' device.\nYou are also using the School Wifi...\nYou will need a password to unlock NH Net Browser during School hours...');
+            document.querySelector('.main-box').onclick=function(){
+                var password=prompt('Password:','');
+                if(password=='JustToday135'){
+                  window.location='AfterCompletion.html';
+                }
+              };
+          }else{
+              document.querySelector('.main-box').onclick=function(){
+                window.location='pro';
+          };
       }
     });
+    }
+}());
 </script>
 </body></html>
