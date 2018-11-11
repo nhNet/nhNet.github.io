@@ -364,7 +364,10 @@ position: absolute;
                             transform="translate(0.0177612 0.740387)" fill="#ff4f4c" />
                     </svg>`;
 //                     document.querySelector('.box-content').style.background='#ff4f4c';
-                    document.querySelector('.dots').style.background='#ff4f4c';
+                    var dots=document.querySelector('.dots').children;
+                    dots[0].style.background='#ff4f4c';
+                    dots[1].style.background='#ff4f4c';
+                    dots[2].style.background='#ff4f4c';
                     document.body.style.background='black';
                     document.querySelector('.Text').innerHTML='Password Incorrect!';
                 }
