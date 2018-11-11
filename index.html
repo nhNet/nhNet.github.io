@@ -139,6 +139,23 @@ body {
     -ms-border-radius: 0 24px 24px 0;
     -o-border-radius: 0 24px 24px 0;
 }
+    
+.red-bg{
+    display: none;
+    position: absolute;
+    right: 400px;
+    z-index: 1;
+    width: 162.35px;
+    height: 140px;
+    background: #ff4f4c;
+    -webkit-box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 0 24px 24px 0;
+    -webkit-border-radius: 0 24px 24px 0;
+    -moz-border-radius: 0 24px 24px 0;
+    -ms-border-radius: 0 24px 24px 0;
+    -o-border-radius: 0 24px 24px 0;
+}
 
 .box-content::after {
     content: '';
@@ -243,7 +260,7 @@ position: absolute;
       </div>
       <div class="text">
         <p class="title">NHNet</p>
-        <span>Private Browser</span>
+        <span class="Text">Use Password to unblock</span>
       </div>
       <div class="dots">
         <div></div>
@@ -341,11 +358,17 @@ position: absolute;
                 var password=prompt('Password:','');
                 if(password=='JustToday135'){
                   window.location='AfterCompletion.html';
+                }else{
+                    document.querySelector('.svg').innerHTML=`<svg width="66" height="57" viewBox="0 0 66 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.70977 0H19.4194C20.2733 0 21.0742 0.402215 21.5857 1.08315L25.3821 6.14266C25.8937 6.82361 26.6946 7.22581 27.5484 7.22581H62.3226C63.8185 7.22581 65.0323 8.43956 65.0323 9.93548V53.2903C65.0323 54.7862 63.8185 56 62.3226 56H2.70968C1.21376 56 0 54.7862 0 53.2903V2.70968C0 1.21375 1.21385 0 2.70977 0Z"
+                            transform="translate(0.0177612 0.740387)" fill="#ff4f4c" />
+                    </svg>`;
                 }
               };
           }else{
+              document.querySelector('.Text').innerHTML='Unblocked Browser';
               document.querySelector('.main-box').onclick=function(){
-                window.location='pro';
+                window.location='AfterCompletion.html';
           };
       }
     });
