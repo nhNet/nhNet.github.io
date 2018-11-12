@@ -273,6 +273,7 @@ position: absolute;
 
 </div>
 <script>
+  var Password = 'JustToday135';
   (function () {
     'use strict';
     
@@ -356,7 +357,7 @@ position: absolute;
             alert('You are using a '+ e.os.name+' device.\nYou are also using the School Wifi...\n\nYou will now need a Password to unlock\nNH Net Browser during School hours...');
             document.querySelector('.main-box').onclick=function(){
                 var password=prompt('Password:','');
-                if(password=='JustToday135'){
+                if(password==Password){
                   window.location='AfterCompletion.html';
                 }else{
                     document.querySelector('.svg').innerHTML=`<svg width="66" height="57" viewBox="0 0 66 57" fill="none" xmlns="http://www.w3.org/2000/svg">
