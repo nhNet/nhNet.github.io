@@ -1,0 +1,208 @@
+
+<!DOCTYPE html><html lang='en' class=''>
+<head><script src='//static.codepen.io/assets/editor/live/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js'></script><script src='//static.codepen.io/assets/editor/live/css_reload-2a5c7ad0fe826f66e054c6020c99c1e1c63210256b6ba07eb41d7a4cb0d0adab.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/dissimulate/pen/vlfyA" />
+
+
+<style class="cp-pen-styles">body {
+  background:#000;
+}
+
+#load {
+  position:absolute;
+  width:600px;
+  height:36px;
+  left:50%;
+  top:40%;
+  font-size:30px;
+  margin-left:-300px;
+  overflow:visible;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  cursor:default;
+}
+
+#load div {
+  position:absolute;
+  width:20px;
+  height:36px;
+  opacity:0;
+  font-family:Helvetica, Arial, sans-serif;
+  animation:move 2s linear infinite;
+  -o-animation:move 2s linear infinite;
+  -moz-animation:move 2s linear infinite;
+  -webkit-animation:move 2s linear infinite;
+  transform:rotate(180deg);
+  -o-transform:rotate(180deg);
+  -moz-transform:rotate(180deg);
+  -webkit-transform:rotate(180deg);
+  color:#35C4F0;
+}
+
+#load div:nth-child(2) {
+  animation-delay:0.2s;
+  -o-animation-delay:0.2s;
+  -moz-animation-delay:0.2s;
+  -webkit-animation-delay:0.2s;
+}
+#load div:nth-child(3) {
+  animation-delay:0.4s;
+  -o-animation-delay:0.4s;
+  -webkit-animation-delay:0.4s;
+  -webkit-animation-delay:0.4s;
+}
+#load div:nth-child(4) {
+  animation-delay:0.6s;
+  -o-animation-delay:0.6s;
+  -moz-animation-delay:0.6s;
+  -webkit-animation-delay:0.6s;
+}
+#load div:nth-child(5) {
+  animation-delay:0.8s;
+  -o-animation-delay:0.8s;
+  -moz-animation-delay:0.8s;
+  -webkit-animation-delay:0.8s;
+}
+#load div:nth-child(6) {
+  animation-delay:1s;
+  -o-animation-delay:1s;
+  -moz-animation-delay:1s;
+  -webkit-animation-delay:1s;
+}
+#load div:nth-child(7) {
+  animation-delay:1.2s;
+  -o-animation-delay:1.2s;
+  -moz-animation-delay:1.2s;
+  -webkit-animation-delay:1.2s;
+}
+
+@keyframes move {
+  0% {
+    left:0;
+    opacity:0;
+  }
+	35% {
+		left: 41%; 
+		-moz-transform:rotate(0deg);
+		-webkit-transform:rotate(0deg);
+		-o-transform:rotate(0deg);
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	65% {
+		left:59%; 
+		-moz-transform:rotate(0deg); 
+		-webkit-transform:rotate(0deg); 
+		-o-transform:rotate(0deg);
+		transform:rotate(0deg); 
+		opacity:1;
+	}
+	100% {
+		left:100%; 
+		-moz-transform:rotate(-180deg); 
+		-webkit-transform:rotate(-180deg); 
+		-o-transform:rotate(-180deg); 
+		transform:rotate(-180deg);
+		opacity:0;
+	}
+}
+
+@-moz-keyframes move {
+	0% {
+		left:0; 
+		opacity:0;
+	}
+	35% {
+		left:41%; 
+		-moz-transform:rotate(0deg); 
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	65% {
+		left:59%; 
+		-moz-transform:rotate(0deg); 
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	100% {
+		left:100%; 
+		-moz-transform:rotate(-180deg); 
+		transform:rotate(-180deg);
+		opacity:0;
+	}
+}
+
+@-webkit-keyframes move {
+	0% {
+		left:0; 
+		opacity:0;
+	}
+	35% {
+		left:41%; 
+		-webkit-transform:rotate(0deg); 
+		transform:rotate(0deg); 
+		opacity:1;
+	}
+	65% {
+		left:59%; 
+		-webkit-transform:rotate(0deg); 
+		transform:rotate(0deg); 
+		opacity:1;
+	}
+	100% {
+		left:100%;
+		-webkit-transform:rotate(-180deg); 
+		transform:rotate(-180deg); 
+		opacity:0;
+	}
+}
+
+@-o-keyframes move {
+	0% {
+		left:0; 
+		opacity:0;
+	}
+	35% {
+		left:41%; 
+		-o-transform:rotate(0deg); 
+		transform:rotate(0deg); 
+		opacity:1;
+	}
+	65% {
+		left:59%; 
+		-o-transform:rotate(0deg); 
+		transform:rotate(0deg); 
+		opacity:1;
+	}
+	100% {
+		left:100%; 
+		-o-transform:rotate(-180deg); 
+		transform:rotate(-180deg); 
+		opacity:0;
+	}
+}</style></head><body>
+<div id="load">
+  <div> </div>
+  <div>T</div>
+  <div>E</div>
+  <div>N</div>
+  <div> </div>
+  <div>H</div>
+  <div>N</div>
+</div>
+<div style="top:60%" id="load">
+  <div>M</div>
+  <div>U</div>
+  <div>I</div>
+  <div>M</div>
+  <div>E</div>
+  <div>R</div>
+  <div>P</div>
+</div>
+<script>
+  setTimeout(function(){
+    window.location='PasswordProtect.html';
+  },5000);
+<script>
+</body></html>
