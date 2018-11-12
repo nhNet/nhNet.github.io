@@ -78,7 +78,7 @@
     	e.os.name='Chromebook';
         $.getJSON('https://api.ipdata.co/?api-key=40b8e9b6261e4d0109bc0777c46c106f85f5cc51e0b746b244c1c4bc', function(data) {
           if(data.ip!='95.131.169.251'){
-            alert('You are using a '+ e.os.name+' device.\nYou are also using the School Wifi...\n\nYou will now need a Password to unlock\nNH Net Browser during School hours...');
+            alert('Your IP: '+data.ip',\nYour device: '+ e.os.name+',\nWifi: \'Kings Corporate\',\n\nYou will now need a Password to unlock\nNH Net Browser during School hours...');
             document.querySelector('.svg').innerHTML=`<i style="margin-top:-10px;font-size:60px;color:#4F8AFE;" class="fas fa-lock"></i>`;
             document.querySelector('.main-box').onclick=function(){
                 var password=prompt('Password:','');
