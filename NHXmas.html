@@ -239,13 +239,6 @@ p {
 </div>
 <script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/utils/Draggable.min.js'></script><script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/ThrowPropsPlugin.min.js'></script>
 <script >console.clear();
-var _window = window;
-var window = {};
-Object.defineProperty(window, 'location', {
-get: function () { return _window.location; },
-set: function () { alert('not in my house'); }
-});
-window.__proto__ = _window;
 var colorArray = ["#683A5E", "#262626", "#426F42", "#8B814C", "#36648B", "#36648B"];
 var slides = document.querySelectorAll("section");
 var container = document.querySelector("#panelWrap");
@@ -313,31 +306,31 @@ function slideAnim(e) {
   oldSlide = activeSlide;
   // dragging the panels
   if (this.id === "dragger") {
-	activeSlide = offsets.indexOf(this.endX);
+    activeSlide = offsets.indexOf(this.endX);
   } else {
-	if (TweenMax.isTweening(container)) {
-	  return;
-	}
-	// up/down arrow clicks
-	if (this.id === "leftArrow" || this.id === "rightArrow") {
-	  activeSlide = this.id === "rightArrow" ? activeSlide += 1 : activeSlide -= 1;
-	  // click on a dot
-	} else if (this.className === "dot") {
-	  activeSlide = this.index;
-	  // scrollwheel
-	} else {
-	  activeSlide = e.deltaY > 0 ? activeSlide += 1 : activeSlide -= 1;
-	}
+    if (TweenMax.isTweening(container)) {
+      return;
+    }
+    // up/down arrow clicks
+    if (this.id === "leftArrow" || this.id === "rightArrow") {
+      activeSlide = this.id === "rightArrow" ? activeSlide += 1 : activeSlide -= 1;
+      // click on a dot
+    } else if (this.className === "dot") {
+      activeSlide = this.index;
+      // scrollwheel
+    } else {
+      activeSlide = e.deltaY > 0 ? activeSlide += 1 : activeSlide -= 1;
+    }
   }
   // make sure we're not past the end or beginning slide
   activeSlide = activeSlide < 0 ? 0 : activeSlide;
   activeSlide = activeSlide > slides.length - 1 ? slides.length - 1 : activeSlide;
   if (oldSlide === activeSlide) {
-	return;
+    return;
   }
   // if we're dragging we don't animate the container
   if (this.id != "dragger") {
-	TweenMax.to(container, dur, { x: offsets[activeSlide], onUpdate: tweenDot });
+    TweenMax.to(container, dur, { x: offsets[activeSlide], onUpdate: tweenDot });
   }
 }
 // update the draggable element snap points
@@ -347,7 +340,7 @@ function sizeIt() {
   TweenMax.set("#panelWrap", { width: slides.length * iw });
   TweenMax.set(slides, { width: iw });
   for (let i = 0; i < slides.length; i++) {if (window.CP.shouldStopExecution(1)) break;
-	offsets.push(-slides[i].offsetLeft);
+    offsets.push(-slides[i].offsetLeft);
   }window.CP.exitedLoop(1);
   TweenMax.set(container, { x: offsets[activeSlide] });
   dragMe[0].vars.snap = offsets;
