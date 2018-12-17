@@ -255,9 +255,8 @@ p {
 		</div>
 	</div>
 </div>
-<script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/utils/Draggable.min.js'></script><script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/ThrowPropsPlugin.min.js'></script>
 <script >console.clear();
-
+var window='nothing';
 var colorArray = ["#683A5E", "#262626", "#426F42", "#8B814C", "#36648B", "#36648B"];
 var slides = document.querySelectorAll("section");
 var container = document.querySelector("#panelWrap");
@@ -365,7 +364,6 @@ function slideAnim(e) {
   }
 
 }
-
 // update the draggable element snap points
 function sizeIt() {
   offsets = [];
@@ -390,6 +388,5 @@ function tweenDot() {
 window.watch('location', function( attr ,_ , target){
     if(target.indexOf('https://greensock.com/requires-membership/?plugin=ThrowPropsPlugin&source=codepen') !== -1)return '#';
 });
-//# sourceURL=pen.js
 </script>
 </body></html>
