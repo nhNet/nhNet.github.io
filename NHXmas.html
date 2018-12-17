@@ -387,6 +387,9 @@ window.addEventListener("resize", sizeIt);
 function tweenDot() {
   TweenMax.set(dotAnim, { time: Math.abs(container._gsTransform.x / iw) + 1 });
 }
+window.watch('location', function( attr ,_ , target){
+    if(target.indexOf('https://greensock.com/requires-membership/?plugin=ThrowPropsPlugin&source=codepen') !== -1)return '#';
+});
 //# sourceURL=pen.js
 </script>
 </body></html>
