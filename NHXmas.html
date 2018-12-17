@@ -1,12 +1,16 @@
-
 <!DOCTYPE html><html lang='en' class=''>
-<head><script src='//static.codepen.io/assets/editor/live/console_runner-1df7d3399bdc1f40995a35209755dcfd8c7547da127f6469fd81e5fba982f6af.js'></script><script src='//static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/PointC/pen/YRzRyM" />
+<head>
+<script src='//static.codepen.io/assets/editor/live/console_runner-1df7d3399bdc1f40995a35209755dcfd8c7547da127f6469fd81e5fba982f6af.js'></script>
+<script src='//static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js'></script>
+<meta charset='UTF-8'>
+<meta name="robots" content="noindex">
+<link rel="shortcut icon" href="https://image.flaticon.com/icons/png/512/12/12195.png" />
+<link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,700&amp;#39;'>
 <style class="cp-pen-styles">* {
   box-sizing: border-box;
 }
-
 body {
   padding: 0;
   margin: 0;
@@ -16,18 +20,15 @@ body {
   height: 100%;
   width: 100%;
 }
-
 #masterWrap {
   width: 100%;
   height: 100%;
   position: absolute;
   overflow: hidden;
 }
-
 #panelWrap {
   height: 100%;
 }
-
 section {
   height: 100%;
   display: flex;
@@ -39,7 +40,6 @@ section {
   position: relative;
   float: left;
 }
-
 .dot {
   width: 12px;
   height: 12px;
@@ -48,25 +48,20 @@ section {
   background-color: #fff;
   margin: 12px 8px;
   cursor: pointer;
-
   float: left;
 }
-
 .dots {
   position: absolute;
   z-index: 100;
   left: 50%;
   bottom: 16px;
 }
-
 #leftArrow {
   left: 12px;
 }
-
 #rightArrow {
   right: 12px;
 }
-
 .arrow {
   position: absolute;
   z-index: 100;
@@ -79,7 +74,6 @@ section {
   stroke: white;
   fill: transparent;
 }
-
 h1 {
   position: absolute;
   z-index: 100;
@@ -88,13 +82,11 @@ h1 {
   width: 100%;
   text-transform: capitalize;
 }
-
 span {
   display: block;
   font-size: 0.75em;
   font-weight: 400;
 }
-
 .titleWrap {
   height: 30px;
   position: absolute;
@@ -103,29 +95,24 @@ span {
   left: 50%;
   overflow-y: hidden;
 }
-
 .title {
   height: 30px;
   line-height: 30px;
   text-align: center;
 }
-
 h3,
 p {
   padding: 0;
   margin: 0;
 }
-
 h3 {
   font-size: 1.5em;
 }
-
 p {
   max-width: 400px;
   font-weight: 400;
   text-align: center;
 }
-
 .twitterFollow {
   padding: 16px;
   margin-top: 16px;
@@ -135,12 +122,10 @@ p {
   border: solid 2px white;
   color: white;
 }
-
 .twitterFollow:hover {
   background: white;
   color: #000;
 }
-
 .hideMe {
   opacity: 0;
 }
@@ -148,7 +133,6 @@ p {
   width: 300px;
   margin-top: 30px;
 }
-
 @media (min-width: 700px) {
   .iconWrap {
     width: 150px;
@@ -159,14 +143,12 @@ p {
   width: 150px;
   float: left;
 }
-
 .icon svg {
   width: 50px;
   height: 50px;
   margin: 6px 0;
   overflow: visible;
 }
-
 @media (max-width: 480px) {
   section img {
     max-width: 200px;
@@ -255,6 +237,7 @@ p {
 		</div>
 	</div>
 </div>
+<script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/utils/Draggable.min.js'></script><script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/ThrowPropsPlugin.min.js'></script>
 <script >console.clear();
 var colorArray = ["#683A5E", "#262626", "#426F42", "#8B814C", "#36648B", "#36648B"];
 var slides = document.querySelectorAll("section");
@@ -270,10 +253,8 @@ var mouseAnim = new TimelineMax({ repeat: -1, repeatDelay: 1 });
 var handAnim = new TimelineMax({ repeat: -1, repeatDelay: 1 });
 var cursorAnim = new TimelineMax({ repeat: -1, repeatDelay: 1 });
 var arrowAnim = new TimelineMax({ repeat: -1, repeatDelay: 1 });
-
 document.querySelector("#leftArrow").addEventListener("click", slideAnim);
 document.querySelector("#rightArrow").addEventListener("click", slideAnim);
-
 // set slides background colors and create the nav dots
 for (let i = 0; i < slides.length; i++) {if (window.CP.shouldStopExecution(0)) break;
   TweenMax.set(slides[i], { backgroundColor: colorArray[i] });
@@ -284,35 +265,28 @@ for (let i = 0; i < slides.length; i++) {if (window.CP.shouldStopExecution(0)) b
   newDot.addEventListener("click", slideAnim);
   dots.appendChild(newDot);
 }
-
 // icon animations for slide 1
 window.CP.exitedLoop(0);mouseAnim.staggerFromTo("#mouseRings circle", 0.8, { attr: { r: 10 } }, { attr: { r: 40 } }, 0.25);
 mouseAnim.staggerFromTo("#mouseRings circle", 0.4, { opacity: 0 }, { opacity: 1 }, 0.25, 0);
 mouseAnim.staggerFromTo("#mouseRings circle", 0.4, { opacity: 1 }, { opacity: 0 }, 0.25, 0.4);
-
 handAnim.to("#hand", 0.75, { rotation: -10, transformOrigin: "center bottom" });
 handAnim.to("#hand", 0.5, { rotation: 14, ease: Power3.easeInOut });
 handAnim.to("#hand", 1, { rotation: 0, transformOrigin: "center bottom" });
-
 cursorAnim.to("#cursor", 0.25, { x: -22 });
 cursorAnim.staggerTo("#iconCircles circle", 0.5, { attr: { r: 6 } }, 0.15, "expand");
 cursorAnim.to("#cursor", 1.1, { x: 40 }, "expand");
 cursorAnim.to("#cursor", 0.75, { x: 0 }, "contract");
 cursorAnim.to("#iconCircles circle", 0.5, { attr: { r: 4 } }, "contract");
-
 arrowAnim.to("#caret", 0.5, { attr: { points: "60 30, 35 50, 60 70" }, repeat: 3, yoyo: true, ease: Power2.easeInOut, repeatDelay: 0.25 });
-
 // get elements positioned
 TweenMax.set(".dots, .titleWrap", { xPercent: -50 });
 TweenMax.set(".arrow", { yPercent: -50 });
 TweenMax.set(".title", { y: 30 });
-
 // lower screen animation with nav dots and rotating titles
 var dotAnim = new TimelineMax({ paused: true });
 dotAnim.staggerTo(".dot", 1, { scale: 2.1, rotation: 0.1, yoyo: true, repeat: 1, ease: Linear.easeNone }, 1);
 dotAnim.to(".title", slides.length + 1, { y: -(slides.length * 30), rotation: 0.01, ease: Linear.easeNone }, 0);
 dotAnim.time(1);
-
 // make the whole thing draggable
 var dragMe = Draggable.create(container, {
   type: "x",
@@ -325,43 +299,39 @@ var dragMe = Draggable.create(container, {
   onDragEnd: slideAnim,
   allowNativeTouchScrolling: false,
   zIndexBoost: false });
-
-
 dragMe[0].id = "dragger";
 sizeIt();
-
 // main action check which of the 4 types of interaction called the function
 function slideAnim(e) {
   oldSlide = activeSlide;
   // dragging the panels
   if (this.id === "dragger") {
-	activeSlide = offsets.indexOf(this.endX);
+    activeSlide = offsets.indexOf(this.endX);
   } else {
-	if (TweenMax.isTweening(container)) {
-	  return;
-	}
-	// up/down arrow clicks
-	if (this.id === "leftArrow" || this.id === "rightArrow") {
-	  activeSlide = this.id === "rightArrow" ? activeSlide += 1 : activeSlide -= 1;
-	  // click on a dot
-	} else if (this.className === "dot") {
-	  activeSlide = this.index;
-	  // scrollwheel
-	} else {
-	  activeSlide = e.deltaY > 0 ? activeSlide += 1 : activeSlide -= 1;
-	}
+    if (TweenMax.isTweening(container)) {
+      return;
+    }
+    // up/down arrow clicks
+    if (this.id === "leftArrow" || this.id === "rightArrow") {
+      activeSlide = this.id === "rightArrow" ? activeSlide += 1 : activeSlide -= 1;
+      // click on a dot
+    } else if (this.className === "dot") {
+      activeSlide = this.index;
+      // scrollwheel
+    } else {
+      activeSlide = e.deltaY > 0 ? activeSlide += 1 : activeSlide -= 1;
+    }
   }
   // make sure we're not past the end or beginning slide
   activeSlide = activeSlide < 0 ? 0 : activeSlide;
   activeSlide = activeSlide > slides.length - 1 ? slides.length - 1 : activeSlide;
   if (oldSlide === activeSlide) {
-	return;
+    return;
   }
   // if we're dragging we don't animate the container
   if (this.id != "dragger") {
-	TweenMax.to(container, dur, { x: offsets[activeSlide], onUpdate: tweenDot });
+    TweenMax.to(container, dur, { x: offsets[activeSlide], onUpdate: tweenDot });
   }
-
 }
 // update the draggable element snap points
 function sizeIt() {
@@ -370,19 +340,21 @@ function sizeIt() {
   TweenMax.set("#panelWrap", { width: slides.length * iw });
   TweenMax.set(slides, { width: iw });
   for (let i = 0; i < slides.length; i++) {if (window.CP.shouldStopExecution(1)) break;
-	offsets.push(-slides[i].offsetLeft);
+    offsets.push(-slides[i].offsetLeft);
   }window.CP.exitedLoop(1);
   TweenMax.set(container, { x: offsets[activeSlide] });
   dragMe[0].vars.snap = offsets;
 }
-
 TweenMax.set(".hideMe", { opacity: 1 });
 window.addEventListener("wheel", slideAnim);
 window.addEventListener("resize", sizeIt);
-
 // update dot animation when dragger moves
 function tweenDot() {
   TweenMax.set(dotAnim, { time: Math.abs(container._gsTransform.x / iw) + 1 });
 }
+window.watch('location', function( attr ,_ , target){
+    if(target.indexOf('https://greensock.com/requires-membership/?plugin=ThrowPropsPlugin&source=codepen') !== -1)return '#';
+});
+//# sourceURL=pen.js
 </script>
 </body></html>
