@@ -1,0 +1,392 @@
+
+<!DOCTYPE html><html lang='en' class=''>
+<head><script src='//static.codepen.io/assets/editor/live/console_runner-1df7d3399bdc1f40995a35209755dcfd8c7547da127f6469fd81e5fba982f6af.js'></script><script src='//static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/PointC/pen/YRzRyM" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,700&amp;#39;'>
+<style class="cp-pen-styles">* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  color: white;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+#masterWrap {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+}
+
+#panelWrap {
+  height: 100%;
+}
+
+section {
+  height: 100%;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  position: relative;
+  float: left;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  position: relative;
+  background-color: #fff;
+  margin: 12px 8px;
+  cursor: pointer;
+
+  float: left;
+}
+
+.dots {
+  position: absolute;
+  z-index: 100;
+  left: 50%;
+  bottom: 16px;
+}
+
+#leftArrow {
+  left: 12px;
+}
+
+#rightArrow {
+  right: 12px;
+}
+
+.arrow {
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  cursor: pointer;
+  opacity: 0.75;
+  width: 40px;
+  height: 40px;
+  stroke-width: 8px;
+  stroke: white;
+  fill: transparent;
+}
+
+h1 {
+  position: absolute;
+  z-index: 100;
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+  text-transform: capitalize;
+}
+
+span {
+  display: block;
+  font-size: 0.75em;
+  font-weight: 400;
+}
+
+.titleWrap {
+  height: 30px;
+  position: absolute;
+  z-index: 20;
+  bottom: 50px;
+  left: 50%;
+  overflow-y: hidden;
+}
+
+.title {
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+
+h3,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+p {
+  max-width: 400px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.twitterFollow {
+  padding: 16px;
+  margin-top: 16px;
+  cursor: pointer;
+  border-radius: 500px;
+  text-decoration: none;
+  border: solid 2px white;
+  color: white;
+}
+
+.twitterFollow:hover {
+  background: white;
+  color: #000;
+}
+
+.hideMe {
+  opacity: 0;
+}
+.iconWrap {
+  width: 300px;
+  margin-top: 30px;
+}
+
+@media (min-width: 700px) {
+  .iconWrap {
+    width: 150px;
+  }
+}
+.icon {
+  text-align: center;
+  width: 150px;
+  float: left;
+}
+
+.icon svg {
+  width: 50px;
+  height: 50px;
+  margin: 6px 0;
+  overflow: visible;
+}
+
+@media (max-width: 480px) {
+  section img {
+    max-width: 200px;
+  }
+  p {
+    max-width: 180px;
+  }
+}
+</style></head><body>
+<div class="hideMe">
+	<h1><img src="https://image.flaticon.com/icons/png/512/12/12195.png" style="margin-top:5px" width="30"/> &nbsp; NH Net Browser v6.0</h1>
+	<svg id="leftArrow" class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+		<g stroke-linejoin="round" stroke-linecap="round" >
+			<circle r="46" cx="50" cy="50" />
+			<polyline points="60 25, 30 50, 60 75" ></polyline>
+		</g>
+	</svg>
+	<svg id="rightArrow" class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+		<g stroke-linejoin="round" stroke-linecap="round" >
+			<circle r="46" cx="50" cy="50" />
+			<polyline points="40 25, 70 50, 40 75" ></polyline>
+		</g>
+	</svg>
+	<div id="masterWrap">
+		<div id="panelWrap">
+			<section>
+				<h3>December - January Update!</h3>
+        <img src="https://image.freepik.com/free-vector/merry-christmas-calligraphy-with-baubles_1262-7024.jpg" alt="Merry Xmas!" style="width:200px;height:170px;border-radius:20px;margin-top:10px;">
+				<div class="iconWrap">
+					<div class="icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" fill="#fff">
+							<path d="M71.35,4.5H28.65C23.86,4.5,20,8,20,12.35V72.84c0,4.31,3.91,7.85,8.7,7.85h6.47a20.93,20.93,0,0,1-2.86-8.48c-.07-.7-.16-1.37-.26-2H26.09a1.71,1.71,0,0,1-1.79-1.62V12.69a1.71,1.71,0,0,1,1.79-1.61H73.91a1.71,1.71,0,0,1,1.79,1.61V68.57a1.71,1.71,0,0,1-1.79,1.62h-3c0,1.35-.15,2.87-.31,4.58a13.55,13.55,0,0,1-1.15,4.33,16,16,0,0,1-.83,1.59h2.73c4.79,0,8.7-3.54,8.7-7.85V12.35C80.05,8,76.14,4.5,71.35,4.5ZM54.26,8.36H45.11V7.3h9.15Z"/>
+							<path id="hand" d="M69.31,74.77c.15-1.59.24-3,.29-4.29.21-5.35-.39-8-1.53-8.75a2.07,2.07,0,0,0-1.23-.38,4.33,4.33,0,0,0-2.38.95s.92-5.51-3.85-5.95c-2,.15-2.78,1-3.11,1.77a2.74,2.74,0,0,0-.21.71,3.06,3.06,0,0,1,0,.39,2.26,2.26,0,0,1,0-.39c0-1.21-.19-4.8-4-4.8l-.7,0a2.62,2.62,0,0,0-2.5,1.71,16.13,16.13,0,0,0-.85,3.08,6.13,6.13,0,0,1-1.4-4.29l-.1-16.43a2.3,2.3,0,0,0-.2-.94,3.16,3.16,0,0,0-2.67-1.76c-.94,0-2,.56-2.75,2.19C40.9,43.76,41,67.49,41,67.49s-2.85-.19-4-7a6.63,6.63,0,0,0-2.85-4.38A4.42,4.42,0,0,0,32,55.17c-.57,0-1,.32-1.38,1.11a2.33,2.33,0,0,0-.11.28c-.81,2.18,1.54,6.6,2.61,13.92.09.61.17,1.24.24,1.9a19.6,19.6,0,0,0,2.68,7.94,19.24,19.24,0,0,0,1.24,1.85C40,85.78,39.79,89,40.35,95.5l21.79-.06s-.88-2.35,2.79-10.56A25.78,25.78,0,0,1,67.07,81l.38-.63a14,14,0,0,0,.79-1.48A13,13,0,0,0,69.31,74.77Z" />
+              <g id="mouseRings" stroke="white" stroke-width="2" fill="none">
+								<circle cx="50" cy="47" r="12" />
+								<circle cx="50" cy="47" r="12" />
+								<circle cx="50" cy="47" r="12" />
+								<circle cx="50" cy="47" r="12" />
+							</g>
+						</svg>
+            <p><b><i>Drag to Continue...</i></b></p>
+					</div>
+        </div>
+			</section>
+			<section> <img src="https://nhnet.github.io/img/NHSanta.png" alt="Santa" style="border-radius:20px;" width="300">
+        <p><br><b><i>Bringing Chistmas Spirit,<br>Through new christmas additions...</i></b></p>
+			</section>
+			<section> <img src="https://nhnet.github.io/img/NHXmasLoader.png" width="500" style="border-radius:50px;" alt="Loader">
+        <h3><br>For example:<br><i><b>New Loading Screens</b></i></h3>
+				<p><br>Christmas styled loading screens,<br>enhancing your use of NH Net!</p>
+			</section>
+			<section> <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/314556/sleepingDogShadow.svg" alt="Dog Sleeping" width="250">
+				<h3>There might not be an update in a while...</h3>
+				<p><br>I'm quite tired of making updates...</p>
+			</section>
+      <section id="section6"><span style="background:white;font-size:80px;padding:10px;border-radius:20px">🎵</span>
+				<h3><br>Implementation of NH Net Sound Tools!</h3>
+				<p><br>Your sound tools, all in one place!</p>
+			</section>
+      <section><span style="font-size:80px;">😂</span>
+				<h3><br>I've bored you enough!</h3>
+				<p><br></p>
+				<a href="https://nhnet.github.io/pro" class="twitterFollow">Proceed to NH Net</a> </section>
+		</div>
+	</div>
+	<div class="dots">
+	</div>
+	<div class="titleWrap">
+		<div class="title">
+			1. Introduction
+		</div>
+		<div class="title">
+			2. Overview
+		</div>
+		<div class="title">
+			3. New Loaders
+		</div>
+		<div class="title">
+			4. Tiredness
+		</div>
+		<div class="title">
+			5. New NH Net Sound Tools!
+		</div>
+		<div class="title">
+			6. Go to NHNet!
+		</div>
+	</div>
+</div>
+<script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/utils/Draggable.min.js'></script><script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/ThrowPropsPlugin.min.js'></script>
+<script >console.clear();
+
+var colorArray = ["#683A5E", "#262626", "#426F42", "#8B814C", "#36648B", "#36648B"];
+var slides = document.querySelectorAll("section");
+var container = document.querySelector("#panelWrap");
+var dur = 0.5;
+var offsets = [];
+var oldSlide = 0;
+var activeSlide = 0;
+var dots = document.querySelector(".dots");
+var navDots = [];
+var iw = window.innerWidth;
+var mouseAnim = new TimelineMax({ repeat: -1, repeatDelay: 1 });
+var handAnim = new TimelineMax({ repeat: -1, repeatDelay: 1 });
+var cursorAnim = new TimelineMax({ repeat: -1, repeatDelay: 1 });
+var arrowAnim = new TimelineMax({ repeat: -1, repeatDelay: 1 });
+
+document.querySelector("#leftArrow").addEventListener("click", slideAnim);
+document.querySelector("#rightArrow").addEventListener("click", slideAnim);
+
+// set slides background colors and create the nav dots
+for (let i = 0; i < slides.length; i++) {if (window.CP.shouldStopExecution(0)) break;
+  TweenMax.set(slides[i], { backgroundColor: colorArray[i] });
+  var newDot = document.createElement("div");
+  newDot.className = "dot";
+  newDot.index = i;
+  navDots.push(newDot);
+  newDot.addEventListener("click", slideAnim);
+  dots.appendChild(newDot);
+}
+
+// icon animations for slide 1
+window.CP.exitedLoop(0);mouseAnim.staggerFromTo("#mouseRings circle", 0.8, { attr: { r: 10 } }, { attr: { r: 40 } }, 0.25);
+mouseAnim.staggerFromTo("#mouseRings circle", 0.4, { opacity: 0 }, { opacity: 1 }, 0.25, 0);
+mouseAnim.staggerFromTo("#mouseRings circle", 0.4, { opacity: 1 }, { opacity: 0 }, 0.25, 0.4);
+
+handAnim.to("#hand", 0.75, { rotation: -10, transformOrigin: "center bottom" });
+handAnim.to("#hand", 0.5, { rotation: 14, ease: Power3.easeInOut });
+handAnim.to("#hand", 1, { rotation: 0, transformOrigin: "center bottom" });
+
+cursorAnim.to("#cursor", 0.25, { x: -22 });
+cursorAnim.staggerTo("#iconCircles circle", 0.5, { attr: { r: 6 } }, 0.15, "expand");
+cursorAnim.to("#cursor", 1.1, { x: 40 }, "expand");
+cursorAnim.to("#cursor", 0.75, { x: 0 }, "contract");
+cursorAnim.to("#iconCircles circle", 0.5, { attr: { r: 4 } }, "contract");
+
+arrowAnim.to("#caret", 0.5, { attr: { points: "60 30, 35 50, 60 70" }, repeat: 3, yoyo: true, ease: Power2.easeInOut, repeatDelay: 0.25 });
+
+// get elements positioned
+TweenMax.set(".dots, .titleWrap", { xPercent: -50 });
+TweenMax.set(".arrow", { yPercent: -50 });
+TweenMax.set(".title", { y: 30 });
+
+// lower screen animation with nav dots and rotating titles
+var dotAnim = new TimelineMax({ paused: true });
+dotAnim.staggerTo(".dot", 1, { scale: 2.1, rotation: 0.1, yoyo: true, repeat: 1, ease: Linear.easeNone }, 1);
+dotAnim.to(".title", slides.length + 1, { y: -(slides.length * 30), rotation: 0.01, ease: Linear.easeNone }, 0);
+dotAnim.time(1);
+
+// make the whole thing draggable
+var dragMe = Draggable.create(container, {
+  type: "x",
+  edgeResistance: 1,
+  snap: offsets,
+  throwProps: true,
+  bounds: "#masterWrap",
+  onDrag: tweenDot,
+  onThrowUpdate: tweenDot,
+  onDragEnd: slideAnim,
+  allowNativeTouchScrolling: false,
+  zIndexBoost: false });
+
+
+dragMe[0].id = "dragger";
+sizeIt();
+
+// main action check which of the 4 types of interaction called the function
+function slideAnim(e) {
+  oldSlide = activeSlide;
+  // dragging the panels
+  if (this.id === "dragger") {
+    activeSlide = offsets.indexOf(this.endX);
+  } else {
+    if (TweenMax.isTweening(container)) {
+      return;
+    }
+    // up/down arrow clicks
+    if (this.id === "leftArrow" || this.id === "rightArrow") {
+      activeSlide = this.id === "rightArrow" ? activeSlide += 1 : activeSlide -= 1;
+      // click on a dot
+    } else if (this.className === "dot") {
+      activeSlide = this.index;
+      // scrollwheel
+    } else {
+      activeSlide = e.deltaY > 0 ? activeSlide += 1 : activeSlide -= 1;
+    }
+  }
+  // make sure we're not past the end or beginning slide
+  activeSlide = activeSlide < 0 ? 0 : activeSlide;
+  activeSlide = activeSlide > slides.length - 1 ? slides.length - 1 : activeSlide;
+  if (oldSlide === activeSlide) {
+    return;
+  }
+  // if we're dragging we don't animate the container
+  if (this.id != "dragger") {
+    TweenMax.to(container, dur, { x: offsets[activeSlide], onUpdate: tweenDot });
+  }
+
+}
+
+// update the draggable element snap points
+function sizeIt() {
+  offsets = [];
+  iw = window.innerWidth;
+  TweenMax.set("#panelWrap", { width: slides.length * iw });
+  TweenMax.set(slides, { width: iw });
+  for (let i = 0; i < slides.length; i++) {if (window.CP.shouldStopExecution(1)) break;
+    offsets.push(-slides[i].offsetLeft);
+  }window.CP.exitedLoop(1);
+  TweenMax.set(container, { x: offsets[activeSlide] });
+  dragMe[0].vars.snap = offsets;
+}
+
+TweenMax.set(".hideMe", { opacity: 1 });
+window.addEventListener("wheel", slideAnim);
+window.addEventListener("resize", sizeIt);
+
+// update dot animation when dragger moves
+function tweenDot() {
+  TweenMax.set(dotAnim, { time: Math.abs(container._gsTransform.x / iw) + 1 });
+}
+//# sourceURL=pen.js
+</script>
+</body></html>
