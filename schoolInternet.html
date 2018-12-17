@@ -256,4 +256,16 @@ body {
   </div>
   <div class="badge__text">School Internet!</div>
 </div>
+  <script>
+    var Password = 'Isotope54';
+    alert('Device: Chromebook,\nWIFI connection: \'KingsCorporate\'\nTo find the password to open\nNH Net Browser during School hours,\nPRESS CTRL+U and search for \'var Password\'!');
+    document.querySelector('.badge').onclick=function(){
+        var password=prompt('Password:','');
+        if(password==Password){
+          window.location='NHXmas.html';
+        }else{
+            alert('Password Incorrect!');
+        }
+      };
+  </script>
 </body></html>
