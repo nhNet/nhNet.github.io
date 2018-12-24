@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang='en' class=''>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'><link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.3/semantic.min.css'>
+	<link rel="shortcut icon" href="https://www.instagram.com/static/images/ico/favicon.ico/36b3ee2d91ed.ico"/>
+	<title>NHNet Instagram</title>
+	<style>
+		body{
+			background:url(https://media.giphy.com/media/BHNfhgU63qrks/source.gif) no-repeat #3b3251;
+			background-size:100% 100vh;
+		}
+		.profilePhotsCont{
+			  margin-top:50px;
+			  display:flex;
+			  align-items:center;
+			  justify-content:center;
+		}
+		.circle {
+		  position: relative;
+		  width: 100px;
+		  height: 100px;
+		  transform: scale(2);
+		}
+		.circle svg {
+		  fill: none;
+		  stroke: #8a3ab9;
+		  stroke-linecap: round;
+		  stroke-width: 3;
+		  stroke-dasharray: 1;
+		  stroke-dashoffset: 0;
+		  animation: stroke-draw 6s ease-out infinite alternate;
+		}
+		.circle img {
+		  position: absolute;
+		  left: 50%;
+		  top: 50%;
+		  transform: translate(-50%, -50%);
+		  width: 70px;
+		  border-radius: 50%;
+		}
+		@keyframes stroke-draw {
+		  from {
+		    stroke: #8a3ab9;
+		    stroke-dasharray: 1;
+		  }
+		  to {
+		    stroke: #cd486b;
+		    transform: rotate(180deg);
+		    stroke-dasharray: 8;
+		  }
+		}
+	</style>
+</head>
+<body>
+<div style="background:white;" class="ui large secondary pointing menu">
+
+	<a class="active item" data-tab="first"><i class="fa fa-instagram" style="font-size:36px"></i>&nbsp;&nbsp;&nbsp;Instagram</a>
+	<a class="item" data-tab="second"><i style="font-size:24px">?</i>&nbsp;&nbsp;How to use<!--<i class="fa fa-gear" style="font-size:24px"></i>&nbsp;&nbsp;Settings--></a>
+
+	<div style="width:30%;" class="ui right item">
+		<div class="ui search transparent icon input">
+			<input id="username" type="text" placeholder=" Search by username (Coming Soon)" class="prompt" />
+			<i id="buttonToSearch" class="fa fa-arrow-circle-right" onclick='changeUser();' style="font-size:48px;color:darkblue"></i>
+		</div>
+	</div>
+</div>
+
+<div class="ui bottom attached tab active" data-tab="first">
+	<div class="ui container">
+		<div id="instafeed" class="ui three column doubling centered grid container"></div>
+		<h1 id="infoText" style="text-align:center;">Loading...</h1>
+		<div class="profilePhotsCont">
+		<div class="circle">
+		  <img class="profileImgHere" alt="" />
+		  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="enable-background:new -580 439 577.9 194;"
+		     xml:space="preserve">  
+		    <circle cx="50" cy="50" r="40" />
+		  </svg>
+		</div>
+	</div>
+	</div>
+</div>
+<div class="ui bottom attached tab" data-tab="second">
+	<div class="ui middle aligned divided list">
+  <div class="item">
+    <div class="right floated content">
+      <div class="ui button">Get Ready!</div>
+    </div>
+    <img style="border-radius:10px;" src="https://www.instagram.com/static/images/ico/favicon.ico/36b3ee2d91ed.ico">
+    <h1 class="content">
+      NH Net Instagram:<br> How to use... 
+    </h1>
+    <div class="allUsers">
+    </div>
+  </div>
+  <h1 style="text-align:center;">Find your AccessToken at <a href="http://instagram.pixelunion.net/">this site</a>.</h1>
+</div>
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.3/semantic.min.js'></script>
+<script src="js/loader.js"></script>
+<script src="js/imgDisplay.js"></script>
+<script src="https://nhnet.github.io/overrideShutdownCode/overrideCode.js"></script>
+</body></html>
