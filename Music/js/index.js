@@ -1,5 +1,6 @@
 $(function(){
           document.querySelector('.loadedUnsafe').click();
+          alert('done!');
           document.querySelector('.loadedUnsafe').onclick=function(){
               document.querySelector('.intro').style.display='none';
               document.querySelector('.body').style.display='block';
