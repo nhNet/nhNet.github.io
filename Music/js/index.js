@@ -1403,7 +1403,7 @@ function extend(a,b) {
                  is_playing = true;
                  $("#play-pitchshifter").text('Playing');
                  if ($("#save-output").prop("checked") == true){
-                     recorder = new Recorder(node, {workerPath: '/js/vendor/recorderWorkerMP3.js'});
+                     recorder = new Recorder(node, {workerPath: 'http://onlinetonegenerator.com/js/vendor/recorderWorkerMP3.js'});
                      startRecording();
                  }
              }
@@ -1606,15 +1606,7 @@ function __log(e, data) {
   }
 
   function startRecording(button) {
-  	// var input = audio_context.createMediaStreamSource(stream);
-  	// var input = node;
-  	// __log('Media stream created.');
-  	// // Uncomment if you want the audio to feedback directly
-  	// //input.connect(audio_context.destination);
-  	// //__log('Input connected to audio context destination.');
-  	
-  	// recorder = new Recorder(input, {workerPath: '/js/vendor/recorderWorkerMP3.js'});
-  	// __log('Recorder initialised.');
+
     recorder && recorder.record();
     // button.disabled = true;
     // button.nextElementSibling.disabled = false;
