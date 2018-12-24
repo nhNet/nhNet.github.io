@@ -77,7 +77,7 @@
                Save output to downloadable file?
                <input type="checkbox" id='save-output'>
             </label>
-            <div class="clear">Clear!</div>
+            <button onclick="document.querySelector('#recordingslist').innerHTML='';document.querySelector('#log').innerHTML='';" class="button--pause">Clear!</button>
             <div class="js-downloads-section" style='display:none;'>
                <h2>Recordings</h2>
                <ul id="recordingslist"></ul>
