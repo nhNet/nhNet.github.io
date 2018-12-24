@@ -1631,6 +1631,7 @@ function __log(e, data) {
       var hf = document.createElement('a');
       var br = document.createElement('br');
       au.controls = true;
+      au.id='pitch-auds';
       au.src = url;
       hf.href = url;
       // hf.download = new Date().toISOString() + '.wav';
@@ -1646,3 +1647,8 @@ function __log(e, data) {
       ga('send', 'event', 'Pitch shift download', "Download Added");
     });
   }
+document.querySelector('#allatonce').onclick=function(){
+    document.querySelectorAll('#pitch-auds').forEach(function(element) {
+      element.play();
+    });
+};
