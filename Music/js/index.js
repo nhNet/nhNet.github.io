@@ -1,6 +1,5 @@
 $(function(){
           document.querySelector('.loadedUnsafe').click();
-          alert('last try!');
           document.querySelector('.loadedUnsafe').onclick=function(){
               document.querySelector('.intro').style.display='none';
               document.querySelector('.body').style.display='block';
@@ -1434,7 +1433,7 @@ function extend(a,b) {
          // bufferSource.connect(oscillatorGain);
          
          fileInput.on("change", function() {
-         
+             $("#play-pitchshifter").text('Play');
              $(".timing").hide();
              $("#loading").show();
              $("#play-pitchshifter").addClass("disabled");
