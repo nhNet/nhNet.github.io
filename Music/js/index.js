@@ -1629,7 +1629,7 @@ function __log(e, data) {
       var li = document.createElement('li');
       var au = document.createElement('audio');
       var hf = document.createElement('a');
-      
+      var br = document.createElement('br');
       au.controls = true;
       au.src = url;
       hf.href = url;
@@ -1637,7 +1637,10 @@ function __log(e, data) {
       // hf.download = new Date().toISOString() + '.mp3';
       hf.download = "pitch-shifted-" + $('input[type=file]').val().replace(/C:\\fakepath\\/i, '');
       hf.innerHTML = hf.download;
+      hf.color='white';
+      hf.textDecoration='none';
       li.appendChild(au);
+      li.appendChild(br);       
       li.appendChild(hf);
       recordingslist.appendChild(li);
       ga('send', 'event', 'Pitch shift download', "Download Added");
