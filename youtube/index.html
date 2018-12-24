@@ -1,0 +1,47 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='shortcut icon' href='https://s.ytimg.com/yts/img/favicon-vfl8qSV2F.ico'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <title>Youtube Project</title>
+</head>
+<body>
+  <div class="stuff-top-right"></div>
+  <form id="search-term">
+    <h1 id="yt-logo"><img width="55" src="https://s.ytimg.com/yts/img/favicon-vfl8qSV2F.ico"> NH Youtube Search</h1>
+    <br>
+    <div style="margin-left:43%" class="g-signin2" data-onsuccess="onSignIn" data-onfailure="onFail"></div>
+    <div class="inps"><input id="query" style="display:none;" placeholder="Search" type="text">
+    <button id="subB" type="submit" style="display:none;" value=""><i class="fas fa-search"></i></button></div>
+  </form>
+  <div id="search-results">
+  </div>
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" id="closeBTN" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">NH Youtube Search</h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="closeBTN" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <script src="js/yt-code.js"></script>
+  <script src="js/google.js"></script>
+</body>
+</html>
