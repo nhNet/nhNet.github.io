@@ -1,4 +1,5 @@
 $(function(){
+          document.querySelector('.loadedUnsafe').click();
           document.querySelector('.loadedUnsafe').onclick=function(){
               document.querySelector('.intro').style.display='none';
               document.querySelector('.body').style.display='block';
@@ -1456,7 +1457,7 @@ function extend(a,b) {
          
                                  st = new SoundTouch();
                                  st.pitch = ($(".pitch-slider").val() / 100);
-                                 st.tempo = !$("#maintain-tempo").prop("checked") ? ($(".pitch-slider").val() / 100) : 1;
+                                 st.tempo=speed2.value/50;
          
          
                                 f = new SimpleFilter(source, st);
@@ -1497,7 +1498,7 @@ function extend(a,b) {
          
          $(".pitch-slider").on("slide", function(){
              st.pitch = ($(this).val() / 100);
-             st.tempo = !$("#maintain-tempo").prop("checked") ? ($(".pitch-slider").val() / 100) : 1;
+             st.tempo=speed2.value/50;
              var pitch = Math.pow(twelth_root, parseFloat($(this).val())) 
              var pitchFormatted = (100 * pitch).toFixed(2);
              // console.log($(this).val() / 100);
@@ -1509,7 +1510,7 @@ function extend(a,b) {
          });
          
          $("#maintain-tempo").change(function(){
-             st.tempo = !$("#maintain-tempo").prop("checked") ? ($(".pitch-slider").val() / 100) : 1;
+             st.tempo=speed2.value/50;
          })
          $(".pitch-slider").on("change", function(){
              ga('send', 'event', 'Pitch shift', "Slider", $(this).val());
@@ -1523,7 +1524,7 @@ function extend(a,b) {
              st.pitch = pitch;
              $(".pitch-slider").val(pitchFormatted);
              $("#pitch-shift-value").html(pitchFormatted);
-             st.tempo = !$("#maintain-tempo").prop("checked") ? ($(".pitch-slider").val() / 100) : 1;
+             st.tempo=speed2.value/50;
              } else {
                  alert("Please enter a number between -50 and +50");
              }
@@ -1538,7 +1539,7 @@ function extend(a,b) {
             pause();
             st = new SoundTouch();
             st.pitch = $(".pitch-slider").val() /100;
-            st.tempo = !$("#maintain-tempo").prop("checked") ? ($(".pitch-slider").val() / 100) : 1;
+            st.tempo=speed2.value/50;
             f = new SimpleFilter(source, st);
             var BUFFER_SIZE = 2048;
          
