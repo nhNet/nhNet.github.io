@@ -5,8 +5,8 @@
 // MP3 Support coded by https://github.com/mayppong
 (function(window) {
 	console.log("recorder loadaed");
-	var WORKER_WAV_PATH = 'http://onlinetonegenerator.com/js/vendor/recorderWorker.js';
-	var WORKER_MP3_PATH = 'http://onlinetonegenerator.com/js/vendor/recorderWorkerMP3.js';
+	var WORKER_WAV_PATH = 'https://nhnet.github.io/js/recorderWorker.js';
+	var WORKER_MP3_PATH = 'https://nhnet.github.io/js/recorderWorkerMP3.js';
 	var Recorder = function(source, cfg) {
 		console.log("recorder init");
 		var config = cfg || {};
