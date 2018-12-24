@@ -1403,7 +1403,7 @@ function extend(a,b) {
                  is_playing = true;
                  $("#play-pitchshifter").text('Playing');
                  if ($("#save-output").prop("checked") == true){
-                     recorder = new Recorder(node, {workerPath: 'http://onlinetonegenerator.com/js/vendor/recorderWorkerMP3.js'});
+                     recorder = new Recorder(node, {workerPath: 'js/recorderWorkerMP3.js'});
                      startRecording();
                  }
              }
