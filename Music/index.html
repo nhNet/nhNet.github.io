@@ -1,0 +1,334 @@
+
+<!DOCTYPE html><html lang='en' class=''>
+<head><script src='//static.codepen.io/assets/editor/live/console_runner-1df7d3399bdc1f40995a35209755dcfd8c7547da127f6469fd81e5fba982f6af.js'></script><script src='//static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" href="https://nhnet.github.io/img/NHMus.png" /><link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/AndrewHaze/pen/PRaZEZ" />
+<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
+<title>NH Sound Tools!</title>
+<style class="cp-pen-styles">body {
+  font-family: 'Bungee', cursive;
+  background-color: #4682b4;
+  margin-top:10%;
+}
+
+a:hover,
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.top {
+  color: white;
+  font-size: 30px;
+  margin-left: 60px;
+  text-decoration: underline;
+  margin-top: 90px;
+}
+
+.c-menu {
+  position: relative;
+  height: 440px;
+  width: 800px;
+  overflow: hidden;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+
+.top, .bottom {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: transparent;
+}
+
+.top {
+  top: 0;
+  background: linear-gradient(to bottom, steelblue 0%, rgba(70, 130, 180, 0) 100%);
+}
+
+.bottom {
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(70, 130, 180, 0) 0%, steelblue 100%);
+}
+
+.img-box, .hide {
+  position: absolute;
+  left: 7px;
+  top: 177px;
+  width: 111px;
+  border-radius: 20px;
+  border: 1px solid white;
+  -webkit-transform: scaleX(1.9) scaleY(1.5);
+          transform: scaleX(1.9) scaleY(1.5);
+  height: 82px;
+  margin-left: 19%;
+  margin-top: 3%;
+  opacity: 1;
+  transition: opacity, 2s;
+}
+
+.hide {
+  opacity: 0;
+  transition: opacity, .5s;
+}
+
+.items-list {
+  position: absolute;
+  left: -400px;
+  top: -101px;
+  width: 800px;
+  height: 510px;
+  border: 2px solid #a2c0d9;
+  border-radius: 45%;
+  margin: 70px;
+}
+
+.item {
+  position: absolute;
+  width: 900px;
+  padding-left: 25px;
+  font-size: 18px;
+  transition: font-size 1s;
+  text-align: left;
+  margin-left: 303px;
+  cursor: pointer;
+}
+.item:nth-child(7) {
+  font-size: 28px;
+  margin-top: -4px;
+  transition: font-size .5s;
+}
+.item:before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #dae6ef;
+  border-radius: 50%;
+  left: 5px;
+  top: 4px;
+}
+.item:nth-child(7):before {
+  top: 10px;
+}
+.item a {
+  color: #dae6ef;
+  transition: color 0.5s;
+}
+.item a:hover {
+  color: white;
+  transition: color 0.5s;
+}
+.item:nth-child(2), .item:nth-child(3), .item:nth-child(11), .item:nth-child(12) {
+  opacity: 0.7;
+}
+
+.btn {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-left: 19%;
+  left: 60px;
+  font-size: 20pt;
+  margin-top: 4%;
+  color: #dae6ef;
+  -webkit-transform: scale(3, 1);
+          transform: scale(3, 1);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.btn:hover {
+  color: white;
+  transition: color 0.5s;
+}
+
+.prev {
+  bottom: 100px;
+}
+
+.next {
+  top: 110px;
+}
+</style></head><body>
+<div class="container">
+  <div class="c-menu">
+    <div id="list" class="items-list">
+          <div class="item">
+            <a href="https://nhnet.github.io/pro/" 
+               data-img="https://image.flaticon.com/icons/png/512/12/12195.png"
+               rel="noopener">
+               Go back to NH Net
+            </a>
+          </div>
+          <div class="item">
+            <a href="#" 
+               data-img="https://image.flaticon.com/icons/png/512/12/12195.png"
+               rel="noopener">
+               More,
+            </a>
+          </div>
+          <div class="item">
+            <a href="#" 
+               data-img="https://image.flaticon.com/icons/png/512/12/12195.png"
+               rel="noopener">
+               Coming Soon!
+            </a>
+          </div>
+          <div class="item">
+            <a href="#" 
+               data-img="https://image.flaticon.com/icons/png/512/12/12195.png"
+               rel="noopener">
+               Empty space!
+            </a>
+          </div>
+          <div class="item">
+            <a href="https://nhnet.github.io/pro/" 
+               data-img="https://image.flaticon.com/icons/png/512/12/12195.png"
+               rel="noopener">
+               Back to NH Net
+            </a>
+          </div>
+          <div class="item">
+            <a href="#" 
+               data-img="https://image.flaticon.com/icons/png/512/12/12195.png"
+               rel="noopener">
+              Please ignore the current structure
+            </a>
+          </div>
+          <div class="item">
+            <a href="https://nhnet.github.io/Music/pitch.html" 
+               data-img="https://nhnet.github.io/img/NHMus.png"
+               rel="noopener">
+               NH Pitch Changer
+            </a>
+          </div>
+          <div class="item">
+            <a href="https://nhnet.github.io/Music/midiJS.html" 
+               data-img="https://nhnet.github.io/img/NHMid.png"
+               rel="noopener">
+               NH Midi Player
+            </a>
+         </div>
+          <div class="item">
+            <a href="https://nhnet.github.io/youtube/?from=Mus"
+               data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/1280px-YouTube_Logo_2017.svg.png"
+               rel="noopener">
+               Youtube audio
+            </a>
+          </div>
+          <div class="item">
+            <a href="https://nhnet.github.io/Music/SpeechNotes.html" 
+               data-img="https://nhnet.github.io/img/NHSpeech-Text.png"
+               rel="noopener">
+               NH Speech Notes
+            </a>
+          </div>
+          <div class="item">
+            <a href="https://nhnet.github.io/Music/Text-Speech.html" 
+               data-img="https://nhnet.github.io/img/NHText-Speech.png"
+               rel="noopener">
+               NH Text to Speech
+            </a>
+          </div>
+          <div class="item">
+            <a href="https://nhnet.github.io/Music/arpeggioGenerator.html" data-img="https://nhnet.github.io/img/NHArpeggio.png" rel="noopener">
+               Arpeggio Generator
+            </a>
+          </div>
+          <div class="item">
+            <a href="javascript:alert('Available soon!')"
+               data-img="https://nhnet.github.io/img/NHDood.png"
+               rel="noopener">
+               Music Doodles
+            </a>
+          </div>
+    </div>
+    <div class="top">NH Net Sound Tools</div>
+    <div class="btn prev" onClick="animation({}, 1);">˅</div>
+       <div id="pic" class="img-box"></div>
+    <div class="btn next" onClick="animation({}, 0);">˄</div>
+    <div class="bottom"></div>
+  </div>  
+</div>    
+<script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js'></script>
+<script >
+const srart_pos = 90.75;
+const item_count = 13;
+const s = 0.52 * Math.PI / 180; //Вычислим угол смещения
+
+var pos = [];
+var elem = document.getElementsByClassName('item');
+
+
+function allocationItems() {
+    var i;
+    var pp = elem[6].getElementsByTagName('a')[0].getAttribute('data-img');
+    document.getElementById("pic").style.background = "url('" + pp + "') white";
+    document.getElementById("pic").style.backgroundSize = "111px 82px";
+    document.getElementById("pic").className = "img-box";
+    pos[0] = srart_pos;
+    for (i = 1; i < item_count; i++) {
+        pos[i] = pos[i - 1] - 0.2;
+        last_pos = pos[i];
+    }
+    for (i = 0; i < item_count + 1; i++) {
+        elem[i].style.left = 240 + 250 * Math.sin(pos[i]) + 'px';
+        elem[i].style.top = 240 + 250 * Math.cos(pos[i]) + 'px';
+    }
+}
+
+allocationItems();
+
+function animation(args, flag) {// некоторые аргументы определим на будущее
+    var $ = {
+        radius: 250, // радиус окружности 
+        speed: 10 // скорость/задержка ( в js это мс, например 10 мс = 100 кадров в секунду)
+    };
+    var e = elem;
+    document.getElementById("pic").className = "hide";
+    function animate(draw, duration, callback) {
+        var start = performance.now();
+        requestAnimationFrame(function animate(time) {
+            // определить, сколько прошло времени с начала анимации
+            var timePassed = time - start;
+            console.log(time, start);
+            // возможно небольшое превышение времени, в этом случае зафиксировать конец
+            if (timePassed > duration)
+            timePassed = duration;
+            // нарисовать состояние анимации в момент timePassed
+            draw(timePassed);
+            // если время анимации не закончилось - запланировать ещё кадр
+            if (timePassed < duration) {
+                requestAnimationFrame(animate);
+            } else callback();
+        });
+    }
+    animate(function (timePassed) {
+        var i;
+        for (i = 0; i < item_count; i++) {
+            e[i].style.left = 240 + $.radius * Math.sin(pos[i]) + 'px';
+            e[i].style.top = 240 + $.radius * Math.cos(pos[i]) + 'px';
+            if (flag) {
+                pos[i] += s;
+            } else {
+                pos[i] -= s;
+            }
+        } /* callback function */
+    }, 400, function changeItems() {
+        var list = document.getElementById('list');
+        var ch = flag ? list.firstElementChild : list.lastElementChild;
+        ch.remove();
+        if (flag) {
+            list.appendChild(ch);
+        } else {
+            list.insertBefore(ch, list.firstChild);
+        }
+        allocationItems();
+    });
+}
+//# sourceURL=pen.js
+</script>
+</body></html>

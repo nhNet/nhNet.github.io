@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Play MIDI files from your browser with MidiPlayerJS" />
+        <meta name="keywords" content="MIDI, music, player, javascript" />
+        <meta name="author" content="Garrett Grimm">
+        <title>MidiPlayerJS - JavaScript Midi Player</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <base href="http://grimmdude.com/MidiPlayerJS/"/>
+        <link rel="stylesheet" href="demo/bower_components/skeleton/css/normalize.css">
+        <link rel="stylesheet" href="demo/bower_components/skeleton/css/skeleton.css">
+        <link rel="shortcut icon" href="https://nhnet.github.io/img/NHMus.png"/>
+        <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+        <style type="text/css">
+            body {background:#f8f8f9;}
+            h1 {text-shadow:2px 3px 1px #ccc;}
+            h1,h2,h3,h4 {font-family: 'Bree Serif', serif;}
+            #select-file {display:none;}
+        </style>
+    </head>
+    <body>
+        <div class="container" style="padding-top:12px;">
+            <div class="row">
+                <div class="twelve columns">
+                    <h1>&#9836; NH Midi Player</h1>
+                    <p>An app that can play MIDI files!</p>
+                    <a href="https://nhnet.github.io/Music/"><button>&lt;-- Go back</button></a>
+                    <h4>Choose a Midi File:</h4>
+                    <p id="select-file">
+                        <input type="file" onchange="loadFile()" onclick="Player.stop()" />
+                    </p>
+                    <p id="loading">Loading Instruments (might take a while, plz be patient): 0%</p>
+                    <p id="cur-time">
+                        <input type="text" style="width:50px;" id="cur-tim" value="0"/>% Midi Complete
+                    </p>
+                    <div style="border:1px solid #ccc;margin-bottom:12px;background:#f7f7f7;">
+                        <div id="play-bar" style="height:20px;background:#33C3F0;width:0%;"></div>
+                    </div>
+                    <p>
+                        <button class="button button-primary" id="play-button" onclick="Player.isPlaying() ? pause() : play();" disabled="disabled">Play</button>
+                        <button class="button" onclick="stop()">Stop</button>
+                    </p>
+                    <!--
+                    <h4>Tempo</h4>
+                    <p>
+                        <input id="test" type="range" min="50" max="200" value="100" onchange="changeTempo(this.value)" style="width:200px;" />
+                    </p>-->
+                    <hr />
+                    <p>
+                        Tempo: <span id="tempo-display"></span> bpm<br />
+                        <input type="range" onchange="Player.pause();Player.setTempo(this.value);Player.play()" min="50" max="200">
+                        <br />
+                        MIDI File Format: <span id="file-format-display"></span>
+                    </p>
+                    <div id="events" class="well"></div>
+                    <p>Made by Nicholas Huaman</p>
+                </div>
+            </div>
+        </div>
+        <a href="https://github.com/NHNet" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+        <script src="browser/midiplayer.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="demo/js/soundfont-player.min.js"></script>
+        <script>
+            var MidiPlayer = MidiPlayer;
+            var loadFile, loadDataUri, Player;
+            var AudioContext = window.AudioContext || window.webkitAudioContext || false; 
+            var ac = new AudioContext || new webkitAudioContext;
+            var eventsDiv = document.getElementById('events');
+            var curTime=0;
+            
+            var changeTempo = function(tempo) {
+                Player.tempo = tempo;
+            }
+            
+            var play = function() {
+                Player.play();
+                document.getElementById('play-button').innerHTML = 'Pause';
+            }
+            
+            var pause = function() {
+                Player.pause();
+                document.getElementById('play-button').innerHTML = 'Play';
+            }
+            
+            var stop = function() {
+                Player.stop();
+                document.getElementById('play-button').innerHTML = 'Play';
+            }
+            
+            var library=[
+                'Grand Piano:acoustic_grand_piano-mp3',
+                'Accordion:accordion-mp3',
+                'Acoustic Bass:acoustic_bass-mp3',
+                'Acoustic Nylon Guitar:acoustic_guitar_nylon-mp3',
+                'Acoustic Steel Guitar:acoustic_guitar_steel-mp3',
+                'Agogo:agogo-mp3',
+                'Alto Sax:alto_sax-mp3',
+                'SlapBass:slap_bass_1-mp3',
+                'Drum:steel_drums-mp3',
+                'Bagpipe:bagpipe-mp3',
+                'Banjo:banjo-mp3',
+                'Baritone Sax:baritone_sax-mp3',
+                'Bassoon:bassoon-mp3',
+                'Blown Bottle:blown_bottle-mp3',
+                'Brass Section:brass_section-mp3',
+                'Bright Piano:bright_acoustic_piano-mp3',
+                'Cello:cello-mp3',
+                'EPiano:electric_piano_1-mp3',
+                'ChoirAh:choir_aahs-mp3'
+                // church_organ-mp3    Added Musyng Kite soundfont    4 years ago
+                // clarinet-mp3    Added Musyng Kite soundfont    4 years ago
+                // clavinet-mp3    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // contrabass-mp3    Added Musyng Kite soundfont    4 years ago
+                // distortion_guitar-mp3    Added Musyng Kite soundfont    4 years ago
+                // drawbar_organ-mp3    Added Musyng Kite soundfont    4 years ago
+                // dulcimer-mp3    Added Musyng Kite soundfont    4 years ago
+                // electric_bass_finger-mp3    Added Musyng Kite soundfont    4 years ago
+                // electric_bass_pick-mp3    Added Musyng Kite soundfont    4 years ago
+                // electric_grand_piano-mp3    Added Musyng Kite soundfont    4 years ago
+                // electric_guitar_clean-mp3    Added Musyng Kite soundfont    4 years ago
+                // electric_guitar_jazz-mp3    Added Musyng Kite soundfont    4 years ago
+                // electric_guitar_muted-mp3    Added Musyng Kite soundfont    4 years ago
+                // electric_piano_2-mp3    Added Musyng Kite soundfont    4 years ago
+                // english_horn-mp3    Added Musyng Kite soundfont    4 years ago
+                // fiddle-mp3    Added Musyng Kite soundfont    4 years ago
+                // flute-mp3    Added Musyng Kite soundfont    4 years ago
+                // french_horn-mp3    Added Musyng Kite soundfont    4 years ago
+                // fretless_bass-mp3    Added Musyng Kite soundfont    4 years ago
+                // fx_1_rain-mp3    Added Musyng Kite soundfont    4 years ago
+                // fx_2_soundtrack-mp3    Added Musyng Kite soundfont    4 years ago
+                // fx_3_crystal-mp3    Added Musyng Kite soundfont    4 years ago
+                // fx_4_atmosphere-mp3    Added Musyng Kite soundfont    4 years ago
+                // fx_5_brightness-mp3    Added Musyng Kite soundfont    4 years ago
+                // fx_6_goblins-mp3    Added Musyng Kite soundfont    4 years ago
+                // fx_7_echoes-mp3    Added Musyng Kite soundfont    4 years ago
+                // fx_8_scifi-mp3    Added Musyng Kite soundfont    4 years ago
+                // glockenspiel-mp3    Added Musyng Kite soundfont    4 years ago
+                // guitar_fret_noise-mp3    Added Musyng Kite soundfont    4 years ago
+                // guitar_harmonics-mp3    Added Musyng Kite soundfont    4 years ago
+                // gunshot-mp3    Added Musyng Kite soundfont    4 years ago
+                // harmonica-mp3    Added Musyng Kite soundfont    4 years ago
+                // harpsichord-mp3    Added Musyng Kite soundfont    4 years ago
+                // helicopter-mp3    Added Musyng Kite soundfont    4 years ago
+                // honkytonk_piano-mp3    Added Musyng Kite soundfont    4 years ago
+                // kalimba-mp3    Added Musyng Kite soundfont    4 years ago
+                // koto-mp3    Added Musyng Kite soundfont    4 years ago
+                // lead_1_square-mp3    Added Musyng Kite soundfont    4 years ago
+                // lead_2_sawtooth-mp3    Added Musyng Kite soundfont    4 years ago
+                // lead_3_calliope-mp3    Added Musyng Kite soundfont    4 years ago
+                // lead_4_chiff-mp3    Added Musyng Kite soundfont    4 years ago
+                // lead_5_charang-mp3    Added Musyng Kite soundfont    4 years ago
+                // lead_6_voice-mp3    Added Musyng Kite soundfont    4 years ago
+                // lead_7_fifths-mp3    Added Musyng Kite soundfont    4 years ago
+                // lead_8_bass__lead-mp3    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // marimba-mp3    Added Musyng Kite soundfont    4 years ago
+                // melodic_tom-mp3    Added Musyng Kite soundfont    4 years ago
+                // music_box-mp3    Added Musyng Kite soundfont    4 years ago
+                // muted_trumpet-mp3    Added Musyng Kite soundfont    4 years ago
+                // oboe-mp3    Added Musyng Kite soundfont    4 years ago
+                // ocarina-mp3    Added Musyng Kite soundfont    4 years ago
+                // orchestra_hit-mp3    Added Musyng Kite soundfont    4 years ago
+                // orchestral_harp-mp3    Added Musyng Kite soundfont    4 years ago
+                // overdriven_guitar-mp3    Added Musyng Kite soundfont    4 years ago
+                // pad_1_new_age-mp3    Added Musyng Kite soundfont    4 years ago
+                // pad_2_warm-mp3    Added Musyng Kite soundfont    4 years ago
+                // pad_3_polysynth-mp3    Added Musyng Kite soundfont    4 years ago
+                // pad_4_choir-mp3    Added Musyng Kite soundfont    4 years ago
+                // pad_5_bowed-mp3    Added Musyng Kite soundfont    4 years ago
+                // pad_6_metallic-mp3    Added Musyng Kite soundfont    4 years ago
+                // pad_7_halo-mp3    Added Musyng Kite soundfont    4 years ago
+                // pad_8_sweep-mp3    Added Musyng Kite soundfont    4 years ago
+                // pan_flute-mp3    Added Musyng Kite soundfont    4 years ago
+                // percussive_organ-mp3    Added Musyng Kite soundfont    4 years ago
+                // piccolo-mp3    Added Musyng Kite soundfont    4 years ago
+                // pizzicato_strings-mp3    Added Musyng Kite soundfont    4 years ago
+                // recorder-mp3    Added Musyng Kite soundfont    4 years ago
+                // reed_organ-mp3    Added Musyng Kite soundfont    4 years ago
+                // reverse_cymbal-mp3    Added Musyng Kite soundfont    4 years ago
+                // rock_organ-mp3    Added Musyng Kite soundfont    4 years ago
+                // seashore-mp3    Added Musyng Kite soundfont    4 years ago
+                // shakuhachi-mp3    Added Musyng Kite soundfont    4 years ago
+                // shamisen-mp3    Added Musyng Kite soundfont    4 years ago
+                // shanai-mp3    Added Musyng Kite soundfont    4 years ago
+                // sitar-mp3    Added Musyng Kite soundfont    4 years ago
+                // slap_bass_2-mp3    Added Musyng Kite soundfont    4 years ago
+                // soprano_sax-mp3    Added Musyng Kite soundfont    4 years ago
+                // string_ensemble_1-mp3    Added Musyng Kite soundfont    4 years ago
+                // string_ensemble_2-mp3    Added Musyng Kite soundfont    4 years ago
+                // synth_bass_1-mp3    Added Musyng Kite soundfont    4 years ago
+                // synth_bass_2-mp3    Added Musyng Kite soundfont    4 years ago
+                // synth_brass_1-mp3    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // synth_brass_2-mp3    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // synth_choir-mp3    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // synth_drum-mp3    Added Musyng Kite soundfont    4 years ago
+                // synth_strings_1-mp3    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // synth_strings_2-mp3    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // taiko_drum-mp3    Added Musyng Kite soundfont    4 years ago
+                // tango_accordion-mp3    Added Musyng Kite soundfont    4 years ago
+                // telephone_ring-mp3    Added Musyng Kite soundfont    4 years ago
+                // tenor_sax-mp3    Added Musyng Kite soundfont    4 years ago
+                // timpani-mp3    Added Musyng Kite soundfont    4 years ago
+                // tinkle_bell-mp3    Added Musyng Kite soundfont    4 years ago
+                // tremolo_strings-mp3    Added Musyng Kite soundfont    4 years ago
+                // trombone-mp3    Added Musyng Kite soundfont    4 years ago
+                // trumpet-mp3    Added Musyng Kite soundfont    4 years ago
+                // tuba-mp3    Added Musyng Kite soundfont    4 years ago
+                // tubular_bells-mp3    Added Musyng Kite soundfont    4 years ago
+                // vibraphone-mp3    Added Musyng Kite soundfont    4 years ago
+                // viola-mp3    Added Musyng Kite soundfont    4 years ago
+                // violin-mp3    Added Musyng Kite soundfont    4 years ago
+                // voice_oohs-mp3    Added Musyng Kite soundfont    4 years ago
+                // whistle-mp3    Added Musyng Kite soundfont    4 years ago
+                // woodblock-mp3    Added Musyng Kite soundfont    4 years ago
+                // xylophone-mp3    Added Musyng Kite soundfont    4 years ago
+                // accordion-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // accordion-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // acoustic_bass-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // acoustic_bass-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // acoustic_grand_piano-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // acoustic_grand_piano-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // acoustic_guitar_nylon-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // acoustic_guitar_nylon-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // acoustic_guitar_steel-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // acoustic_guitar_steel-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // agogo-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // agogo-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // alto_sax-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // alto_sax-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // applause-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // applause-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // bagpipe-mp3.js    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // bagpipe-ogg.js    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // banjo-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // banjo-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // baritone_sax-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // baritone_sax-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // bassoon-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // bassoon-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // bird_tweet-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // bird_tweet-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // blown_bottle-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // blown_bottle-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // brass_section-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // brass_section-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // breath_noise-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // breath_noise-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // bright_acoustic_piano-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // bright_acoustic_piano-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // celesta-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // celesta-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // cello-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // cello-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // choir_aahs-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // choir_aahs-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // church_organ-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // church_organ-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // clarinet-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // clarinet-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // clavinet-mp3.js    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // clavinet-ogg.js    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // contrabass-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // contrabass-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // distortion_guitar-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // distortion_guitar-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // drawbar_organ-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // drawbar_organ-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // dulcimer-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // dulcimer-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // electric_bass_finger-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // electric_bass_finger-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // electric_bass_pick-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // electric_bass_pick-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // electric_grand_piano-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // electric_grand_piano-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // electric_guitar_clean-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // electric_guitar_clean-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // electric_guitar_jazz-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // electric_guitar_jazz-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // electric_guitar_muted-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // electric_guitar_muted-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // electric_piano_1-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // electric_piano_1-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // electric_piano_2-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // electric_piano_2-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // english_horn-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // english_horn-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // fiddle-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // fiddle-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // flute-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // flute-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // french_horn-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // french_horn-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // fretless_bass-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // fretless_bass-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // fx_1_rain-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // fx_1_rain-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // fx_2_soundtrack-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // fx_2_soundtrack-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // fx_3_crystal-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // fx_3_crystal-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // fx_4_atmosphere-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // fx_4_atmosphere-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // fx_5_brightness-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // fx_5_brightness-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // fx_6_goblins-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // fx_6_goblins-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // fx_7_echoes-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // fx_7_echoes-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // fx_8_scifi-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // fx_8_scifi-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // glockenspiel-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // glockenspiel-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // guitar_fret_noise-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // guitar_fret_noise-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // guitar_harmonics-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // guitar_harmonics-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // gunshot-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // gunshot-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // harmonica-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // harmonica-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // harpsichord-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // harpsichord-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // helicopter-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // helicopter-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // honkytonk_piano-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // honkytonk_piano-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // kalimba-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // kalimba-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // koto-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // koto-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // lead_1_square-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // lead_1_square-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // lead_2_sawtooth-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // lead_2_sawtooth-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // lead_3_calliope-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // lead_3_calliope-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // lead_4_chiff-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // lead_4_chiff-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // lead_5_charang-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // lead_5_charang-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // lead_6_voice-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // lead_6_voice-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // lead_7_fifths-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // lead_7_fifths-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // lead_8_bass__lead-mp3.js    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // lead_8_bass__lead-ogg.js    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // marimba-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // marimba-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // melodic_tom-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // melodic_tom-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // music_box-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // music_box-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // muted_trumpet-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // muted_trumpet-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // names.json    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // oboe-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // oboe-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // ocarina-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // ocarina-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // orchestra_hit-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // orchestra_hit-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // orchestral_harp-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // orchestral_harp-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // overdriven_guitar-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // overdriven_guitar-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // pad_1_new_age-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // pad_1_new_age-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // pad_2_warm-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // pad_2_warm-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // pad_3_polysynth-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // pad_3_polysynth-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // pad_4_choir-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // pad_4_choir-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // pad_5_bowed-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // pad_5_bowed-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // pad_6_metallic-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // pad_6_metallic-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // pad_7_halo-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // pad_7_halo-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // pad_8_sweep-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // pad_8_sweep-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // pan_flute-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // pan_flute-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // percussive_organ-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // percussive_organ-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // piccolo-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // piccolo-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // pizzicato_strings-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // pizzicato_strings-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // recorder-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // recorder-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // reed_organ-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // reed_organ-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // reverse_cymbal-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // reverse_cymbal-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // rock_organ-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // rock_organ-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // seashore-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // seashore-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // shakuhachi-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // shakuhachi-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // shamisen-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // shamisen-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // shanai-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // shanai-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // sitar-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // sitar-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // slap_bass_1-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // slap_bass_1-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // slap_bass_2-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // slap_bass_2-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // soprano_sax-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // soprano_sax-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // steel_drums-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // steel_drums-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // string_ensemble_1-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // string_ensemble_1-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // string_ensemble_2-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // string_ensemble_2-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // synth_bass_1-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // synth_bass_1-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // synth_bass_2-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // synth_bass_2-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // synth_brass_1-mp3.js    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // synth_brass_1-ogg.js    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // synth_brass_2-mp3.js    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // synth_brass_2-ogg.js    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // synth_choir-mp3.js    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // synth_choir-ogg.js    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // synth_drum-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // synth_drum-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // synth_strings_1-mp3.js    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // synth_strings_1-ogg.js    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // synth_strings_2-mp3.js    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // synth_strings_2-ogg.js    Renamed MusyngKite instruments to match MIDI.GM    a year ago
+                // taiko_drum-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // taiko_drum-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // tango_accordion-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // tango_accordion-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // telephone_ring-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // telephone_ring-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // tenor_sax-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // tenor_sax-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // timpani-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // timpani-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // tinkle_bell-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // tinkle_bell-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // tremolo_strings-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // tremolo_strings-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // trombone-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // trombone-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // trumpet-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // trumpet-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // tuba-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // tuba-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // tubular_bells-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // tubular_bells-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // vibraphone-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // vibraphone-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // viola-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // viola-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // violin-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // violin-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // voice_oohs-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // voice_oohs-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // whistle-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // whistle-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // woodblock-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // woodblock-ogg.js    Added Musyng Kite soundfont    4 years ago
+                // xylophone-mp3.js    Added Musyng Kite soundfont    4 years ago
+                // xylophone-ogg.js    Added Musyng Kite soundfont    4 years ago
+            ];
+            var count=0;
+            var buildTracksHtml = function() {
+                Player.tracks.forEach(function(item, index) {
+                    if(index!=Player.tracks.length-1){
+                        var trackDiv = document.createElement('div');
+                        trackDiv.id = 'track-' + (index+2);
+                        var h5 = document.createElement('h5');
+                        h5.innerHTML = 'Track ' + (index+1)+' <input id="track--'+(index+2)+'" type="checkbox" checked>'+
+                        '<select id="track-Inst'+(index+2)+'"></select>';
+                        var code = document.createElement('code');
+                        // code.innerHTML=item+' '+index;
+                        trackDiv.appendChild(h5);
+                        trackDiv.appendChild(code);
+                        eventsDiv.appendChild(trackDiv);
+                        try{
+                            for(i=0;i<library.length;i++){
+                                document.querySelectorAll('select')[index].innerHTML+='<option value="'+library[i].split(':')[1]+'">'+library[i].split(':')[0]+'</option>';
+                                // document.querySelectorAll('select')[index].onchange=function(){alert(document.querySelectorAll('select')[index].value);};
+                            }
+                        }catch(err){
+                            alert(err);
+                        }
+                    }
+                });
+            }
+            
+            Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/acoustic_grand_piano-mp3.js').then(function (piano) {
+            document.getElementById('loading').innerHTML='Loading Instruments (might take a while, plz be patient): 5%';
+            Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/accordion-mp3.js').then(function (accordion) {
+            document.getElementById('loading').innerHTML='Loading Instruments (might take a while, plz be patient): 10%';
+            Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/acoustic_bass-mp3.js').then(function (bass) {
+            document.getElementById('loading').innerHTML='Loading Instruments (might take a while, plz be patient): 15%';
+            Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/acoustic_guitar_nylon-mp3.js').then(function(nylon_guitar){
+            document.getElementById('loading').innerHTML='Loading Instruments (might take a while, plz be patient): 20%';
+            Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/acoustic_guitar_steel-mp3.js').then(function (steel_guitar) {
+            document.getElementById('loading').innerHTML='Loading Instruments (might take a while, plz be patient): 25%';
+            Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/agogo-mp3.js').then(function (agogo) {
+            document.getElementById('loading').innerHTML='Loading Instruments (might take a while, plz be patient): 30%';
+            Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/alto_sax-mp3.js').then(function (alto_sax) {
+            document.getElementById('loading').innerHTML='Loading Instruments (might take a while, plz be patient): 35%';
+            Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/slap_bass_1-mp3.js').then(function (slap) {
+            document.getElementById('loading').innerHTML='Loading Instruments (might take a while, plz be patient): 40%';
+            Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/bagpipe-mp3.js').then(function (bagpipe) {
+            document.getElementById('loading').innerHTML='Loading Instruments (might take a while, plz be patient): 45%';
+            Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/banjo-mp3.js').then(function (banjo) {
+            document.getElementById('loading').innerHTML='Loading Instruments (might take a while, plz be patient): 50%';
+            Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/baritone_sax-mp3.js').then(function (baritone_sax) {
+            document.getElementById('loading').innerHTML='Loading Instruments (might take a while, plz be patient): 55%';
+            Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/bassoon-mp3.js').then(function(bassoon){
+            document.getElementById('loading').innerHTML='Loading Instruments (might take a while, plz be patient): 60%';
+            Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/steel_drums-mp3.js').then(function(drum){
+            document.getElementById('loading').innerHTML='Loading Instruments (might take a while, plz be patient): 65%';
+            Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/blown_bottle-mp3.js').then(function(blown_bottle){
+            document.getElementById('loading').innerHTML='Loading Instruments (might take a while, plz be patient): 70%';
+            Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/brass_section-mp3.js').then(function(brass_section){
+            document.getElementById('loading').innerHTML='Loading Instruments (might take a while, plz be patient): 75%';
+            Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/choir_aahs-mp3.js').then(function(choir_ahh){
+            document.getElementById('loading').innerHTML='Loading Instruments (might take a while, plz be patient): 80%';
+            Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/bright_acoustic_piano-mp3.js').then(function(bright_piano){
+            document.getElementById('loading').innerHTML='Loading Instruments (might take a while, plz be patient): 88%';
+            Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/electric_piano_1-mp3.js').then(function(Epiano){
+            document.getElementById('loading').innerHTML='Loading Instruments (might take a while, plz be patient): 99%';
+            Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/cello-mp3.js').then(function (cello) {
+            
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('select-file').style.display = 'block';
+                    
+                    setInterval(function(){
+                        if((100-Player.getSongPercentRemaining())!=curTime){
+                            curTime=(100-Player.getSongPercentRemaining());
+                            if($("#cur-tim").is(":focus")){}else{
+                                document.querySelector('#cur-tim').value=(100-Player.getSongPercentRemaining()).toString();
+                            }
+                        }
+                    },10);
+                    loadFile = function() {
+                        if(document.querySelector('input[type=file]').value.split('.')[1].toLowerCase()=='mid'||document.querySelector('input[type=file]').value.split('.')[1].toLowerCase()=='midi'){
+                            var file    = document.querySelector('input[type=file]').files[0];
+                            var reader  = new FileReader();
+                            if (file) reader.readAsArrayBuffer(file);
+                    
+                            eventsDiv.innerHTML = '';
+                    
+                            reader.addEventListener("load", function () {
+                                Player = new MidiPlayer.Player(function(event) {
+                                    if (event.name == 'Note on') {
+                                        var vals=document.querySelector('#track-Inst'+(Number(event.track)).toString()).value;
+                                        if(document.querySelector('#track--'+(Number(event.track)).toString()).checked){
+                                            var p = event.noteName.toString().split('');
+                                            p.splice(p.length-1,0,'/');
+                                            if(document.querySelector('#track-' + event.track + ' code').innerHTML!=''){
+                                                document.querySelector('#track-' + event.track + ' code').innerHTML +=' '+/*p.join('')*/event.noteName;
+                                            }else{
+                                                document.querySelector('#track-' + event.track + ' code').innerHTML += event.noteName /*p.join('')*/;
+                                            }
+                                            if(vals=="acoustic_grand_piano-mp3"){
+                                                piano.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                            }else if(vals=="accordion-mp3"){
+                                                accordion.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                            }else if(vals=="acoustic_bass-mp3"){
+                                                bass.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                            }else if(vals=="acoustic_guitar_nylon-mp3"){
+                                                nylon_guitar.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                            }else if(vals=="acoustic_guitar_steel-mp3"){
+                                                steel_guitar.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                            }else if(vals=="agogo-mp3"){
+                                                agogo.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                            }else if(vals=="alto_sax-mp3"){
+                                                alto_sax.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                            }else if(vals=="slap_bass_1-mp3"){
+                                                slap.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                            }else if(vals=="bagpipe-mp3"){
+                                                bagpipe.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                            }else if(vals=="banjo-mp3"){
+                                                banjo.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                            }else if(vals=="baritone_sax-mp3"){
+                                                baritone_sax.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                            }else if(vals=="bassoon-mp3"){
+                                                bassoon.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                            }else if(vals=="steel_drums-mp3"){
+                                                drum.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                            }else if(vals=="blown_bottle-mp3"){
+                                                blown_bottle.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                            }else if(vals=="brass_section-mp3"){
+                                                brass_section.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                            }else if(vals=="choir_aahs-mp3"){
+                                                choir_ahh.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                            }else if(vals=="bright_acoustic_piano-mp3"){
+                                                bright_piano.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                            }else if(vals=="electric_piano_1-mp3"){
+                                                Epiano.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                            }else if(vals=="cello-mp3"){
+                                                cello.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                            }
+                                        }
+                                    }
+                    
+                                    document.getElementById('tempo-display').innerHTML = Player.tempo;
+                                    document.getElementById('file-format-display').innerHTML = Player.format;
+                                    document.getElementById('play-bar').style.width = 100 - Player.getSongPercentRemaining() + '%';
+                                    document.getElementById('play-bar').onclick=function(){};
+                                });
+                    
+                                Player.loadArrayBuffer(reader.result);
+                                
+                                document.getElementById('play-button').removeAttribute('disabled');
+                    
+                                buildTracksHtml();
+                                play();
+                            }, false);
+                        }else if(document.querySelector('input[type=file]').value.split('.')[1].toLowerCase()=='mp3'){
+                            document.body.innerHTML+='<audio id="audio-'+count.toString()+'" src="'+'"></audio>';
+                            count++;
+                            document.querySelector('#audio-'+count.toString()).play();
+                        }
+                    }
+                
+                    loadDataUri = function(dataUri) {
+                        Player = new MidiPlayer.Player(function(event) {
+                            if (event.name == 'Note on') {
+                                var vals=document.querySelector('#track-Inst'+(Number(event.track)).toString()).value;
+                                if(document.querySelector('#track--'+(Number(event.track)).toString()).checked){
+                                    var p = event.noteName.toString().split('');
+                                    p.splice(p.length-1,0,'/');
+                                    if(document.querySelector('#track-' + event.track + ' code').innerHTML!=''){
+                                        document.querySelector('#track-' + event.track + ' code').innerHTML +=' '+/*p.join('')*/event.noteName;
+                                    }else{
+                                        document.querySelector('#track-' + event.track + ' code').innerHTML += event.noteName /*p.join('')*/;
+                                    }
+                                    if(vals=="acoustic_grand_piano-mp3"){
+                                        piano.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                    }else if(vals=="accordion-mp3"){
+                                        accordion.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                    }else if(vals=="acoustic_bass-mp3"){
+                                        bass.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                    }else if(vals=="acoustic_guitar_nylon-mp3"){
+                                        nylon_guitar.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                    }else if(vals=="acoustic_guitar_steel-mp3"){
+                                        steel_guitar.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                    }else if(vals=="agogo-mp3"){
+                                        agogo.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                    }else if(vals=="alto_sax-mp3"){
+                                        alto_sax.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                    }else if(vals=="slap_bass_1-mp3"){
+                                        slap.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                    }else if(vals=="bagpipe-mp3"){
+                                        bagpipe.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                    }else if(vals=="banjo-mp3"){
+                                        banjo.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                    }else if(vals=="baritone_sax-mp3"){
+                                        baritone_sax.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                    }else if(vals=="bassoon-mp3"){
+                                        bassoon.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                    }else if(vals=="steel_drums-mp3"){
+                                        drum.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                    }else if(vals=="blown_bottle-mp3"){
+                                        blown_bottle.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                    }else if(vals=="brass_section-mp3"){
+                                        brass_section.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                    }else if(vals=="choir_aahs-mp3"){
+                                        choir_ahh.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                    }else if(vals=="bright_acoustic_piano-mp3"){
+                                        bright_piano.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                    }else if(vals=="electric_piano_1-mp3"){
+                                        Epiano.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                    }else if(vals=="cello-mp3"){
+                                        cello.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
+                                    }
+                                }
+                            }
+                
+                            document.getElementById('tempo-display').innerHTML = Player.tempo;
+                            document.getElementById('file-format-display').innerHTML = Player.format;    
+                            document.getElementById('play-bar').style.width = 100 - Player.getSongPercentRemaining() + '%';
+                        });
+                
+                        Player.loadDataUri(dataUri);
+                
+                        document.getElementById('play-button').removeAttribute('disabled');
+                
+                        buildTracksHtml();
+                        play();
+                    }
+                
+                
+                
+                    loadDataUri(firstMusic);
+            });
+            });
+            });
+            });
+            });
+            });
+            });
+            });
+            });
+            });
+            });
+            });
+            });
+            });
+            });
+            });
+            });
+            });
+            });
+            
+            var firstMusic = 'data:application/octet-stream;base64,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AACQPC+BcIA8AACQQy+BcIBDAACQSC+BcIBIAACQQy+BcIBDAACQPC+BcIA8AACQQy+BcIBDAACQSC+BcIBIAACQQy+BcIBDAACQPC+BcIA8AACQQy+BcIBDAACQSC+BcIBIAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQSC8AkFQvAJBIL4FwgEgAAJBDL4FwgEMAAJBIL4FwgEgAAJBDL4FwgEMAAJBDL4FwgEMAAJBDL4FwgEMAAJBIL4FwgEgAAJBDL4FwgEgAAIBUAACAQwAAkEcvAJBTLwCQRy+BcIBHAACQQy+BcIBDAACQSC+BcIBIAACQQy+BcIBDAACQQy+BcIBDAACQQy+BcIBDAACQSC+BcIBIAACQQy+BcIBTAACARwAAgEMAAJBRLwCQRS8AkEUvgXCARQAAkEMvgXCAQwAAkEgvgXCASAAAkEovgXCAUQAAgEUAAIBKAACQQy8AkE8vAJBDL4FwgEMAAJBDL4FwgEMAAJBILwCQQy+BcIBIAACAQwAAkEMvgXCAQwAAgE8AAIBDAACQQy8AkE8vAJBDL4FwgEMAAJBDL4FwgEMAAJBIL4FwgEgAAJBKL4FwgEoAAJBIL4FwgEgAAJBDL4FwgEMAAJBIL4FwgEgAAJBDL4FwgEMAAIBPAACAQwAAkDwvAJBIL4FwkEMvgXCAQwAAkEgvgXCASAAAkEovgXCASgAAkEgvgXCASAAAkEMvgXCAQwAAkEgvgXCASAAAkEMvgXCAPAAAgEgAAIBDAACQPC8AkEgvgXCQQy+BcIBDAACQSC+BcIBIAACQSi+BcIBKAACQSC+BcIBIAACQQy+BcIBDAACQSC+BcIBIAACQQy+BcIA8AACASAAAgEMAAJA8LwCQSC+BcJBDL4FwgEMAAJBIL4FwgEgAAJBKL4FwgEoAAJBIL4FwgEgAAJBDL4FwgEMAAJBIL4FwgEgAAJBDL4FwgDwAAIBIAACAQwAAkEgvAJA8L4FwkEMvgXCAQwAAkEgvgXCASAAAkEovgXCASgAAkEgvgXCASAAAkEMvgXCAQwAAkEgvgXCASAAAkEMvgXCASAAAgDwAAIBDAACQSC+BcIBIAACQQy+BcIBDAACQSC+BcIBIAACQSi+BcIBKAACQSC+BcIBIAACQQy+BcIBDAACQSC+BcIBIAACQQy+BcIBDAACQSC+BcIBIAACQQy+BcIBDAACQSC+BcIBIAACQSi+BcIBKAACQSC+BcIBIAACQQy+BcIBDAACQSC+BcIBIAACQQy+BcIBDAACQSD8AkDw/gXCQQz+BcIBDAACQSD+BcIBIAACQSj+BcIBKAACQSD+BcIBIAACQQz+BcIBDAACQSD+BcIBIAACQQz+BcIBIAACAPAAAgEMAAJBIPwCQPD+BcJBDP4FwgEMAAJBIP4FwgEgAAJBKP4FwgEoAAJBIP4FwgEgAAJBDP4FwgEMAAJBIP4FwgEgAAJBDP4FwgEgAAIA8AACAQwAAkEg/AJA8P4FwkEM/gXCAQwAAkEg/gXCASAAAkEo/gXCASgAAkEg/gXCASAAAkEM/gXCAQwAAkEg/gXCASAAAkEM/gXCASAAAgDwAAIBDAACQSD8AkDw/gXCQQz+BcIBDAACQSD+BcIBIAACQSj+BcIBKAACQSD+BcIBIAACQQz+BcIBDAACQSD+BcIBIAACQQz+BcIBIAACAPAAAgEMAAJBUPwCQSD+BcJBDP4FwgEMAAJBIP4FwgEgAAJBKP4FwgEoAAJBIP4FwgEgAAJBDP4FwgEMAAJBDP4FwgEMAAJBDP4FwgFQAAIBIAACAQwAAkDw/gXCQQz+BcIBDAACQSD+BcIBIAACQSj+BcIBKAACQSD+BcIBIAACQQz+BcIBDAACQQz+BcIBDAACQPD+BcIA8AACAPAAAkEBPAJBITwCQRU+eAIBAAACASAAAgEUAAJBBTwCQRU8AkEpPjwCAQQAAgEUAAIBKAACQSE8AkEVPAJBBT4dAgEgAAIBFAACAQQAAkEVPh0CARQAAkENPAJA+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gEwAAJBWX3iAVgAAkExfeIBMAACQU194gFMAAJBMX3iATAAAkFZfeIBWAACQTF94gEwAAJBYX3iAWAAAkExfeIBMAACQU194gFMAAJBMX3iATAAAkFBfeIBQAACQTF94gEwAAJBTX3iAUwAAkExfeIBMAACQVl94gFYAAJBMX3iATAAAkFVfeIBVAACQTF94gEwAAJBRX3iAUQAAkExfeIBMAACQVV94gFUAAJBMX3iATAAAkFhfeIBYAACQTF94gEwAAJBVX3iAVQAAkExfeIBMAACQUV94gFEAAJBMX3iATAAAkFVfeIBVAACQTF94gEwAAJBYX3iAWAAAkExfeIBMAACQVl94gFYAAJBMX3iATAAAkFNfeIBTAACQTF94gEwAAJBWX3iAVgAAkExfeIBMAACQWF94gFgAAJBMX3iATAAAkFNfeIBTAACQTF94gEwAAJBQX3iAUAAAkExfeIBMAACQU194gFMAAJBMX3iATAAAkFZfeIBWAACQTF94gEwAAJBVX3iAVQAAkExfeIBMAACQU194gFMAAJBMX3iATAAAkFFfg2CAUQAAkFZfeIBWAACQSl94gEoAAJBRX3iAUQAAkEpfeIBKAACQVl94gFYAAJBKX3iASgAAkFhfeIBYAACQTF94gEwAAJBYX3iAWAAAkEpfeIBKAACQU194gFMAAJBYX3iAWAAAkFhfeIBYAACQWl94gFoAAJBcX3iAXAAAkF1feIBdAACQX38AkFh/AJBTf4NggF8AAIBYAACAUwCBcJBJX3iASQAAkEpfeIBKAACQTF+BcIBMAACQRV94gEUAAJBFX3iARQAAkExfgXCATAAAkEVfeIBFAACQRV94gEUAAJBMX4JogEwAAJBOX3iATgAAkE9fgXCATwAAkFFfgXCAUQAAkE9feIBPAACQTl94gE4AAJBMX3iATAAAkE5feIBOAACQT1+BcIBPAACQUV+BcIBRAACQT194gE8AAJBOX3iATgAAkExfeIBMAACQSl94gEoAAJBOX3iATgAAkExfeIBMAACQT194gE8AAJBOX3iATgAAkExfgXCATAAAkEVfeIBFAACQRV94gEUAAJBMX4FwgEwAAJBOX3iATgAAkE9feIBPAACQUV94gFEAAJBPX3iATwAAkE5feIBOAACQTF94gEwAAJBOX4FwgE4AAJBPX3iATwAAkFFf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kSFfgXCBIQAAkS1fgXCBLQAAkSFfgXCBIQAAkS1fgXCBLQAAkSFfgXCBIQAAkS1fgXCBLQAAkSFfgXCBIQAAkS1fgXCBLQAAkSFfgXCBIQAAkS1fgXCBLQAAkSFfgXCBIQAAkS1fgXCBLQAAkShfAJEcX4NggSgAAIEcAACRKF8AkRxfg2CBKAAAgRwAAJEcXwCRKF+DYIEcAACBKAAAkRxfAJEoX4NggRwAAIEoAACRKF8AkRxfg2CBKAAAgRwAAJEcXwCRKF+DYIEcAACBKAAAkShfAJEcX4NggSgAAIEcAACRHF8AkShfg2CBHAAAgSgAAJEjX4FwgSMAAJEvX4FwgS8AAJEjX4FwgSMAAJEvX4FwgS8AAJEjX4FwgSMAAJEvX4FwgS8AAJEjX4FwgSMAAJEvX4FwgS8AAJEgX4FwgSAAAJEsX4FwgSwAAJEgX4FwgSAAAJEsX4FwgSwAAJEgX4FwgSAAAJEsX4FwgSwAAJEgX4FwgSAAAJEsX4FwgSwAAJEhX4FwgSEAAJEtX4FwgS0AAJEhX4FwgSEAAJEtX4FwgS0AAJEhX4FwgSEAAJEtX4FwgS0AAJEhX4FwgSEAAJEtX4FwgS0AAJEhX4FwgSEAAJEtX4FwgS0AAJEhX4FwgSEAAJEtX4FwgS0AAJEhX4FwgSEAAJEtX4FwgS0AAJEhX4FwgSEAAJEtX4FwgS0AAJEhX4FwgSEAAJEtX4FwgS0AAJEhX4FwgSEAAJEtX4FwgS0AAJEhX4FwgSEAAJEtX4FwgS0AAJEhX4FwgSEAAJEtX4FwgS0AAJEhX4FwgSEAAJEtX4FwgS0AAJEhX4FwgSEAAJEtX4FwgS0AAJEhX4FwgSEAAJEtX4FwgS0AAJEhX4FwgSEAAJEtX4FwgS0AAJEhXwCRLV+BcIEhAACBLQAAkS1fAJEhX4FwgS0AAIEhAACRLV8AkSFfgXCBLQAAgSEAAJEhXwCRLV+BcIEhAACBLQAAkS1fAJEhX4FwgS0AAIEhAACRLV8AkSFfgXCBLQAAgSEAAJEhXwCRLV+BcIEhAACBLQAAkSFfAJEtX4FwgSEAAIEtAACRIV8AkS1fgXCBIQAAgS0AAJEtXwCRIV+BcIEtAACBIQAAkS1fAJEhX4FwgS0AAIEhAACRIV8AkS1fgXCBIQAAgS0AAJEhXwCRLV+BcIEhAACBLQAAkSFfAJEtX4FwgSEAAIEtAACRIV8AkS1fgXCBIQAAgS0AAJEhXwCRLV+BcIEhAACBLQAAkSU/AJExP4dAgSUAAIExAACRIT8AkS0/h0CBIQAAgS0AAJEjPwCRLz+HQIEjAACBLwAAkTQ/AJEoP4NggTQAAIEoAACRJz8AkTM/g2CBJwAAgTMAAJElPwCRMT+HQIElAACBMQAAkSE/AJEtP4dAgSEAAIEtAACRLz8AkSM/h0CBLwAAgSMAAJEoPwCRND+DYIEoAACBNAAAkSc/AJEzP4NggScAAIEzAACRMT8AkSU/h0CBMQAAgSUAAJEtPwCRIT+HQIEtAACBIQAAkS8/AJEjP4dAgS8AAIEjAACRHj8AkSo/h0CBHgAAgSoAAJEtPwCRIT+DYIEtAACBIQAAkS1CAJEhQodAgS0AAIEhAACRIUYAkS1Gg2CBIQAAgS0AAJEeSACRKkiHQIEeAACBKgAAkR5MAJEqTIdAgR4AAIEqAACRLU8AkSFPg2CBLQAAgSEAAJEtTwCRIU+HQIEtAACBIQAAkSFPAJEtT4NggSEAAIEtAACRKk8AkR5Ph0CBKgAAgR4AAJEeTwCRKk+HQIEeAACBKgAAkSpPAJEeT4NggSoAAIEeAACRHk8AkSpPg2CBHgAAgSoAAJEqTwCRHk+DYIEqAACBHgAAkR5PAJEqT4NggR4AAIEqAACRHG+BcIEcAACRKG+BcIEoAACRHG+BcIEcAACRKG+BcIEoAACRHG+BcIEcAACRKG+BcIEoAACRHG+BcIEcAACRKG+BcIEoAACRIW+BcIEhAACRLW+BcIEtAACRIW+BcIEhAACRLW+BcIEtAACRIW+BcIEhAACRLW+BcIEtAACRIW+BcIEhAACRLW+BcIEtAACRIG+BcIEgAACRLG+BcIEsAACRIG+BcIEgAACRLG+BcIEsAACRIG+BcIEgAACRLG+BcIEsAACRIG+BcIEgAACRLG+BcIEsAACRI2+BcIEjAACRL2+BcIEvAACRI2+BcIEjAACRL2+BcIEvAACRI2+BcIEjAACRL2+BcIEvAACRI2+BcIEjAACRL2+BcIEvAACRHG+BcIEcAACRKG+BcIEoAACRHG+BcIEcAACRKG+BcIEoAACRHG+BcIEcAACRKG+BcIEoAACRHG+BcIEcAACRKG+BcIEoAACRIW+BcIEhAACRLW+BcIEtAACRIW+BcIEhAACRLW+BcIEtAACRIW+BcIEhAACRLW+BcIEtAACRIW+BcIEhAACRLW+BcIEtAACRIG+BcIEgAACRLG+BcIEsAACRIG+BcIEgAACRLG+BcIEsAACRIG+BcIEgAACRLG+BcIEsAACRIG+BcIEgAACRLG+BcIEsAACRI2+BcIEjAACRL2+BcIEvAACRI2+BcIEjAACRL2+BcIEvAACRI2+BcIEjAACRL2+BcIEvAACRI2+BcIEjAACRL2+BcIEvAACRHG+BcIEcAACRKG+BcIEoAACRHG+BcIEcAACRKG+BcIEoAACRHG+BcIEcAACRKG+BcIEoAACRHG+BcIEcAACRKG+BcIEoAACRIW+BcIEhAACRLW+BcIEtAACRIW+BcIEhAACRLW+BcIEtAACRIW+BcIEhAACRLW+BcIEtAACRIW+BcIEhAACRLW+BcIEtAACRIG+BcIEgAACRLG+BcIEsAACRIG+BcIEgAACRLG+BcIEsAACRIG+BcIEgAACRLG+BcIEsAACRIG+BcIEgAACRLG+BcIEsAACRI2+BcIEjAACRL2+BcIEvAACRI2+BcIEjAACRL2+BcIEvAACRI2+BcIEjAACRL2+BcIEvAACRI2+BcIEjAACRL2+BcIEvAACRHG+BcIEcAACRKG+BcIEoAACRHG+BcIEcAACRKG+BcIEoAACRHG+BcIEcAACRKG+BcIEoAACRHG+BcIEcAACRKG+BcIEoAACRIW+BcIEhAACRLW+BcIEtAACRIW+BcIEhAACRLW+BcIEtAACRIW+BcIEhAACRLW+BcIEtAACRIW+BcIEhAACRLW+BcIEtAACRIG+BcIEgAACRLG+BcIEsAACRIG+BcIEgAACRLG+BcIEsAACRIG+BcIEgAACRLG+BcIEsAACRIG+BcIEgAACRLG+BcIEsAACRI2+BcIEjAACRL2+BcIEvAACRI2+BcIEjAACRL2+BcIEvAACRI2+BcIEjAACRL2+BcIEvAACRI2+BcIEjAACRL2+BcIEvAACRHG+BcIEcAACRKG+BcIEoAACRHG+BcIEcAACRKG+BcIEoAACRHG+BcIEcAACRKG+BcIEoAACRHG+BcIEcAACRKG+BcIEoAACRIW+BcIEhAACRLW+BcIEtAACRIW+BcIEhAACRLW+BcIEtAACRIW+BcIEhAACRLW+BcIEtAACRIW+BcIEhAACRLW+BcIEtAACRIG+BcIEgAACRLG+BcIEsAACRIG+BcIEgAACRLG+BcIEsAACRIG+BcIEgAACRLG+BcIEsAACRIG+BcIEgAACRLG+BcIEsAACRI2+BcIEjAACRL2+BcIEvAACRI2+BcIEjAACRL2+BcIEvAACRI2+BcIEjAACRL2+BcIEvAACRI2+BcIEjAACRL2+BcIEvAACRKG8AkTRvg2CBKAAAkShvAJEvb5JggTQAAIEoAACBLwAAkUQfgXCBRAAAkUcfgXCBRwAAkUQfgXCBRAAAkUcfgXCBRwAAkSFvgXCBIQAAkS1vgXCBLQAAkSFvgXCBIQAAkS1vgXCBLQAAkSFvgXCBIQAAkS1vgXCBLQAAkSFvgXCBIQAAkS1vgXCBLQAAkR5vgXCBHgAAkSpvgXCBKgAAkR5vgXCBHgAAkSpvgXCBKgAAkR5vgXCBHgAAkSpvgXCBKgAAkR5vgXCBHgAAkSpvgXCBKgAAkShvAJE0b48AgSgAAIE0AINg/y8ATVRyawAAABEAyQAA/wQFRHJ1bXODYP8vAE1UcmsAAAARAMMAAP8EBVBpYW5vg2D/LwBNVHJrAAAAEQDEAAD/BAVQaWFub4Ng/y8A';
+            $('#cur-tim').keypress(function(e) {
+                if(e.which == 13) {
+                    stop();
+                    Player.skipToPercent(document.querySelector('#cur-tim').value);
+                    play();
+                }
+            });
+        </script>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-1454657-6', 'auto');
+            ga('send', 'pageview');
+        </script>
+    </body>
+</html>
