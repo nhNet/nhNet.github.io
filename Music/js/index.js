@@ -1588,3 +1588,66 @@ function extend(a,b) {
                $(".js-downloads-section").css("display","none");;
            }
          })
+function __log(e, data) {
+    log.innerHTML += "\n" + e + " " + (data || '');
+  }
+  var audio_context;
+  var recorder;
+  function startUserMedia(stream) {
+    // var input = audio_context.createMediaStreamSource(stream);
+    var input = node;
+    __log('Media stream created.');
+    // Uncomment if you want the audio to feedback directly
+    //input.connect(audio_context.destination);
+    //__log('Input connected to audio context destination.');
+    
+    recorder = new Recorder(input);
+    __log('Recorder initialised.');
+  }
+
+  function startRecording(button) {
+  	// var input = audio_context.createMediaStreamSource(stream);
+  	// var input = node;
+  	// __log('Media stream created.');
+  	// // Uncomment if you want the audio to feedback directly
+  	// //input.connect(audio_context.destination);
+  	// //__log('Input connected to audio context destination.');
+  	
+  	// recorder = new Recorder(input, {workerPath: '/js/vendor/recorderWorkerMP3.js'});
+  	// __log('Recorder initialised.');
+    recorder && recorder.record();
+    // button.disabled = true;
+    // button.nextElementSibling.disabled = false;
+    __log('Recording, please wait...');
+  }
+  function stopRecording() {
+    recorder && recorder.stop();
+    // button.disabled = true;
+    // button.previousElementSibling.disabled = false;
+    __log('Recording complete.');
+    
+    // create WAV download link using audio data blob
+    createDownloadLink();
+    
+    if (typeof recorder !== "undefined") recorder.clear();
+  }
+  function createDownloadLink() {
+    recorder && recorder.exportAudio(function(blob) {
+      var url = URL.createObjectURL(blob);
+      var li = document.createElement('li');
+      var au = document.createElement('audio');
+      var hf = document.createElement('a');
+      
+      au.controls = true;
+      au.src = url;
+      hf.href = url;
+      // hf.download = new Date().toISOString() + '.wav';
+      // hf.download = new Date().toISOString() + '.mp3';
+      hf.download = "pitch-shifted-" + $('input[type=file]').val().replace(/C:\\fakepath\\/i, '');
+      hf.innerHTML = hf.download;
+      li.appendChild(au);
+      li.appendChild(hf);
+      recordingslist.appendChild(li);
+      ga('send', 'event', 'Pitch shift download', "Download Added");
+    });
+  }
