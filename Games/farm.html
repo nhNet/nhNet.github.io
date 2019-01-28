@@ -1427,9 +1427,7 @@ function engine() {
         opacity: 0.5 });
 
     }
-
-
-
+    
     $(element).attr('data-time', newTime);
     var maxTime = $(element).attr('data-timeMax');
     var perc = 100 - newTime / maxTime * 100;
@@ -1440,13 +1438,7 @@ function engine() {
     plantt = "<span>" + plantt + "</span>";
     var extra = "";
     if ($('#plantTime').hasClass("active")) {
-      /*
-                                             
-                                             var totalTime = 100/growthSpeed * growthSpeedBoost;
-                                             var time = totalTime * (buildValue/100);
-                                             var timeLeft = totalTime - time;
-                                             
-                                             */
+      
       var timeLeft = $(element).attr('data-time') / (growthSpeed * growthSpeedBoost);
 
       if (canGrowIn !== "winter" && currentSeason == 3) {
