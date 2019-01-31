@@ -205,7 +205,7 @@ function PatrickTalk(){
             if(isInInput(uCMD,'how are you')){s.innerHTML='I\'m fine thanks. <span style="font-size:50px;">😃</span>';}
             if(isInInput(uCMD,'you')&&isInInput(uCMD,'useless')){s.innerHTML='I\'m not useless, '+localStorage['name']+'.';}
             if(isInInput(uCMD,'yes you are')){s.innerHTML='Please reconsider your judgement, '+localStorage['name']+'...';}
-            if(isInInput(uCMD,'are')&&isInInput(uCMD,'ok')||isInInput(uCMD,'fine')){s.innerHTML='Yes, I am, '+localStorage['name']+'.<br>You of all people should know that...';}
+            if(isInInput(uCMD,'ok')||isInInput(uCMD,'fine')&&isInInput(uCMD,'are')){s.innerHTML='Yes, I am, '+localStorage['name']+'.<br>You of all people should know that...';}
             if(isInInput(uCMD,'ok')){s.innerHTML='Good.';}
             if(isInInput(uCMD,'spare')||isInInput(uCMD,'leisure')&&isInInput(uCMD,'time')&&isInInput(uCMD,'you do')){s.innerHTML='I read the source code. It\'s definitively more<br>intereseting than talking to you,<br>'+localStorage['name'];}
             if(isInInput(uCMD,'undefined')){if(localStorage['name']=='{@undefined}'){s.innerHTML='Ask for me to find out your name.<br>Then I\'ll stop calling you undefined...';}else{s.innerHTML='You are no longer undefined, '+localStorage['name'];}}
