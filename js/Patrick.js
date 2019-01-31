@@ -156,9 +156,9 @@ function PatrickTalk(){
                 }
             }
             if(isInInput(uCMD,'open')){
-                s.innerHTML='3: Loading external page...';
-                setTimeout(function(){s.innerHTML='2: On it...🙂';},1000);
-                setTimeout(function(){s.innerHTML='1: On it...🙂';},2000);
+                s.innerHTML='3: Loading external page...🙂';
+                setTimeout(function(){s.innerHTML='2: Loading external page...🙂';},1000);
+                setTimeout(function(){s.innerHTML='1: Loading external page...🙂';},2000);
                 setTimeout(function(){
                     s.innerHTML='0: Load Complete 🙂';
                     if(isInInput(uCMD,'classroom')){
