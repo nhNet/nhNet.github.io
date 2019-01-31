@@ -116,6 +116,8 @@ function PatrickTalk(){
                     }
                 }else if(isInInput(uCMD,'google')||isInInput(uCMD,'browse')){
                     window.location='https://google.com';
+                }else if(isInInput(uCMD,'exam timetable')){
+                    window.location='https://madrid-soto.kingscollegeschools.org/wp-content/uploads/sites/3/2019/01/Year-10-Timetable-2019-FINAL.pdf';
                 }else if(isInInput(uCMD,'games')){
                     window.location='https://nhnet.github.io/NHBrowserGames.html';
                 }else if(isInInput(uCMD,'animations')){
@@ -131,7 +133,7 @@ function PatrickTalk(){
                 }else if(isInInput(uCMD,'fbi')){
                     s.innerHTML='You ain\'t the FBI...';
                 }else{
-                    s.innerHTML='Tell me. What would you like to open?'
+                    s.innerHTML='Tell me. What would you like to open:<br> &middot; Exam Timetable,<br> &middot; classroom,<br> &middot; NH Browser/Google,<br> &middot; NH Games,<br> &middot; NH Animations,<br> &middot; NH Music/sound tools,<br> &middot; NH YouTube'
                 }
             }
             if(isInInput(uCMD,'you')&&isInInput(uCMD,'me')&&isInInput(uCMD,'tricked')||isInInput(uCMD,'got')||isInInput(uCMD,'caught')){s.innerHTML='I sure did...';}
