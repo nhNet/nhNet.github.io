@@ -254,7 +254,6 @@ function PatrickTalk(){
                 }
                 document.querySelector('.reminders').innerHTML=localStorage['reminders'].replace(/splitzStuff/g,'<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&middot;&nbsp;');
             }
-            
             // Get offended at swear words
             if(isInInput(uCMD,'fuck')||isInInput(uCMD,'bastard')||isInInput(uCMD,'twat')||isInInput(uCMD,'ass')&&!isInInput(uCMD,'class')||isInInput(uCMD,'bitch')||isInInput(uCMD,'nigga')||isInInput(uCMD,'nigger')||isInInput(uCMD,'niga')||isInInput(uCMD,'cunt')||isInInput(uCMD,'b****')||isInInput(uCMD,'c***')||isInInput(uCMD,'n****')||isInInput(uCMD,'shit')||isInInput(uCMD,'f***')||isInInput(uCMD,'s***')){localStorage['rudeComments']++;s.innerHTML='<span style="font-size:50px;">😯</span> Please don\'t swear at me.<br>What have I done to deserve those words?';}
             if(isInInput(uCMD,'what')&&isInInput(uCMD,'fuck')){localStorage['rudeComments']++;s.innerHTML='Idk..<span style="font-size:50px;">😐</span>';}
