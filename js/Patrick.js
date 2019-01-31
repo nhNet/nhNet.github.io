@@ -156,8 +156,11 @@ function PatrickTalk(){
                 }
             }
             if(isInInput(uCMD,'open')){
-                s.innerHTML='On it...🙂';
+                s.innerHTML='3: Loading external page...';
+                setTimeout(function(){s.innerHTML='2: On it...🙂';},1000);
+                setTimeout(function(){s.innerHTML='1: On it...🙂';},2000);
                 setTimeout(function(){
+                    s.innerHTML='0: Load Complete 🙂';
                     if(isInInput(uCMD,'classroom')){
                         window.location='https://classroom.google.com';
                     }else if(isInInput(uCMD,'unblocked ')){
@@ -188,7 +191,7 @@ function PatrickTalk(){
                     }else{
                         s.innerHTML='Tell me. What would you like to open:<br> &middot; Exam Timetable,<br> &middot; (Google) Classroom,<br> &middot; NH Browser/Google,<br> &middot; NH Games,<br> &middot; NH Animations,<br> &middot; NH Music/sound tools,<br> &middot; NH YouTube'
                     }
-                },2000);
+                },3000);
             }
             if(isInInput(uCMD,'what is')){if(hasNumber(uCMD)){s.innerHTML='To do calculations, remove all text characters first, '+localStorage['name'];}}
             if(isInInput(uCMD,'shut up')){s.innerHTML='Hmm... That\'s not how assistants work, '+localStorage['name']+'...';}
