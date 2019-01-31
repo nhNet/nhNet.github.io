@@ -1,3 +1,4 @@
+// Nicholas Huaman 2019
 function isInInput(from, search){return from.includes(search);}
 function isOdd(num) {switch(num % 2){case 0:return false;break;case 1:return true;}}
 function hasNumber(myString) {return /\d/.test(myString);}
