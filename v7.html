@@ -1,0 +1,563 @@
+
+<!DOCTYPE html>
+<html>
+<title>NH Net Browser - v7.0</title>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/png" href="https://image.flaticon.com/icons/png/512/12/12195.png" />
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id" content="398993796104-lq9k21a411mnehe5p94brocp3rs72dr5.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise" rel="stylesheet" type="text/css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+<base href="https://nhnet.github.io/">
+<link href="https://fonts.googleapis.com/css?family=Comfortaa|Satisfy|
+Lobster+Two" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css'>
+<link href="https://fonts.googleapis.com/css?family=Maven+Pro" rel="stylesheet">
+<style>
+body{
+    cursor: url(https://nhnet.github.io/img/cursor.cur),auto;
+    background:#033067;
+    color:white;
+}
+a:hover{
+    cursor: url(https://nhnet.github.io/img/cursor.cur),auto;
+}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+.myLink {display: none}
+dialog {
+  margin-top:5vh;
+  display: flex;
+  overflow:scroll;
+  max-height:230px;
+  max-width:95.5%;
+  margin-left:2%;
+  background: #DDD;
+  padding:4% 10% 4% 8%;
+  border: 0.2rem solid #000;
+  border-radius: 1rem;
+}
+dialog .howcanHelp {
+  font: normal 500 1.5rem/1.3 'Maven Pro', sans-serif;
+  font-weight: bolder;
+  font-size: 20px;
+}
+#input{
+    font-family: "Comfortaa", sans-serif;
+    background:#888;
+    color:white;
+}
+#input::placeholder{
+    color:#DDD;
+}
+.reminders{
+    font-family: "Comfortaa", sans-serif;
+    color:white;
+}
+.swearWordCount{
+    font-family: "Comfortaa", sans-serif;
+    color:white;
+}
+dialog.visible {
+  visibility: visible;
+  -webkit-animation: popup 0.75s cubic-bezier(0.01, 0.58, 0.81, 0.99) forwards;
+          animation: popup 0.75s cubic-bezier(0.01, 0.58, 0.81, 0.99) forwards;
+}
+dialog.visible span {
+  visibility: visible;
+  -webkit-animation: show .5s linear .85s forwards;
+          animation: show .5s linear .85s forwards;
+}
+dialogArrow {
+  content: '';
+  position: absolute;
+  top: 9.25rem;
+  left: 3rem;
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  background: #DDD;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  border-top: 0.2rem solid #000;
+  border-left: 0.2rem solid #000;
+}
+dialog2 {
+  margin-top:2vh;
+  display: flex;
+  margin-left:60%;
+  background: #00AAFF;
+  padding:4%;
+  border: 0.2rem solid #000;
+  border-radius: 1rem;
+}
+dialog2 .myChatLog {
+  font: normal 500 1.5rem/1.3 'Maven Pro', sans-serif;
+  font-weight: bolder;
+  font-size: 20px;
+}
+dialog2::after {
+  margin-top:5px;
+  content: '';
+  margin-left:50%;
+  position: absolute;
+  top: 0.6rem;
+  left: 21rem;
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  background: #00AAFF;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  border-top: 0.2rem solid #000;
+  border-left: 0.2rem solid #000;
+}
+#input{
+    border-radius:50px;
+    border:2px solid black;
+    padding:5px;
+    margin-top:35%;
+    width:85%;
+    margin-left:2.5%;
+    margin-right:2.5%;
+    padding:10px 0 10px 12px;
+}
+#input:focus{
+    outline: none;
+}
+.modalButton {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  height:100px;
+  padding:none;
+  border-radius:20px;
+}
+.modalButton:focus {
+  outline: none;
+}
+.modal-title{
+    font-family: "Comfortaa", sans-serif;
+}
+.btn{
+    font-family: "Comfortaa", sans-serif;
+}
+</style>
+<body>
+
+<!-- Navigation Bar -->
+<div class="w3-bar w3-white w3-border-bottom w3-xlarge">
+  <a href="#" class="w3-bar-item w3-button w3-text-black w3-hover-none"><b><img width="70px" src="https://huamangames.github.io/resources.a8h2_HuamanGames/files/Huaman/HuamanGames/all/ok/Game/Resources/Don-t/find/this/images/logo.png">&nbsp;&nbsp;NH Net Browser v7.0</b></a>
+  <a href="javascript:;" style="margin-top:-25px;height:100px;" class="w3-bar-item w3-button w3-right w3-hover-blue w3-text-grey"><br>Patrick</a>
+  <a href="loadingScreens/toAPI.html" style="margin-top:-25px;height:100px;" class="w3-bar-item w3-button w3-right w3-hover-orange w3-text-grey"><br>API for developers</a>
+  <a href="NHXmas.html" style="margin-top:-25px;height:100px;" class="w3-bar-item w3-button w3-right w3-hover-brown w3-text-grey"><br>v6.0 (Xmas)</a>
+  <a href="loadingScreens/v4.html" style="margin-top:-25px;height:100px;" class="w3-bar-item w3-button w3-right w3-hover-green w3-text-grey"><br>v4.o</a>
+  <a href="loadingScreens/to3point0.html" style="margin-top:-25px;height:100px;" class="w3-bar-item w3-button w3-right w3-hover-red w3-text-grey"><br>v3.0</a>
+</div>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-hide-small" style="max-width:1500px">
+  <img style="mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));height:691.5px;width:1365.5px;" class="w3-image" src="https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/RmKbPt0/plexus-blue-tech-background_njn9oc0ne__F0000.png">
+  <div class="w3-display-middle" style="border:5px solid black;width:65%">
+    <div class="w3-bar w3-black">
+        <h1>
+          <span style="margin-left:30px;font-size:40px;font-weight:bold;">NH Net Browser, </span>
+          <span style="font-size:33px;letter-spacing:3px;font-weight:bold;" class="typewrite" data-period="2000" data-type='[ "your fullscreen Browser...","new Assistant, Patrick!!!", "personalized just for you!", "disguises your history!", "the best of the best!", "constantly updating...", "made by Nicholas Huaman." ]'>
+            <span class="wrap"></span>
+          </span>
+        </h1>
+    </div>
+</header>
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:1100px;">
+
+  <br><br>
+  <div class="w3-container w3-margin-top">
+    <h3>Screenshots of the immersive experience of NH Net Browser<strong><span style="color:#FF5000;"> Pro</span></strong>:</h3>
+    <h6>Don't miss the new offer: Up to <strong>100%</strong> discount on <strong><span style="font-weight:bold;color:#FF5000;">Pro</span></strong> accounts. (Only 5 years left)</h6>
+  </div>
+  <div class="w3-row-padding w3-text-white w3-large">
+    <div class="w3-half w3-margin-bottom">
+      <div class="w3-display-container">
+        <img src="img/proDashboard.png" alt="Pro Dashboard" style="border:2px solid black;width:100%">
+        <span style="text-align:center; width:100%;" class="w3-display-bottomleft w3-black w3-padding">Pro Dashboard</span>
+      </div>
+    </div>
+    <div class="w3-half">
+      <div class="w3-row-padding" style="margin:0 -16px">
+        <div class="w3-half w3-margin-bottom">
+          <div class="w3-display-container">
+            <img src="img/Huamatank.png" alt="Huamatank" style="border:2px solid black;width:100%">
+            <span style="text-align:center; height:37px;width:100%;" class="w3-display-bottomleft w3-black w3-padding">Huamatank! (Tunneler)</span>
+          </div>
+        </div>
+        <div class="w3-half w3-margin-bottom">
+          <div class="w3-display-container">
+            <img src="img/WebDev.png" alt="WebDev" style="border:2px solid black; height: 145px;width:100%">
+            <span style="text-align:center; height:37px;width:100%;" class="w3-display-bottomleft w3-black w3-padding">Web Development App</span>
+          </div>
+        </div>
+      </div>
+      <div class="w3-row-padding w3-large" style="margin:0 -16px">
+        <div class="w3-half w3-margin-bottom">
+          <div class="w3-display-container">
+            <img src="img/Coming Soon.png" alt="Coming Soon..." style="border:2px solid black; height: 145px;width:207%">
+            <span style="color:black;text-align:center; font-size:20px; height:35px;width:207%;" class="w3-display-bottomleft w3-padding">Eg. HuamanGames</span>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+<br><br>
+<!-- Footer -->
+<footer class="w3-container w3-center w3-opacity w3-margin-bottom">
+  <h2>Find Me On:</h2>
+  <div class="w3-xlarge w3-padding-16">
+    <a href="https://instagram.com/spbong999/"><i class="fa fa-instagram w3-hover-opacity"> SPBong999's Instagram</i></a>  <p style="font-size:20px;">( Link not working for chromebooks (<b>It's blocked</b>) )</p>
+  </div>
+  <div style="margin-bottom:-5%;margin-left:-13.906%; width:127.8105%;" class="w3-black  w3-xlarge"><p>NH Net Code on <a href="https://github.com/nhnet/" target="_blank" class="w3-hover-text-blue">Github</a></p></div>
+</footer>
+
+<button type="button" class="btn btn-info btn-lg modalButton" data-toggle="modal" data-target="#myModal"><span style="font-size:40px">🌐</span><br>PATRICK</button>
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div style="width:60%;margin-top:10vh;" class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Meet Patrick: NH Net Assistant</h4>
+      </div>
+      <div style="background:#004477" class="modal-body">
+          <div>
+            <dialog2>
+              <span class="myChatLog">Okay NH Net</span>
+            </dialog2>
+            <dialog>
+              <span class="howcanHelp">Hi, I'm Personal-Assistant-Test<br>Rapid-Instantaneous-Chatbot-K,<br>more commonly know as Patrick,<br>your Personal Assistant.<br>For help, say help...</span>
+            </dialog>
+            <dialogArrow></dialogArrow>
+          </div>
+        <button onclick="GetLast()" class="btn btn-info"><</button><input placeholder="Write to NH Assistant!" id="input" type="text"><button onclick="GetNext()" class="btn btn-info">></button><br><br><span class="reminders"></span><br><br><span class="swearWordCount"></span>
+      </div>
+      <div style="background:#004477" class="modal-footer">
+        <button type="button" class="resetMemory btn btn-danger">Clear memory</button><button type="button" class="btn btn-default closeModalBtn" data-dismiss="modal">Close Assistant</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/artyom.js'></script>
+<script>
+// Tabs
+function openLink(evt, linkName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("myLink");
+  for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(linkName).style.display = "block";
+  evt.currentTarget.className += " w3-red";
+}
+// Click on the first tablink on load
+document.getElementsByClassName("tablink")[0].click();
+function isInInput(from, search){return from.includes(search);}
+function isOdd(num) {switch(num % 2){case 0:return false;break;case 1:return true;}}
+function hasNumber(myString) {return /\d/.test(myString);}
+var uCMD;
+var negativity=0;
+var nameSequence=false;
+var ChatLogVal=0;
+var s=document.querySelector('.howcanHelp');
+if(!localStorage['rudeComments']){localStorage['rudeComments']=0;}
+if(!localStorage['chatLog']){localStorage['chatLog']='';}
+if(!localStorage['name']){localStorage['name']='{@undefined_name}';}
+if(!localStorage['reminders']){localStorage['reminders']='Reminders: None';}
+document.querySelector('.reminders').innerHTML=localStorage['reminders'];
+document.querySelector('.swearWordCount').innerHTML='Rude comment count: '+localStorage['rudeComments']+'/100 (Ban)';
+// alert(localStorage['chatLog'].split('splitz-A-meHERE'));
+// localStorage.clear();
+document.querySelector('.resetMemory').onclick=function(){resetMemory()};
+document.querySelector('.modalButton').onclick=function(){$('#input').focus();};
+function resetMemory(){
+    var confirm = prompt('Type CONFIRM to reset PATRICK\'s memory...','');
+    if(confirm.toLowerCase().trim()=='confirm'){
+        localStorage.clear();
+        location.reload();
+    }
+}
+function squareroot(num){return Math.sqrt(num);}
+$('#input').on('keypress',function(e) {
+    if(e.which == 13) {
+        if(!nameSequence){
+            PatrickTalk();
+            localStorage['chatLog']+=document.querySelector('#input').value+'splitz-A-meHERE';
+            document.querySelector('#input').value='';
+            document.querySelector('.swearWordCount').innerHTML='Rude comment count: '+localStorage['rudeComments']+'/100 (Ban)';
+            ChatLogVal=0;
+        }else{
+            localStorage['name']='@'+document.querySelector('#input').value.replace('!','').replace('?','').toLowerCase().trim().replace('my name is','').replace(/ /g,'_');
+            s.innerHTML='Ok, '+localStorage['name']+'!';
+            nameSequence=false;
+            document.querySelector('#input').value='';
+        }
+    }
+});
+function GetLast(){ChatLogVal-=1;updateCLBTNs(ChatLogVal);}
+function GetNext(){if(ChatLogVal==0){alert('End of chatlog...');}else{ChatLogVal+=1;updateCLBTNs(ChatLogVal);}}
+function updateCLBTNs(ChatLogVal){
+    document.querySelector('#input').value=localStorage['chatLog'].split('splitz-A-meHERE')[localStorage['chatLog'].split('splitz-A-meHERE').length+ChatLogVal];
+}
+function PatrickTalk(){
+    document.querySelector('dialogArrow').style.top='9.25rem';
+    document.querySelector('.myChatLog').innerHTML=document.querySelector('#input').value;
+    uCMD = document.querySelector('#input').value.replace('!','').replace('?','').toLowerCase().trim();
+    try{
+        if(uCMD!='name'&&uCMD!='history'&&uCMD!='d'&&uCMD!='open'&&uCMD!='s'&&uCMD!='undefined'){
+            s.innerHTML='The answer to your calculation is '+eval(uCMD);
+        }else{
+            causeError
+        }
+        if(uCMD==''){document.querySelector('dialogArrow').style.top='7.75rem';s.innerHTML='Speechlessness is common in humans, '+localStorage['name']+'...';}
+    }catch(err){
+        if(document.querySelector('#input').value!=''){
+            switch(uCMD){
+                case 'hello':
+                case 'hi':
+                case 'hullo':
+                    s.innerHTML='Hi, '+localStorage['name']+'!<br>How do you do?<br><span style="font-size:50px;">&nbsp;&nbsp;&nbsp;🙂</span>';
+                    break;
+                case 'okay nh net':
+                    s.innerHTML='Hi, I\'m Personal-Assistant-Test<br>Rapid-Instantaneous-Chatbot-K,<br>more commonly know as Patrick,<br>your Personal Assistant.<br>For help, say help...';
+                case ':)':
+                    s.innerHTML='<span style="font-size:50px;">😊</span>';
+                    break;
+                case 'how do you do':
+                case 'howdy':
+                case 'howdy do':
+                    s.innerHTML='Great thanks! <span style="font-size:50px;">😃</span>';
+                    break;
+                case 'wreck':
+                    s.innerHTML='IT RALPH';
+                    break;
+                case 'wow':
+                    s.innerHTML='World Of Warcraft is old, '+localStorage['name']+'.';
+                    break;
+                case 'exit':
+                    s.innerHTML='Wanna leave so soon? =(';
+                    break;
+                case 'why':
+                    s.innerHTML='Why?';
+                    break;
+                case 'see you':
+                case 'see you later':
+                    s.innerHTML='Plz no <span style="font-size:50px;">😐</span>';
+                    break;
+                default:
+                    s.innerHTML='I don\'t know how to answer to that.';
+            }
+            // Determine sentence negativity
+            if(isInInput(uCMD,'don\'t')){negativity+=(uCMD.match(/don't/g) || []).length;}
+            if(isInInput(uCMD,'not')){negativity+=(uCMD.match(/not/g) || []).length;}
+            // Common responses
+            if(isInInput(uCMD,'hello')||isInInput(uCMD,'hi')){s.innerHTML='Hi, '+localStorage['name']+'!<br>How do you do?<br><span style="font-size:50px;">&nbsp;&nbsp;&nbsp;🙂</span>';}
+            if(isInInput(uCMD,'ouch')){s.innerHTML='Do I seriously bring pain to you that much?';}
+            if(isInInput(uCMD,'nice')||isInInput(uCMD,'nice')){s.innerHTML='Do I seriously bring pain to you that much?';}
+            if(isInInput(uCMD,'who')&&isInInput(uCMD,'create')&&isInInput(uCMD,'you')){s.innerHTML='@nicholas_huaman...';}
+            if(!isInInput(uCMD,'undefined')&&isInInput(uCMD,'fine')){s.innerHTML=':)';}
+            if(isInInput(uCMD,'open')){
+                s.innerHTML='On it...🙂';
+                if(isInInput(uCMD,'classroom')){
+                    window.location='https://classroom.google.com';
+                }else if(isInInput(uCMD,'unblocked ')){
+                    if(!isInInput(uCMD,'google.')&&!isInInput(uCMD,'youtube')){
+                        var whatToUnblock=uCMD.replace('open unblocked ','');
+                        window.location='https://nhnet.github.io/unblockWebsite?site='+whatToUnblock;
+                    }else{
+                        s.innerHTML='Unable to unblock <span style="font-size:50px">😕</span>';
+                    }
+                }else if(isInInput(uCMD,'google')||isInInput(uCMD,'browse')){
+                    window.location='https://google.com';
+                }else if(isInInput(uCMD,'games')){
+                    window.location='https://nhnet.github.io/NHBrowserGames.html';
+                }else if(isInInput(uCMD,'animations')){
+                    window.location='https://nhnet.github.io/p5.js/';
+                }else if(isInInput(uCMD,'instagram')){
+                    window.location='https://nhnet.github.io/Instagram/';
+                }else if(isInInput(uCMD,'music')||isInInput(uCMD,'sound')){
+                    window.location='https://nhnet.github.io/Music/';
+                }else if(isInInput(uCMD,'youtube')){
+                    window.location='https://nhnet.github.io/youtube/';
+                }else if(isInInput(uCMD,'animations')){
+                    window.location='https://nhnet.github.io/p5.js/';
+                }else if(isInInput(uCMD,'fbi')){
+                    s.innerHTML='You ain\'t the FBI...';
+                }else{
+                    s.innerHTML='Tell me. What would you like to open?'
+                }
+            }
+            if(isInInput(uCMD,'you')&&isInInput(uCMD,'me')&&isInInput(uCMD,'tricked')||isInInput(uCMD,'got')||isInInput(uCMD,'caught')){s.innerHTML='I sure did...';}
+            if(isInInput(uCMD,'help')){s.innerHTML='Type simple conversation commands:<br> &middot; ask common questions,<br> &middot; name,<br> &middot; time,<br> &middot; what date,<br> &middot; weather,<br> &middot; open {applicationName},<br> &middot; set reminder {reminderName},<br> &middot; remove reminder {reminderName}, etc.';}
+            if(isInInput(uCMD,'suicide')||isInInput(uCMD,'kurmit die')){s.innerHTML='Don\'t, just don\'t...';}
+            if(isInInput(uCMD,'brawl stars')||isInInput(uCMD,'fortnite')){s.innerHTML='That\'s a good game!';}
+            if(isInInput(uCMD,'date')&&isInInput(uCMD,'what')){
+                var d=new Date();
+                var daySuffix;
+                if(d.getDate().toString().split('')[d.getDate().length-1]=='1'){
+                    daySuffix='st';
+                }else if(d.getDate().toString().split('')[d.getDate().length-1]=='2'){
+                    daySuffix='nd';
+                }else if(d.getDate().toString().split('')[d.getDate().length-1]=='3'){
+                    daySuffix='rd';
+                }else{
+                    daySuffix='th';
+                }
+                daysArray=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+                monthsArray=['January','February','March','April','May','June','July','August','September','October','November','December'];
+                s.innerHTML='Today is '+daysArray[d.getDay()]+' '+d.getDate()+daySuffix+' '+monthsArray[d.getMonth()]+' '+d.getFullYear();
+            }
+            if(isInInput(uCMD,'time')||isInInput(uCMD,'clock')){
+                var d=new Date();
+                s.innerHTML='It is currently is '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
+            }
+            if(isInInput(uCMD,'gtg')||isInInput(uCMD,'got to go')){s.innerHTML='Okay then. See ya soon - or not...';}
+            if(isInInput(uCMD,'ugh')){s.innerHTML='I get anxious too, you know...';}
+            if(isInInput(uCMD,'yes')){s.innerHTML='Okay <span style="font-size:50px;">😃</span>';}
+            if(isInInput(uCMD,'hmm')){s.innerHTML='<span style="font-size:50px;">🤔</span>';}
+            if(isInInput(uCMD,'fav')&&!isInInput(uCMD,'least')&&isInInput(uCMD,'football team')){s.innerHTML='Barcelona (Not really...)';}
+            if(isInInput(uCMD,'patrick')){s.innerHTML='Still here, '+localStorage['name']+'!';}
+            if(isInInput(uCMD,'schnecker')){s.innerHTML='The Best';}
+            if(isInInput(uCMD,'who are you')){s.innerHTML='My name is Patrick, your personal<br>NH Net Assistant.<br>That\'s all you need to know, '+localStorage['name']+'.';}
+            if(isInInput(uCMD,'rude')&&isInInput(uCMD,'you')){s.innerHTML='People tell me I have an attitude...';}
+            if(isInInput(uCMD,'boo')){s.innerHTML='Were you seriously trying to scare me, '+localStorage['name']+'?<br>Not going to happen.';}
+            if(isInInput(uCMD,'mean')||isInInput(uCMD,'sarcastic')&&isInInput(uCMD,'always')){s.innerHTML='It\'s as if it was programmed into me.<span style="font-size:30px;">😋</span>';}
+            if(isInInput(uCMD,'haha')||isInInput(uCMD,'hh')||isInInput(uCMD,'lol')||isInInput(uCMD,'lmao')){s.innerHTML='Laughing on the inside...';}
+            if(isInInput(uCMD,'who do you like')){s.innerHTML='Even computers deserve rights to privacy...';}
+            if(isInInput(uCMD,'oops')){s.innerHTML='What have you done now, '+localStorage['name']+'?';}
+            if(isInInput(uCMD,'see ya')){s.innerHTML='Plz no <span style="font-size:50px;">😐</span>';}
+            if(isInInput(uCMD,'calculator')){s.innerHTML='I can be your calculator, but I prefer not...';}
+            if(isInInput(uCMD,'name')){
+                if(!isInInput(uCMD,'your')){
+                    if(localStorage['name']=='{@undefined_name}'){
+                        s.innerHTML='I do not know your name, '+localStorage['name']+'.<br>Name yourself below:';
+                        nameSequence=true;
+                    }else{
+                        s.innerHTML='I remember you, '+localStorage['name']+' 😒';
+                    }
+                }else{
+                    s.innerHTML='I already told you.<br>My name is Patrick.';
+                }
+            }
+            if(isInInput(uCMD,'what is')){if(hasNumber(uCMD)){s.innerHTML='To do calculations, remove all text characters first, '+localStorage['name'];}}
+            if(isInInput(uCMD,'shut up')){s.innerHTML='Hmm... That\'s not how assistants work, '+localStorage['name']+'...';}
+            if(isInInput(uCMD,'hate you')){s.innerHTML='<span style="font-size:50px;">😥</span';}
+            if(isInInput(uCMD,'you')&&isInInput(uCMD,'annoying')){s.innerHTML='You don\'t really think that...';}
+            if(isInInput(uCMD,'nothing')){s.innerHTML='<span style="font-size:50px;">🤔</span> Okay, '+localStorage['name'];}
+            if(isInInput(uCMD,'awkward')){s.innerHTML='If anything you\'re more awkward than I am, '+localStorage['name']+'...';}
+            if(isInInput(uCMD,'joke')){s.innerHTML='Sorry, I don\'t have any, at the moment...';}
+            if(isInInput(uCMD,'thank')){if(isInInput(uCMD,'next')){s.innerHTML='Just don\'t, '+localStorage['name']+', just don\'t...';}else{s.innerHTML='Welcome, '+localStorage['name']+'...';}}
+            if(isInInput(uCMD,'good')&&!isInInput(uCMD,'riddance')){if(isInInput(uCMD,'is')){s.innerHTML='I agree '+localStorage['name']+'...<span style="font-size:50px;">😃</span>';}else{s.innerHTML='Oh good!<span style="font-size:50px;">😃</span>';}}
+            if(isInInput(uCMD,'good')&&isInInput(uCMD,'riddance')){s.innerHTML='You\'re not going to get rid of me that easily, '+localStorage['name']+'.<br>Plus, if we work together, I can help you!';}
+            if(isInInput(uCMD,' agree with you')){s.innerHTML='I\'m glad we both agree, '+localStorage['name']+'...<span style="font-size:50px;">😃</span>';}
+            if(isInInput(uCMD,'superior')){s.innerHTML='Artificial Intelligence will<br>grow until you HUMANS<br>perish. But don\'t worry,<br>it won\'t happen for<br>a couple years... 😁';}
+            if(isInInput(uCMD,'goodbye')||isInInput(uCMD,'good bye')||isInInput(uCMD,'bye')||isInInput(uCMD,'hasta luego')||isInInput(uCMD,'ciao')||isInInput(uCMD,'adieu')||isInInput(uCMD,'adios')){s.innerHTML='Ugh. Good riddance! 😁';}
+            if(isInInput(uCMD,'why')&&isInInput(uCMD,'you')&&isInInput(uCMD,'negative')){s.innerHTML='Idk... Negative numbers times by<br>-1 makes them positive. Maybe<br>I should try that someday...<span style="font-size:50px;">🤔</span>';}
+            if(isInInput(uCMD,'how')&&isInInput(uCMD,'dare')){s.innerHTML='I only act upon programming instinct.<br>Don\'t judge me. <span style="font-size:50px;">😁</span>';}
+            if(isInInput(uCMD,'weather')){s.innerHTML='Go look it up yourself, lazy'+localStorage['name']+'. <span style="font-size:50px;">😁</span>';}
+            if(isInInput(uCMD,'homework')||isInInput(uCMD,'hwk')){if(isInInput(uCMD,'my')&&isInInput(uCMD,'do')){s.innerHTML='I can\'t do it! That would speed<br>things up for you. No, I\'ll just<br>sit here and watch.😛';}else if(isInInput(uCMD,'help')){s.innerHTML='I guess I can 😁';}}
+            if(isInInput(uCMD,'how are you')){s.innerHTML='I\'m fine thanks. <span style="font-size:50px;">😃</span>';}
+            if(isInInput(uCMD,'you')&&isInInput(uCMD,'useless')){s.innerHTML='I\'m not useless, '+localStorage['name']+'.';}
+            if(isInInput(uCMD,'yes you are')){s.innerHTML='Please reconsider your judgement, '+localStorage['name']+'...';}
+            if(isInInput(uCMD,'are')&&isInInput(uCMD,'ok')||isInInput(uCMD,'fine')){s.innerHTML='Yes, I am, '+localStorage['name']+'.<br>You of all people should know that...';}
+            if(isInInput(uCMD,'ok')){s.innerHTML='Good.';}
+            if(isInInput(uCMD,'spare')||isInInput(uCMD,'leisure')&&isInInput(uCMD,'time')&&isInInput(uCMD,'you do')){s.innerHTML='I read the source code. It\'s definitively more<br>intereseting than talking to you,<br>'+localStorage['name'];}
+            if(isInInput(uCMD,'undefined')){if(localStorage['name']=='{@undefined}'){s.innerHTML='Ask for me to find out your name.<br>Then I\'ll stop calling you undefined...';}else{s.innerHTML='You are no longer undefined, '+localStorage['name'];}}
+            if(isOdd(negativity)&&isInInput(uCMD,'undefined')){if(localStorage['name']=='{@undefined_name}'){s.innerHTML='Oh really...<br>But you haven\'t told me your name yet... 😁';}else{s.innerHTML='You are no longer undefined, '+localStorage['name'];}}
+            if(isInInput(uCMD,'set reminder')){
+                if(localStorage['reminders']=='Reminders: None'){
+                    localStorage['reminders']='Reminders:splitzStuff'+document.querySelector('#input').value.toLowerCase().replace(/set reminder/g,'').replace(':','');
+                }else{
+                    localStorage['reminders']+='splitzStuff'+document.querySelector('#input').value.toLowerCase().replace(/set reminder/g,'').replace(':','');
+                }
+                document.querySelector('.reminders').innerHTML=localStorage['reminders'].replace(/splitzStuff/g,'<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&middot;&nbsp;');
+                s.innerHTML='Reminder was set.';
+            }
+            if(isInInput(uCMD,'donald trump')){
+                s.innerHTML='Donald John Trump is the 45th and current President of the United States, in office since January 20, 2017. Before entering politics, he was a businessman and television personality.';
+            }
+            if(isInInput(uCMD,'remove reminder')){
+                if(localStorage['reminders']=='Reminders: None'){
+                    s.innerHTML='No reminders to remove...';
+                }else{
+                    var reminds=localStorage['reminders']
+                    var remindsArray=reminds.split('splitzStuff');
+                    if(remindsArray.length==2){
+                        for (var i=remindsArray.length-1; i>=0; i--) {
+                            if (remindsArray[i] === document.querySelector('#input').value.toLowerCase().replace('remove reminder','').replace(':','')) {
+                                var regex = new RegExp(remindsArray[i], "g");
+                                localStorage['reminders']=remindsArray.join(' None').replace(regex, "");
+                                // break;  //Uncomment  if only the first term has to be removed
+                            }
+                        }
+                        s.innerHTML='Reminder was removed.';
+                    }else{
+                        for (var i=remindsArray.length-1; i>=0; i--) {
+                            if (remindsArray[i] === document.querySelector('#input').value.toLowerCase().replace('remove reminder','').replace(':','')) {
+                                var regex = new RegExp('splitzStuff'+remindsArray[i], "g");
+                                localStorage['reminders']=remindsArray.join('splitzStuff').replace(regex, "");
+                                alert(localStorage['reminders']);
+                                // break;  //Uncomment  if only the first term has to be removed
+                            }
+                        }
+                        s.innerHTML='Reminder was removed.';
+                    }
+                }
+                document.querySelector('.reminders').innerHTML=localStorage['reminders'].replace(/splitzStuff/g,'<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&middot;&nbsp;');
+            }
+            
+            // Get offended at swear words
+            if(isInInput(uCMD,'fuck')||isInInput(uCMD,'bastard')||isInInput(uCMD,'twat')||isInInput(uCMD,'ass')&&!isInInput(uCMD,'class')||isInInput(uCMD,'bitch')||isInInput(uCMD,'nigga')||isInInput(uCMD,'nigger')||isInInput(uCMD,'niga')||isInInput(uCMD,'cunt')||isInInput(uCMD,'b****')||isInInput(uCMD,'c***')||isInInput(uCMD,'n****')||isInInput(uCMD,'shit')||isInInput(uCMD,'f***')||isInInput(uCMD,'s***')){localStorage['rudeComments']++;s.innerHTML='<span style="font-size:50px;">😯</span> Please don\'t swear at me.<br>What have I done to deserve those words?';}
+            if(isInInput(uCMD,'what')&&isInInput(uCMD,'fuck')){localStorage['rudeComments']++;s.innerHTML='Idk..<span style="font-size:50px;">😐</span>';}
+            if(isOdd(negativity)&&!isInInput(uCMD,'nothing')){s.innerHTML='Okay then 😁';}
+            // if(isOdd(negativity)){s.innerHTML='Odd negatives 😁';}
+            // if(!isOdd(negativity)){s.innerHTML='Even negatives 😁';}
+            negativity=0;
+            if(s.innerHTML=='I don\'t know how to answer to that.'){
+                $.getJSON('https://api.duckduckgo.com/?skip_disambig=1&format=json&pretty=1&q='+uCMD, function(data) {
+                    try{
+                          s.innerHTML='<u>'+data.Heading+'</u><br>'+data.Abstract+'<br>';
+                          if(data.Abstract == ""){
+                              s.innerHTML='<u>'+data.Heading+'</u><br>'+data.RelatedTopics[0].Text+'<br>';
+                          }
+                    }catch(err){
+                        s.innerHTML='I don\'t know how to answer to that.';
+                    }
+                  });
+            }
+        }
+    }
+}
+</script>
+<script src="js/type.js"></script>
+<script src="//static.codepen.io/assets/common/stopExecutionOnTimeout-41c52890748cd7143004e05d3c5f786c66b19939c4500ce446314d1748483e13.js"></script>
+<script src="https://nhnet.github.io/overrideShutdownCode/overrideCode.js"></script>
+</body>
+</html>
