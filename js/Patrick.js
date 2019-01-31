@@ -103,39 +103,6 @@ function PatrickTalk(){
             if(isInInput(uCMD,'nice')||isInInput(uCMD,'nice')){s.innerHTML='Do I seriously bring pain to you that much?';}
             if(isInInput(uCMD,'who')&&isInInput(uCMD,'create')&&isInInput(uCMD,'you')){s.innerHTML='@nicholas_huaman...';}
             if(!isInInput(uCMD,'undefined')&&isInInput(uCMD,'fine')){s.innerHTML=':)';}
-            if(isInInput(uCMD,'open')){
-                s.innerHTML='On it...🙂';
-                if(isInInput(uCMD,'classroom')){
-                    window.location='https://classroom.google.com';
-                }else if(isInInput(uCMD,'unblocked ')){
-                    if(!isInInput(uCMD,'google.')&&!isInInput(uCMD,'youtube')){
-                        var whatToUnblock=uCMD.replace('open unblocked ','');
-                        window.location='https://nhnet.github.io/unblockWebsite?site='+whatToUnblock;
-                    }else{
-                        s.innerHTML='Unable to unblock <span style="font-size:50px">😕</span>';
-                    }
-                }else if(isInInput(uCMD,'google')||isInInput(uCMD,'browse')){
-                    window.location='https://google.com';
-                }else if(isInInput(uCMD,'exam timetable')){
-                    window.location='https://madrid-soto.kingscollegeschools.org/wp-content/uploads/sites/3/2019/01/Year-10-Timetable-2019-FINAL.pdf';
-                }else if(isInInput(uCMD,'games')){
-                    window.location='https://nhnet.github.io/NHBrowserGames.html';
-                }else if(isInInput(uCMD,'animations')){
-                    window.location='https://nhnet.github.io/p5.js/';
-                }else if(isInInput(uCMD,'instagram')){
-                    window.location='https://nhnet.github.io/Instagram/';
-                }else if(isInInput(uCMD,'music')||isInInput(uCMD,'sound')){
-                    window.location='https://nhnet.github.io/Music/';
-                }else if(isInInput(uCMD,'youtube')){
-                    window.location='https://nhnet.github.io/youtube/';
-                }else if(isInInput(uCMD,'animations')){
-                    window.location='https://nhnet.github.io/p5.js/';
-                }else if(isInInput(uCMD,'fbi')){
-                    s.innerHTML='You ain\'t the FBI...';
-                }else{
-                    s.innerHTML='Tell me. What would you like to open:<br> &middot; Exam Timetable,<br> &middot; (Google) Classroom,<br> &middot; NH Browser/Google,<br> &middot; NH Games,<br> &middot; NH Animations,<br> &middot; NH Music/sound tools,<br> &middot; NH YouTube'
-                }
-            }
             if(isInInput(uCMD,'you')&&isInInput(uCMD,'me')&&isInInput(uCMD,'tricked')||isInInput(uCMD,'got')||isInInput(uCMD,'caught')){s.innerHTML='I sure did...';}
             if(isInInput(uCMD,'help')){s.innerHTML='Type simple conversation commands:<br> &middot; ask common questions,<br> &middot; name,<br> &middot; time,<br> &middot; what date,<br> &middot; weather,<br> &middot; open {applicationName},<br> &middot; set reminder {reminderName},<br> &middot; remove reminder {reminderName}, etc.';}
             if(isInInput(uCMD,'suicide')||isInInput(uCMD,'kurmit die')){s.innerHTML='Don\'t, just don\'t...';}
@@ -187,6 +154,41 @@ function PatrickTalk(){
                 }else{
                     s.innerHTML='I already told you.<br>My name is Patrick.';
                 }
+            }
+            if(isInInput(uCMD,'open')){
+                s.innerHTML='On it...🙂';
+                setTimeout(function(){
+                    if(isInInput(uCMD,'classroom')){
+                        window.location='https://classroom.google.com';
+                    }else if(isInInput(uCMD,'unblocked ')){
+                        if(!isInInput(uCMD,'google.')&&!isInInput(uCMD,'youtube')){
+                            var whatToUnblock=uCMD.replace('open unblocked ','');
+                            window.location='https://nhnet.github.io/unblockWebsite?site='+whatToUnblock;
+                        }else{
+                            s.innerHTML='Unable to unblock <span style="font-size:50px">😕</span>';
+                        }
+                    }else if(isInInput(uCMD,'google')||isInInput(uCMD,'browse')){
+                        window.location='https://google.com';
+                    }else if(isInInput(uCMD,'exam timetable')){
+                        window.location='https://madrid-soto.kingscollegeschools.org/wp-content/uploads/sites/3/2019/01/Year-10-Timetable-2019-FINAL.pdf';
+                    }else if(isInInput(uCMD,'games')){
+                        window.location='https://nhnet.github.io/NHBrowserGames.html';
+                    }else if(isInInput(uCMD,'animations')){
+                        window.location='https://nhnet.github.io/p5.js/';
+                    }else if(isInInput(uCMD,'instagram')){
+                        window.location='https://nhnet.github.io/Instagram/';
+                    }else if(isInInput(uCMD,'music')||isInInput(uCMD,'sound')){
+                        window.location='https://nhnet.github.io/Music/';
+                    }else if(isInInput(uCMD,'youtube')){
+                        window.location='https://nhnet.github.io/youtube/';
+                    }else if(isInInput(uCMD,'animations')){
+                        window.location='https://nhnet.github.io/p5.js/';
+                    }else if(isInInput(uCMD,'fbi')){
+                        s.innerHTML='You ain\'t the FBI...';
+                    }else{
+                        s.innerHTML='Tell me. What would you like to open:<br> &middot; Exam Timetable,<br> &middot; (Google) Classroom,<br> &middot; NH Browser/Google,<br> &middot; NH Games,<br> &middot; NH Animations,<br> &middot; NH Music/sound tools,<br> &middot; NH YouTube'
+                    }
+                },2000);
             }
             if(isInInput(uCMD,'what is')){if(hasNumber(uCMD)){s.innerHTML='To do calculations, remove all text characters first, '+localStorage['name'];}}
             if(isInInput(uCMD,'shut up')){s.innerHTML='Hmm... That\'s not how assistants work, '+localStorage['name']+'...';}
