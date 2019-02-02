@@ -112,7 +112,7 @@ function changeModal(type, value){
       if(download===true){
               document.querySelector('.modal-footer').innerHTML+='<button type="button" id="downloadVid" data-vidID="'+value+'" class="btn btn-info" data-dismiss="modal">Download Video</button>';
               document.querySelector('#downloadVid').onclick=function(){
-                  alert('Sorry, function not available yet...')
+                  window.location='download.html?v='+value;
               };
       }
     }
