@@ -110,9 +110,9 @@ function changeModal(type, value){
               };
       }
       if(download===true){
-              document.querySelector('.modal-footer').innerHTML+='<button type="button" id="downloadVid" data-vidID="'+value+'" class="btn btn-info" data-dismiss="modal">Download Video</button>';
+              document.querySelector('.modal-footer').innerHTML+='<button type="button" id="downloadVid" data-vidID="'+value+'" class="btn btn-info" data-dismiss="modal">Download Video (will open in new tab)<br>You will not get caught.<br>I have hidden the webpages you visit.</button>';
               document.querySelector('#downloadVid').onclick=function(){
-                  window.location='download.html?v='+value;
+                  window.open('download.html?v='+value, '_blank');
               };
       }
     }
