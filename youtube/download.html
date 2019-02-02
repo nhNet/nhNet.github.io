@@ -5,7 +5,7 @@
                 margin:0;
                 text-align:center;
                 color:white;
-                font-size:25px;
+                font-size:30px;
                 font-family:'Indie Flower', cursive;
                 background:black;
                 overflow:hidden;
@@ -18,13 +18,11 @@
         <title>Download Video!</title>
     </head>
     <body>
+        <h1>Press load unsafe scripts to download/watch without search history!</h1>
         <iframe allowfullscreen frameborder="0"></iframe>
         <script>
-             try{
-                document.querySelector('iframe').src='https://www.youmagictube.com/'+window.location.search;
-             }catch(err){
-                alert(err);
-             }
+            setTimeout(function(){document.querySelector('h1').innerHTML='';},2000);
+            document.querySelector('iframe').src='https://www.youmagictube.com/'+window.location.search;
         </script>
     </body>
 </html>
