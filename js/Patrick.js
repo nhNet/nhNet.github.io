@@ -183,7 +183,7 @@ function PatrickTalk(){
                     }else if(isInInput(uCMD,'music')||isInInput(uCMD,'sound')){
                         window.location='https://nhnet.github.io/Music/';
                     }else if(isInInput(uCMD,'youtube')){
-                        window.location='https://nhnet.github.io/youtube/';
+                        window.location='https://nhnet.github.io/youtube/?from=Mus&download=true';
                     }else if(isInInput(uCMD,'animations')){
                         window.location='https://nhnet.github.io/p5.js/';
                     }else if(isInInput(uCMD,'fbi')){
