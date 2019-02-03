@@ -36,7 +36,7 @@ function onSignIn(googleUser) {
     document.querySelector('#subB').style.marginLeft='56.9%';
     document.querySelector('#subB').style.marginTop='-2.3%';
     document.querySelector('.stuff-top-right').innerHTML="<div id='box'><h1 style='text-align:right'><span id='img'></span>&nbsp;<br><div id='name'></div></h1></div>";
-    document.getElementById('img').innerHTML="<img style='border-radius:15px' width='30px' height='30px' src='"+profileImg+"'> <img width='10px' src='https://image.flaticon.com/icons/svg/60/60995.svg'/>";
+    document.getElementById('img').innerHTML="<img style='position:fixed;border-radius:15px' width='30px' height='30px' src='"+profileImg+"'> <img width='10px' src='https://image.flaticon.com/icons/svg/60/60995.svg'/>";
     document.getElementById('img').onclick=function(){
        if(OnOff=='off'){
           OnOff='on';
