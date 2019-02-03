@@ -36,21 +36,10 @@ $(document).ready(function () {
         if(times==0){
             document.querySelector('form').style.animation='moveLogo 2s';
             document.querySelector('.inps').style.animation='moveSearch 2s';
+            document.querySelector('form').style.animationFillMode='forwards';
+            document.querySelector('.inps').style.animationFillMode='forwards';
             var searchTerm = $('#query').val();
             getRequest(searchTerm);
-            var time=setTimeout(function(){
-                document.querySelector('form').style.animation='';
-                document.querySelector('form').style.marginTop='-5%';
-                document.querySelector('form').style.marginLeft='-80%';
-                document.querySelector('form').style.position='sticky';
-                document.querySelector('form').style.top='2px';
-                document.querySelector('.inps').style.animation='';
-                document.querySelector('.inps').style.marginTop='-5%';
-                document.querySelector('.inps').style.marginLeft='80%';
-                document.querySelector('.inps').style.position='sticky';
-                document.querySelector('.inps').style.top='2px';
-                window.clearTimeout(time)
-            },2000);
             times++;
         }else{
             var searchTerm = $('#query').val();
