@@ -1,12 +1,15 @@
 //Look @url!
+var fromMus=false;
+var download=false;
 function queeries(stuff){
     try{
         var variable=window.location.toString();
-        variable=variable.replace('?','');
+        variable=variable.split('?');
+        variable.shift();
         try{
             variable=variable[0].split('&').join(',');
         }catch(err){
-            // Do nada
+            //
         }
         variable=variable.split('=').join(',');
         variable=variable.split(',');
@@ -19,7 +22,7 @@ function queeries(stuff){
             i++;
         }
     }catch(err){
-//         alert(err)
+      //   alert(err)
     }
 }
 //When Page ready...
@@ -27,7 +30,7 @@ $(document).ready(function () {
     var fromMus=false;
     var download=false;
     var times=0;
-    queeries(['from_Mus','var fromMus=true;']);
+    queeries(['from_Mus','fromMus=true;','download_true','download=true;']);
     document.querySelectorAll('#closeBTN')[0].onclick=function(){document.querySelector('.modal-body').innerHTML='';};
     document.querySelectorAll('#closeBTN')[1].onclick=function(){document.querySelector('.modal-body').innerHTML='';};
     $('#search-term').submit(function (event) {
@@ -35,9 +38,9 @@ $(document).ready(function () {
         if(times==0){
             document.querySelector('form').style.animation='moveLogo 2s';
             document.querySelector('.inps').style.animation='moveSearch 2s';
-            var searchTerm = $('#query').val();
             document.querySelector('form').style.animationFillMode='forwards';
             document.querySelector('.inps').style.animationFillMode='forwards';
+            var searchTerm = $('#query').val();
             times++;
         }else{
             var searchTerm = $('#query').val();
@@ -96,12 +99,14 @@ function changeModal(type, value){
                 window.location='https://nhnet.github.io/Music/yt-audio.html?vidID='+document.querySelector('#vidIDtoUse').dataset.vidID;
               };
       }
-      document.querySelector('.modal-footer').innerHTML+='<button type="button" id="downloadVid" data-vidID="'+value+'" class="btn btn-info" data-dismiss="modal">Download Video (will open in new tab)<br>You will not get caught.<br>I have hidden the webpages you visit.</button>';
-      document.querySelector('#downloadVid').onclick=function(){
-          window.open('download.html?v='+value, '_blank');
-      };
+      if(download===true){
+              document.querySelector('.modal-footer').innerHTML+='<button type="button" id="downloadVid" data-vidID="'+value+'" class="btn btn-info" data-dismiss="modal">Download Video (will open in new tab)<br>You will not get caught.<br>I have hidden the webpages you visit.</button>';
+              document.querySelector('#downloadVid').onclick=function(){
+                  window.open('download.html?v='+value, '_blank');
+              };
+      }
     }
   }catch(err){
-      alert(err);
+//       alert(err);
   }
 }
