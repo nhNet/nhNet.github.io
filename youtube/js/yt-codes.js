@@ -89,8 +89,10 @@ $('#search-term').submit(function (event) {
     if(times==0){
         document.querySelector('form').style.animation='moveLogo 2s';
         document.querySelector('.inps').style.animation='moveSearch 2s';
+        document.querySelector('.submitBTN').style.animation='moveSearchBTN 2s';
         document.querySelector('form').style.animationFillMode='forwards';
         document.querySelector('.inps').style.animationFillMode='forwards';
+        document.querySelector('.submitBTN').style.animationFillMode='forwards';
         var searchTerm = $('#query').val();
         getRequest(searchTerm);
         times++;
