@@ -59,9 +59,7 @@ function showResults(results) {
 
     $('#search-results').html(html);
 }
-
 function changeModal(type, value){
-  try{
     if(type=='channel'){
         document.querySelector('.modal-body').innerHTML='Channel ID: '+value;
     }else if(type=='video'){
@@ -80,9 +78,6 @@ function changeModal(type, value){
           };
       }
     }
-  }catch(err){
-      alert(err);
-  }
 }
 var fromMus=false;
 var download=false;
