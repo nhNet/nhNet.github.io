@@ -1,32 +1,30 @@
-//Look @url!
-var fromMus=false;
-var download=false;
-function queeries(stuff){
-    try{
-        var variable=window.location.toString();
-        variable=variable.split('?');
-        variable.shift();
-        try{
-            variable=variable[0].split('&').join(',');
-        }catch(err){
-            //
-        }
-        variable=variable.split('=').join(',');
-        variable=variable.split(',');
-        for(var i=0;i<stuff.length;i++){
-            var workingOn=stuff[i];
-            workingOn=workingOn.split('_');
-            if(variable.includes(workingOn[0])==true&&variable[variable.indexOf(workingOn[0])+1]==workingOn[1]){
-                eval(stuff[i+1]);
-            }
-            i++;
-        }
-    }catch(err){
-      //   alert(err)
-    }
-}
 //When Page ready...
 $(document).ready(function () {
+    //Look @url!
+    function queeries(stuff){
+        try{
+            var variable=window.location.toString();
+            variable=variable.split('?');
+            variable.shift();
+            try{
+                variable=variable[0].split('&').join(',');
+            }catch(err){
+                //
+            }
+            variable=variable.split('=').join(',');
+            variable=variable.split(',');
+            for(var i=0;i<stuff.length;i++){
+                var workingOn=stuff[i];
+                workingOn=workingOn.split('_');
+                if(variable.includes(workingOn[0])==true&&variable[variable.indexOf(workingOn[0])+1]==workingOn[1]){
+                    eval(stuff[i+1]);
+                }
+                i++;
+            }
+        }catch(err){
+          //   alert(err)
+        }
+    }
     var fromMus=false;
     var download=false;
     var times=0;
