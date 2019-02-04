@@ -2,12 +2,11 @@
 function queeries(stuff){
     try{
         var variable=window.location.toString();
-        variable=variable.split('?');
-        variable.shift();
+        variable=variable.replace('?','');
         try{
             variable=variable[0].split('&').join(',');
         }catch(err){
-            //
+            // Do nada
         }
         variable=variable.split('=').join(',');
         variable=variable.split(',');
@@ -20,7 +19,7 @@ function queeries(stuff){
             i++;
         }
     }catch(err){
-      //   alert(err)
+        alert(err)
     }
 }
 //When Page ready...
