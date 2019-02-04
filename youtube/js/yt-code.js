@@ -7,7 +7,7 @@ function queeries(stuff){
         try{
             variable=variable[0].split('&').join(',');
         }catch(err){
-            //Do nothing, just don't get triggered by the error JS!!!
+            //
         }
         variable=variable.split('=').join(',');
         variable=variable.split(',');
@@ -36,10 +36,21 @@ $(document).ready(function () {
         if(times==0){
             document.querySelector('form').style.animation='moveLogo 2s';
             document.querySelector('.inps').style.animation='moveSearch 2s';
-            document.querySelector('form').style.animationFillMode='forwards';
-            document.querySelector('.inps').style.animationFillMode='forwards';
             var searchTerm = $('#query').val();
             getRequest(searchTerm);
+            var time=setTimeout(function(){
+                document.querySelector('form').style.animation='';
+                document.querySelector('form').style.marginTop='-5%';
+                document.querySelector('form').style.marginLeft='-80%';
+                document.querySelector('form').style.position='sticky';
+                document.querySelector('form').style.top='2px';
+                document.querySelector('.inps').style.animation='';
+                document.querySelector('.inps').style.marginTop='-5%';
+                document.querySelector('.inps').style.marginLeft='80%';
+                document.querySelector('.inps').style.position='sticky';
+                document.querySelector('.inps').style.top='2px';
+                window.clearTimeout(time)
+            },2000);
             times++;
         }else{
             var searchTerm = $('#query').val();
@@ -47,7 +58,7 @@ $(document).ready(function () {
         }
     });
 });
-// Get the search results from YouTube
+
 function getRequest(searchTerm) {
     var url = 'https://www.googleapis.com/youtube/v3/search';
     var params = {
@@ -58,7 +69,7 @@ function getRequest(searchTerm) {
 
     $.getJSON(url, params, showResults);
 }
-//show the results we have found
+
 function showResults(results) {
     var html = "";
     var entries = results.items;
@@ -84,7 +95,7 @@ function showResults(results) {
 
     $('#search-results').html(html);
 }
-// Change the content of the modal (as in the function name, duh.)
+
 function changeModal(type, value){
   try{
     if(type=='channel'){
