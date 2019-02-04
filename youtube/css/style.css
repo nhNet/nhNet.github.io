@@ -3,7 +3,7 @@ body{
     font-family: 'Oswald', sans-serif;
 }
 #search-results{
-    margin-top:10%;
+    margin-top:20%;
 }
 .results{
     width:60%;
@@ -66,8 +66,8 @@ form{
     user-select:none;
 }
 #boop-box {
-    float:right;
-    position: fixed;
+  float:right;
+    position: relative;
     background: #F5F5F5;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -77,9 +77,9 @@ form{
     padding-top:30px;
     padding-bottom:30px;
     margin-right:10px;
-    margin-top:30px;
+    margin-top:20px;
     text-align:center;
-    width: 250px;
+    width: 250px; 
 }
 
 #boop-box:before{
