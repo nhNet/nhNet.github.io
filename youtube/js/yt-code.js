@@ -19,7 +19,7 @@ function queeries(stuff){
             i++;
         }
     }catch(err){
-        alert(err)
+//         alert(err)
     }
 }
 //When Page ready...
@@ -27,7 +27,7 @@ $(document).ready(function () {
     var fromMus=false;
     var download=false;
     var times=0;
-    queeries(['from_Mus','fromMus=true;','download_true','download=true;']);
+    queeries(['from_Mus','fromMus=true;']);
     document.querySelectorAll('#closeBTN')[0].onclick=function(){document.querySelector('.modal-body').innerHTML='';};
     document.querySelectorAll('#closeBTN')[1].onclick=function(){document.querySelector('.modal-body').innerHTML='';};
     $('#search-term').submit(function (event) {
@@ -96,12 +96,10 @@ function changeModal(type, value){
                 window.location='https://nhnet.github.io/Music/yt-audio.html?vidID='+document.querySelector('#vidIDtoUse').dataset.vidID;
               };
       }
-      if(download===true){
-              document.querySelector('.modal-footer').innerHTML+='<button type="button" id="downloadVid" data-vidID="'+value+'" class="btn btn-info" data-dismiss="modal">Download Video (will open in new tab)<br>You will not get caught.<br>I have hidden the webpages you visit.</button>';
-              document.querySelector('#downloadVid').onclick=function(){
-                  window.open('download.html?v='+value, '_blank');
-              };
-      }
+      document.querySelector('.modal-footer').innerHTML+='<button type="button" id="downloadVid" data-vidID="'+value+'" class="btn btn-info" data-dismiss="modal">Download Video (will open in new tab)<br>You will not get caught.<br>I have hidden the webpages you visit.</button>';
+      document.querySelector('#downloadVid').onclick=function(){
+          window.open('download.html?v='+value, '_blank');
+      };
     }
   }catch(err){
 //       alert(err);
