@@ -7,7 +7,7 @@ function queeries(stuff){
         try{
             variable=variable[0].split('&').join(',');
         }catch(err){
-            //
+            // Don't exit code when error found...
         }
         variable=variable.split('=').join(',');
         variable=variable.split(',');
