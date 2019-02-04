@@ -34,7 +34,6 @@ body{
 @keyframes moveSearch{
     from{
         margin-top:13%;
-        margin-left:0;
     }
     to{
         margin-top:-2%;
@@ -46,7 +45,6 @@ body{
 @keyframes moveSearchBTN{
     from{
         margin-top:13%;
-        margin-left:0;
     }
     to{
         margin-top:-2%;
