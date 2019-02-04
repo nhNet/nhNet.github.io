@@ -98,6 +98,7 @@ $('#search-term').submit(function (event) {
         document.querySelector('form').style.animationFillMode='forwards';
         document.querySelector('.inps').style.animationFillMode='forwards';
         var searchTerm = $('#query').val();
+        getRequest(searchTerm);
         times++;
     }else{
         var searchTerm = $('#query').val();
