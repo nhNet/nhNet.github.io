@@ -107,6 +107,6 @@ function changeModal(type, value){
       }
     }
   }catch(err){
-//       alert(err);
+      alert(err);
   }
 }
