@@ -33,7 +33,6 @@ function getRequest(searchTerm) {
 
     $.getJSON(url, params, showResults);
 }
-
 function showResults(results) {
     var html = "";
     var entries = results.items;
