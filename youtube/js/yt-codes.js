@@ -24,6 +24,7 @@ function queeries(stuff){
     }
 }
 function getRequest(searchTerm) {
+    alreadySearched=true;
     var url = 'https://www.googleapis.com/youtube/v3/search';
     var params = {
         part: 'snippet',
