@@ -27,7 +27,7 @@ $(document).ready(function () {
     var fromMus=false;
     var download=false;
     var times=0;
-    queeries(['from_Mus','fromMus=true;']);
+    queeries(['from_Mus','var fromMus=true;']);
     document.querySelectorAll('#closeBTN')[0].onclick=function(){document.querySelector('.modal-body').innerHTML='';};
     document.querySelectorAll('#closeBTN')[1].onclick=function(){document.querySelector('.modal-body').innerHTML='';};
     $('#search-term').submit(function (event) {
