@@ -47,66 +47,65 @@ $(document).ready(function () {
             getRequest(searchTerm);
         }
     });
-});
+    function getRequest(searchTerm) {
+        var url = 'https://www.googleapis.com/youtube/v3/search';
+        var params = {
+            part: 'snippet',
+            key: 'AIzaSyAN15Bt4fSc8TcsdaxUm0i52PCRwi-H_Bc',
+            q: searchTerm
+        };
 
-function getRequest(searchTerm) {
-    var url = 'https://www.googleapis.com/youtube/v3/search';
-    var params = {
-        part: 'snippet',
-        key: 'AIzaSyAN15Bt4fSc8TcsdaxUm0i52PCRwi-H_Bc',
-        q: searchTerm
-    };
+        $.getJSON(url, params, showResults);
+    }
 
-    $.getJSON(url, params, showResults);
-}
+    function showResults(results) {
+        var html = "";
+        var entries = results.items;
+        $.each(entries, function (index, value) {
+            if(JSON.stringify(value.id.kind)=='"youtube#video"'){
+                var title = value.snippet.title;
+                var thumbnail = value.snippet.thumbnails.default.url;
+                html += '<div class="results">';
+                html += '<h3>' + title + '</h3>';
+                html += '<img style="border-radius:15px" draggable="false" src="' + thumbnail + '">';
+                html += `<br><br><button type="button" class="btn btn-info btn-lg" onclick="changeModal('video','`+value.id.videoId+`')" data-toggle="modal" data-target="#myModal">Open Video Tools</button>`;
+                html += '</div><br>';
+            }else if(JSON.stringify(value.id.kind)=='"youtube#channel"'){
+                  var title = 'Channel: '+value.snippet.title;
+                  var thumbnail = value.snippet.thumbnails.default.url;
+                  html += '<div class="results">';
+                  html += '<h1>' + title + '</h1>';
+                  html += '<img style="border-radius:15px" draggable="false" src="' + thumbnail + '">';
+                  html += `<br><br><button type="button" class="btn btn-info btn-lg" onclick="changeModal('channel','`+value.id.channelId+`')" data-toggle="modal" data-target="#myModal">Channel ID</button>`;
+                  html += '</div><br>';
+          }
+        }); 
 
-function showResults(results) {
-    var html = "";
-    var entries = results.items;
-    $.each(entries, function (index, value) {
-        if(JSON.stringify(value.id.kind)=='"youtube#video"'){
-            var title = value.snippet.title;
-            var thumbnail = value.snippet.thumbnails.default.url;
-            html += '<div class="results">';
-            html += '<h3>' + title + '</h3>';
-            html += '<img style="border-radius:15px" draggable="false" src="' + thumbnail + '">';
-            html += `<br><br><button type="button" class="btn btn-info btn-lg" onclick="changeModal('video','`+value.id.videoId+`')" data-toggle="modal" data-target="#myModal">Open Video Tools</button>`;
-            html += '</div><br>';
-        }else if(JSON.stringify(value.id.kind)=='"youtube#channel"'){
-              var title = 'Channel: '+value.snippet.title;
-              var thumbnail = value.snippet.thumbnails.default.url;
-              html += '<div class="results">';
-              html += '<h1>' + title + '</h1>';
-              html += '<img style="border-radius:15px" draggable="false" src="' + thumbnail + '">';
-              html += `<br><br><button type="button" class="btn btn-info btn-lg" onclick="changeModal('channel','`+value.id.channelId+`')" data-toggle="modal" data-target="#myModal">Channel ID</button>`;
-              html += '</div><br>';
-      }
-    }); 
+        $('#search-results').html(html);
+    }
 
-    $('#search-results').html(html);
-}
-
-function changeModal(type, value){
-  try{
-    if(type=='channel'){
-        document.querySelector('.modal-body').innerHTML='Channel ID: '+value;
-    }else if(type=='video'){
-        document.querySelector('.modal-body').innerHTML='Video ID: '+value+'<br><iframe frameborder="0" src="https://www.youtube.com/embed/'+value+'" allowfullscreen sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts"></iframe>';
-        document.querySelector('.modal-footer').innerHTML='<button type="button" id="closeBTN" class="btn btn-default" data-dismiss="modal">Close</button>';
-        if(fromMus===true){
-              document.querySelector('.modal-footer').innerHTML+='<button type="button" id="vidIDtoUse" data-vidID="'+value+'" class="btn btn-primary" data-dismiss="modal">Get audio</button>';
-              document.querySelector('#vidIDtoUse').onclick=function(){
-                window.location='https://nhnet.github.io/Music/yt-audio.html?vidID='+document.querySelector('#vidIDtoUse').dataset.vidID;
-              };
-      }
-      if(download===true){
-              document.querySelector('.modal-footer').innerHTML+='<button type="button" id="downloadVid" data-vidID="'+value+'" class="btn btn-info" data-dismiss="modal">Download Video (will open in new tab)<br>You will not get caught.<br>I have hidden the webpages you visit.</button>';
-              document.querySelector('#downloadVid').onclick=function(){
-                  window.open('download.html?v='+value, '_blank');
-              };
+    function changeModal(type, value){
+      try{
+        if(type=='channel'){
+            document.querySelector('.modal-body').innerHTML='Channel ID: '+value;
+        }else if(type=='video'){
+            document.querySelector('.modal-body').innerHTML='Video ID: '+value+'<br><iframe frameborder="0" src="https://www.youtube.com/embed/'+value+'" allowfullscreen sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts"></iframe>';
+            document.querySelector('.modal-footer').innerHTML='<button type="button" id="closeBTN" class="btn btn-default" data-dismiss="modal">Close</button>';
+            if(fromMus===true){
+                  document.querySelector('.modal-footer').innerHTML+='<button type="button" id="vidIDtoUse" data-vidID="'+value+'" class="btn btn-primary" data-dismiss="modal">Get audio</button>';
+                  document.querySelector('#vidIDtoUse').onclick=function(){
+                    window.location='https://nhnet.github.io/Music/yt-audio.html?vidID='+document.querySelector('#vidIDtoUse').dataset.vidID;
+                  };
+          }
+          if(download===true){
+                  document.querySelector('.modal-footer').innerHTML+='<button type="button" id="downloadVid" data-vidID="'+value+'" class="btn btn-info" data-dismiss="modal">Download Video (will open in new tab)<br>You will not get caught.<br>I have hidden the webpages you visit.</button>';
+                  document.querySelector('#downloadVid').onclick=function(){
+                      window.open('download.html?v='+value, '_blank');
+                  };
+          }
+        }
+      }catch(err){
+          alert(err);
       }
     }
-  }catch(err){
-      alert(err);
-  }
-}
+});
