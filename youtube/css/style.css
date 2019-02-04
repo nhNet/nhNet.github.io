@@ -44,11 +44,11 @@ body{
 }
 @keyframes moveSearchBTN{
     from{
-        margin-top:13%;
+        margin-top:0;
     }
     to{
-        margin-top:-5vh;
-        margin-left:74.5%;
+        margin-top:-10vh;
+        margin-left:74.7%;
         position: sticky;
         top: 5px;
     }
