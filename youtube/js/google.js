@@ -1,5 +1,6 @@
 // Nicholas Huaman 2018
 // First load all Google's scripts so that the signIn actually works!
+var alreadySearched=false;
 makeMeta("google-signin-scope","profile email");
 makeMeta("google-signin-client_id","398993796104-lq9k21a411mnehe5p94brocp3rs72dr5.apps.googleusercontent.com");
 loadScript("https://nhnet.github.io/management/private/Accounts/accounts.js");
@@ -38,6 +39,7 @@ function onSignIn(googleUser) {
     document.querySelector('.stuff-top-right').innerHTML="<div id='box'><h1 style='text-align:right'><span id='img'></span>&nbsp;<br><div id='name'></div></h1></div>";
     document.getElementById('img').innerHTML="<img style='border-radius:15px' width='30px' height='30px' src='"+profileImg+"'> <img width='10px' src='https://image.flaticon.com/icons/svg/60/60995.svg'/>";
     document.getElementById('img').onclick=function(){
+       if(alreadySearched===true){alert('Please reload to sign out');}
        if(OnOff=='off'){
           OnOff='on';
           document.getElementById('name').innerHTML= '<p style="margin-top:5px;" id="boop-box">Welcome, '+profileName.split(' ')[0]+'!<br><a href="javascript:signOut();">Sign out</a></p>';
