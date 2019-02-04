@@ -37,7 +37,8 @@ body{
     }
     to{
         margin-top:-2%;
-        margin-left:65%;
+        margin-left:65%
+        width:240px;
         position: sticky;
         top: 5px;
     }
