@@ -99,7 +99,7 @@ function PatrickTalk(){
                 if(isInInput(uCMD,'don\'t')){negativity+=(uCMD.match(/don't/g) || []).length;}
                 if(isInInput(uCMD,'not')){negativity+=(uCMD.match(/not/g) || []).length;}
                 // Common responses
-                if(isInInput(uCMD,'hello')||isInInput(uCMD,'hi')){s.innerHTML='Hi, '+localStorage['name']+'!<br>How do you do?<br><span style="font-size:50px;">&nbsp;&nbsp;&nbsp;🙂</span>';}
+                if(isInInput(uCMD,'hello')||isInInput(uCMD,'hi ')){s.innerHTML='Hi, '+localStorage['name']+'!<br>How do you do?<br><span style="font-size:50px;">&nbsp;&nbsp;&nbsp;🙂</span>';}
                 if(isInInput(uCMD,'ouch')){s.innerHTML='Do I seriously bring pain to you that much?';}
                 if(isInInput(uCMD,'nice')||isInInput(uCMD,'nice')){s.innerHTML='Do I seriously bring pain to you that much?';}
                 if(isInInput(uCMD,'who')&&isInInput(uCMD,'create')&&isInInput(uCMD,'you')){s.innerHTML='@nicholas_huaman...';}
