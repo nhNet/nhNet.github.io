@@ -11,10 +11,8 @@ if(!localStorage['rudeComments']){localStorage['rudeComments']=0;}
 if(!localStorage['chatLog']){localStorage['chatLog']='';}
 if(!localStorage['name']){localStorage['name']='{@undefined_name}';}
 if(!localStorage['reminders']){localStorage['reminders']='Reminders: None';}
-document.querySelector('.reminders').innerHTML=localStorage['reminders'];
+document.querySelector('.reminders').innerHTML=localStorage['reminders'].replace(/splitzStuff/g,'<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&middot;&nbsp;');
 document.querySelector('.swearWordCount').innerHTML='Rude comment count: '+localStorage['rudeComments']+'/100 (Ban)';
-// alert(localStorage['chatLog'].split('splitz-A-meHERE'));
-// localStorage.clear();
 document.querySelector('.resetMemory').onclick=function(){resetMemory()};
 document.querySelector('.modalButton').onclick=function(){$('#input').focus();};
 function resetMemory(){
