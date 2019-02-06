@@ -1,1 +1,71 @@
-Temporal Shutdown
+<!DOCTYPE html><html lang='en' class=''>
+<head><script src='//static.codepen.io/assets/editor/live/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js'></script><script src='//static.codepen.io/assets/editor/live/css_live_reload_init-e9c0cc5bb634d3d14b840de051920ac153d7d3d36fb050abad285779d7e5e8bd.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/uchardon/pen/GXORyz" />
+<link rel="shortcut icon" type="image/png" href="https://image.flaticon.com/icons/png/512/12/12195.png" />
+<link rel='stylesheet' href='https://unpkg.com/splitting@1.0.0/dist/splitting.css'>
+<title>NHNet Browser</title>
+<style class="cp-pen-styles">@import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
+@import url('https://fonts.googleapis.com/css?family=Oswald:700');
+body {
+  font-family: Roboto, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #1A2A3A;  
+  color: #FFF; 
+  min-height:100%;
+  transform:scale(2);
+  overflow:hidden;
+  margin-top:12%;
+}
+
+.loading {
+  font-family: Oswald, sans-serif;
+  font-size: 4em;
+  text-shadow: 0px 0px 10px  rgba(0,0,0,.3);
+}
+.no2{letter-spacing:2px;}
+.loading.no1 .char {
+    animation: jump .4s linear infinite alternate;
+  animation-delay: calc( -.8s + ( var(--char-index)*.1s ) );
+  animation-timing-function: ease-in-out;
+}
+.loading.no2 .char {
+    animation: jump2 .8s linear infinite alternate;
+  animation-delay: calc( .2s + ( var(--char-index)*.1s ) );
+  animation-timing-function: ease-in-out;
+}
+@keyframes jump { 
+  0% {
+    transform:translateY(0);
+  }
+  100% {
+    transform: translateY(30%);
+  }
+}
+@keyframes jump2 { 
+  0% {
+    transform:scale(0.3);
+  }
+  100% {
+    transform: scale(1.8);
+  }
+}</style></head><body>
+<div class="loading no1" data-splitting>
+  NH Net
+</div><br>
+<div class="loading no2" data-splitting>
+  Loading...
+</div>
+<div style="font-size:30px;margin-top:50px;" class="loading no1" data-splitting>
+  Please make fullscreen!
+</div>
+<script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-41c52890748cd7143004e05d3c5f786c66b19939c4500ce446314d1748483e13.js'></script><script src='https://unpkg.com/splitting@1.0.0/dist/splitting.js'></script>
+<script>
+//   localStorage.clear()
+  if(!localStorage['updated']){localStorage['updated']=true;window.location='https://nhnet.github.io/updateTov7.html';}
+  Splitting();
+  setTimeout(function(){window.location="https://nhnet.github.io/v7.html";},5000);
+</script>
+</body>
+</html>
