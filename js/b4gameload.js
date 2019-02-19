@@ -15,4 +15,4 @@ $(function() {
   document.querySelector('.GoToGame').onclick=function(){
       document.querySelector('#loadingScreenLink').click();
   };
-});
+}); 
