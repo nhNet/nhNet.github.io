@@ -261,6 +261,7 @@
                         case 'okay nh net':
                             s.innerHTML='Hi, I\'m <b>P</b>ersonal-<b>A</b>ssistant-<b>T</b>est<br><b>R</b>apid-<b>I</b>nstantaneous-<b>C</b>hatbot-<b>K</b>,<br>more commonly know as Patrick,<br>your Personal Assistant.<br>For help, say help...';
                         case ':)':
+                          document.querySelector('video').src='https://nhnet.github.io/NHPatrickVids/ThumbsUp.mp4';
                             s.innerHTML='<span style="font-size:50px;">😊</span>';
                             break;
                         case 'how do you do':
@@ -300,7 +301,7 @@
                     if(isInInput(uCMD,'dab')){document.querySelector('video').src='https://nhnet.github.io/NHPatrickVids/Dab.mp4';s.innerHTML='😂 Hehe, ok!';}
                     if(isInInput(uCMD,'bow to me')){document.querySelector('video').src='https://nhnet.github.io/NHPatrickVids/Bow.mp4';s.innerHTML='I really don\'t want to, but if you insist...';}
                     if(isInInput(uCMD,'you')&&isInInput(uCMD,'amazing')){document.querySelector('video').src='https://nhnet.github.io/NHPatrickVids/ThumbsUp.mp4';s.innerHTML='😊 Why thank you!';}
-                    if(isInInput(uCMD,'nice')||isInInput(uCMD,'nice')){s.innerHTML='Do I seriously bring pain to you that much?';}
+                    if(isInInput(uCMD,'nice')||isInInput(uCMD,'nice')){document.querySelector('video').src='https://nhnet.github.io/NHPatrickVids/Shrug.mp4';s.innerHTML='Ikr?';}
                     if(isInInput(uCMD,'who')&&isInInput(uCMD,'create')&&isInInput(uCMD,'you')){s.innerHTML='@nicholas_huaman...';}
                     if(!isInInput(uCMD,'undefined')&&isInInput(uCMD,'fine')){s.innerHTML=':)';}
                     if(isInInput(uCMD,'you')&&isInInput(uCMD,'me')&&isInInput(uCMD,'tricked')||isInInput(uCMD,'got')||isInInput(uCMD,'caught')){s.innerHTML='I sure did...';}
