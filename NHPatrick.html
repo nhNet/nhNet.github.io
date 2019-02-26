@@ -152,8 +152,7 @@
       border:2px solid black;
       border-bottom: none;
       border-radius: 1rem 1rem 0 0;
-      background: url('https://nhnet.github.io/NHPatrickVids/NHPatStationary.png') no-repeat white;
-      background-size:580px 327px;
+      background: white;
   }
   b{
       font-weight:bolder;
@@ -187,8 +186,12 @@
         if(document.querySelector('video').src=='https://nhnet.github.io/NHPatrickVids/WalkIn.mp4'){
             document.querySelector('video').src='https://nhnet.github.io/NHPatrickVids/Wave.mp4';
             document.querySelector('video').loop='true';
+            document.querySelector('video').style.background="url('https://nhnet.github.io/NHPatrickVids/NHPatStationary.png') no-repeat white";
+            document.querySelector('video').style.backgroundSize="580px 327px";
         }else{
             document.querySelector('video').loop='true';
+            document.querySelector('video').style.background="url('https://nhnet.github.io/NHPatrickVids/NHPatStationary.png') no-repeat white";
+            document.querySelector('video').style.backgroundSize="580px 327px";
         }
     },5000);
     function isInInput(from, search){return from.includes(search);}
