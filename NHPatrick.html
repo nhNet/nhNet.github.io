@@ -273,6 +273,9 @@
                             s.innerHTML='Great thanks! <span style="font-size:50px;">😃</span>';
                             break;
                         case 'wreck':
+                            document.querySelector('video').src='';
+                            document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                            document.querySelector('video').style.backgroundSize="580px 327px";
                             s.innerHTML='IT RALPH';
                             break;
                         case 'wow':
@@ -280,6 +283,9 @@
                             s.innerHTML='World Of Warcraft is old, '+localStorage['name']+'.';
                             break;
                         case 'exit':
+                            document.querySelector('video').src='';
+                            document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                            document.querySelector('video').style.backgroundSize="580px 327px";
                             s.innerHTML='Wanna leave so soon? =(';
                             break;
                         case 'why':
@@ -307,11 +313,33 @@
                     if(isInInput(uCMD,'nice')||isInInput(uCMD,'nice')){document.querySelector('video').src='https://nhnet.github.io/NHPatrickVids/Shrug.mp4';s.innerHTML='Ikr?';}
                     if(isInInput(uCMD,'who')&&isInInput(uCMD,'create')&&isInInput(uCMD,'you')){s.innerHTML='@nicholas_huaman...';}
                     if(!isInInput(uCMD,'undefined')&&isInInput(uCMD,'fine')){s.innerHTML=':)';}
-                    if(isInInput(uCMD,'you')&&isInInput(uCMD,'me')&&isInInput(uCMD,'tricked')||isInInput(uCMD,'got')||isInInput(uCMD,'caught')){s.innerHTML='I sure did...';}
-                    if(isInInput(uCMD,'help')){s.innerHTML='Type simple conversation commands:<br> &middot; ask common questions,<br> &middot; name,<br> &middot; time,<br> &middot; what date,<br> &middot; weather,<br> &middot; open {applicationName},<br> &middot; set reminder {reminderName},<br> &middot; remove reminder {reminderName}, etc.';}
-                    if(isInInput(uCMD,'suicide')||isInInput(uCMD,'kurmit die')){s.innerHTML='Don\'t, just don\'t...';}
-                    if(isInInput(uCMD,'brawl stars')||isInInput(uCMD,'fortnite')){s.innerHTML='That\'s a good game!';}
+                    if(isInInput(uCMD,'you')&&isInInput(uCMD,'me')&&isInInput(uCMD,'tricked')||isInInput(uCMD,'got')||isInInput(uCMD,'caught')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";s.innerHTML='I sure did...';
+                    }
+                    if(isInInput(uCMD,'help')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      s.innerHTML='Type simple conversation commands:<br> &middot; ask common questions,<br> &middot; name,<br> &middot; time,<br> &middot; what date,<br> &middot; weather,<br> &middot; open {applicationName},<br> &middot; set reminder {reminderName},<br> &middot; remove reminder {reminderName}, etc.';
+                    }
+                    if(isInInput(uCMD,'suicide')||isInInput(uCMD,'kurmit die')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      s.innerHTML='Don\'t, just don\'t...';
+                    }
+                    if(isInInput(uCMD,'brawl stars')||isInInput(uCMD,'fortnite')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      s.innerHTML='That\'s a good game!';
+                    }
                     if(isInInput(uCMD,'date')&&isInInput(uCMD,'what')){
+                        document.querySelector('video').src='';
+                        document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                        document.querySelector('video').style.backgroundSize="580px 327px";
                         var d=new Date();
                         var daySuffix;
                         if(d.getDate().toString().split('')[d.getDate().length-1]=='1'){
@@ -328,26 +356,109 @@
                         s.innerHTML='Today is '+daysArray[d.getDay()]+' '+d.getDate()+daySuffix+' '+monthsArray[d.getMonth()]+' '+d.getFullYear();
                     }
                     if(isInInput(uCMD,'time')||isInInput(uCMD,'clock')){
+                        document.querySelector('video').src='';
+                        document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                        document.querySelector('video').style.backgroundSize="580px 327px";
                         var d=new Date();
                         s.innerHTML='It is currently is '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
                     }
-                    if(isInInput(uCMD,'gtg')||isInInput(uCMD,'got to go')){s.innerHTML='Okay then. See ya soon - or not...';}
-                    if(isInInput(uCMD,'ugh')){s.innerHTML='I get anxious too, you know...';}
-                    if(isInInput(uCMD,'yes')){s.innerHTML='Okay <span style="font-size:50px;">😃</span>';}
-                    if(isInInput(uCMD,'hmm')){s.innerHTML='<span style="font-size:50px;">🤔</span>';}
-                    if(isInInput(uCMD,'fav')&&!isInInput(uCMD,'least')&&isInInput(uCMD,'football team')){s.innerHTML='Barcelona (Not really...)';}
-                    if(isInInput(uCMD,'patrick')){s.innerHTML='Still here, '+localStorage['name']+'!';}
-                    if(isInInput(uCMD,'schnecker')){s.innerHTML='The Best';}
-                    if(isInInput(uCMD,'who are you')){document.querySelector('video').src='https://nhnet.github.io/NHPatrickVids/Wave.mp4';s.innerHTML='My name is Patrick, your personal<br>NH Net Assistant.<br>That\'s all you need to know, '+localStorage['name']+'.';}
-                    if(isInInput(uCMD,'rude')&&isInInput(uCMD,'you')){document.querySelector('video').src='https://nhnet.github.io/NHPatrickVids/Shrug.mp4';s.innerHTML='People tell me I have an attitude...';}
-                    if(isInInput(uCMD,'boo')){document.querySelector('video').src='https://nhnet.github.io/NHPatrickVids/JumpScare.mp4';s.innerHTML='Were you seriously trying to scare me, '+localStorage['name']+'?<br>Not going to happen.';}
-                    if(isInInput(uCMD,'mean')||isInInput(uCMD,'sarcastic')&&isInInput(uCMD,'always')){document.querySelector('video').src='https://nhnet.github.io/NHPatrickVids/Laugh.mp4';s.innerHTML='It\'s as if it was programmed into me.<span style="font-size:30px;">😋</span>';}
-                    if(isInInput(uCMD,'haha')||isInInput(uCMD,'hh')||isInInput(uCMD,'lol')||isInInput(uCMD,'lmao')){s.innerHTML='Laughing on the inside...';}
-                    if(isInInput(uCMD,'who do you like')){s.innerHTML='Even computers deserve rights to privacy...';}
-                    if(isInInput(uCMD,'oops')){s.innerHTML='What have you done now, '+localStorage['name']+'?';}
-                    if(isInInput(uCMD,'see ya')){s.innerHTML='Plz no <span style="font-size:50px;">😐</span>';}
-                    if(isInInput(uCMD,'calculator')){s.innerHTML='I can be your calculator, but I prefer not...';}
+                    if(isInInput(uCMD,'gtg')||isInInput(uCMD,'got to go')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      s.innerHTML='Okay then. See ya soon - or not...';
+                    }
+                    if(isInInput(uCMD,'ugh')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      s.innerHTML='I get anxious too, you know...';
+                    }
+                    if(isInInput(uCMD,'yes')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      s.innerHTML='Okay <span style="font-size:50px;">😃</span>';
+                    }
+                    if(isInInput(uCMD,'hmm')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      s.innerHTML='<span style="font-size:50px;">🤔</span>';
+                    }
+                    if(isInInput(uCMD,'fav')&&!isInInput(uCMD,'least')&&isInInput(uCMD,'football team')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      s.innerHTML='Barcelona (Not really...)';
+                    }
+                    if(isInInput(uCMD,'patrick')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      s.innerHTML='Still here, '+localStorage['name']+'!';
+                    }
+                    if(isInInput(uCMD,'schnecker')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      s.innerHTML='The Best';
+                    }
+                    if(isInInput(uCMD,'who are you')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      document.querySelector('video').src='https://nhnet.github.io/NHPatrickVids/Wave.mp4';s.innerHTML='My name is Patrick, your personal<br>NH Net Assistant.<br>That\'s all you need to know, '+localStorage['name']+'.';
+                    }
+                    if(isInInput(uCMD,'rude')&&isInInput(uCMD,'you')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      document.querySelector('video').src='https://nhnet.github.io/NHPatrickVids/Shrug.mp4';s.innerHTML='People tell me I have an attitude...';
+                    }
+                    if(isInInput(uCMD,'boo')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      document.querySelector('video').src='https://nhnet.github.io/NHPatrickVids/JumpScare.mp4';s.innerHTML='Were you seriously trying to scare me, '+localStorage['name']+'?<br>Not going to happen.';
+                    }
+                    if(isInInput(uCMD,'mean')||isInInput(uCMD,'sarcastic')&&isInInput(uCMD,'always')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      document.querySelector('video').src='https://nhnet.github.io/NHPatrickVids/Laugh.mp4';s.innerHTML='It\'s as if it was programmed into me.<span style="font-size:30px;">😋</span>';
+                    }
+                    if(isInInput(uCMD,'haha')||isInInput(uCMD,'hh')||isInInput(uCMD,'lol')||isInInput(uCMD,'lmao')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      s.innerHTML='Laughing on the inside...';}
+                    if(isInInput(uCMD,'who do you like')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      s.innerHTML='Even computers deserve rights to privacy...';
+                    }
+                    if(isInInput(uCMD,'oops')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      s.innerHTML='What have you done now, '+localStorage['name']+'?';
+                    }
+                    if(isInInput(uCMD,'see ya')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      s.innerHTML='Plz no <span style="font-size:50px;">😐</span>';
+                    }
+                    if(isInInput(uCMD,'calculator')){
+                      document.querySelector('video').src='https://nhnet.github.io/NHPatrickVids/MathsTime.mp4';
+                      s.innerHTML='I can be your calculator, but I prefer not...';
+                    }
                     if(isInInput(uCMD,'name')){
+                        document.querySelector('video').src='';
+                        document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                        document.querySelector('video').style.backgroundSize="580px 327px";
                         if(!isInInput(uCMD,'your')){
                             if(localStorage['name']=='{@undefined_name}'){
                                 s.innerHTML='I do not know your name, '+localStorage['name']+'.<br>Name yourself below:';
@@ -360,6 +471,9 @@
                         }
                     }
                     if(isInInput(uCMD,'open')){
+                        document.querySelector('video').src='';
+                        document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                        document.querySelector('video').style.backgroundSize="580px 327px";
                         s.innerHTML='3: Loading external page...🙂';
                         setTimeout(function(){s.innerHTML='2: Loading external page...🙂';},1000);
                         setTimeout(function(){s.innerHTML='1: Loading external page...🙂';},2000);
@@ -397,9 +511,24 @@
                             }
                         },3000);
                     }
-                    if(isInInput(uCMD,'what is')){if(hasNumber(uCMD)){s.innerHTML='To do calculations, remove all text characters first, '+localStorage['name'];}}
-                    if(isInInput(uCMD,'shut up')){s.innerHTML='Hmm... That\'s not how assistants work, '+localStorage['name']+'...';}
-                    if(isInInput(uCMD,'hate you')){s.innerHTML='<span style="font-size:50px;">😥</span';}
+                    if(isInInput(uCMD,'what is')){if(hasNumber(uCMD)){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      s.innerHTML='To do calculations, remove all text characters first, '+localStorage['name'];
+                    }}
+                    if(isInInput(uCMD,'shut up')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      s.innerHTML='Hmm... That\'s not how assistants work, '+localStorage['name']+'...';
+                    }
+                    if(isInInput(uCMD,'hate you')){
+                      document.querySelector('video').src='';
+                      document.querySelector('video').style.background="url('https://y0kqt1j9mbmkdkzq39s3tqf2-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/no-video.png') no-repeat white";
+                      document.querySelector('video').style.backgroundSize="580px 327px";
+                      s.innerHTML='<span style="font-size:50px;">😥</span';
+                    }
                     if(isInInput(uCMD,'you')&&isInInput(uCMD,'annoying')){s.innerHTML='You don\'t really think that...';}
                     if(isInInput(uCMD,'nothing')){s.innerHTML='<span style="font-size:50px;">🤔</span> Okay, '+localStorage['name'];}
                     if(isInInput(uCMD,'awkward')){s.innerHTML='If anything you\'re more awkward than I am, '+localStorage['name']+'...';}
