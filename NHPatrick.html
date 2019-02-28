@@ -245,6 +245,7 @@
         if(localStorage['rudeComments']<50){
             //document.querySelector('dialogArrow').style.top='9.25rem';
             document.querySelector('.myChatLog').innerHTML=document.querySelector('#input').value;
+            document.querySelector('.video').innerHTML='<video src="" width="580" height="327" autoplay muted loop>Your browser does not support the video tag.</video>';
             uCMD = document.querySelector('#input').value.replace('!','').replace('?','').toLowerCase().trim();
             try{
                 if(uCMD!='name'&&uCMD!='history'&&uCMD!='d'&&uCMD!='open'&&uCMD!='s'&&uCMD!='undefined'){
