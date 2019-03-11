@@ -1,6 +1,6 @@
 
 <!DOCTYPE html><html lang='en' class=''>
-<head><script src='//static.codepen.io/assets/editor/live/console_runner-1df7d3399bdc1f40995a35209755dcfd8c7547da127f6469fd81e5fba982f6af.js'></script><script src='//static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" href="https://nhnet.github.io/img/NHMus.png" /><link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/AndrewHaze/pen/PRaZEZ" />
+<head><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" href="https://nhnet.github.io/img/NHMus.png" />
 <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
 <title>NH Sound Tools!</title>
@@ -253,11 +253,10 @@ a {
     <div class="bottom"></div>
   </div>  
 </div>    
-<script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js'></script>
 <script >
 const srart_pos = 90.75;
 const item_count = 13;
-const s = 0.52 * Math.PI / 180; //Вычислим угол смещения
+const s = 0.52 * Math.PI / 180;
 
 var pos = [];
 var elem = document.getElementsByClassName('item');
@@ -282,25 +281,21 @@ function allocationItems() {
 
 allocationItems();
 
-function animation(args, flag) {// некоторые аргументы определим на будущее
+function animation(args, flag) {
     var $ = {
-        radius: 250, // радиус окружности 
-        speed: 10 // скорость/задержка ( в js это мс, например 10 мс = 100 кадров в секунду)
+        radius: 250,
+        speed: 10
     };
     var e = elem;
     document.getElementById("pic").className = "hide";
     function animate(draw, duration, callback) {
         var start = performance.now();
         requestAnimationFrame(function animate(time) {
-            // определить, сколько прошло времени с начала анимации
             var timePassed = time - start;
             console.log(time, start);
-            // возможно небольшое превышение времени, в этом случае зафиксировать конец
             if (timePassed > duration)
             timePassed = duration;
-            // нарисовать состояние анимации в момент timePassed
             draw(timePassed);
-            // если время анимации не закончилось - запланировать ещё кадр
             if (timePassed < duration) {
                 requestAnimationFrame(animate);
             } else callback();
@@ -329,6 +324,5 @@ function animation(args, flag) {// некоторые аргументы опр�
         allocationItems();
     });
 }
-//# sourceURL=pen.js
 </script>
 </body></html>
