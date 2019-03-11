@@ -299,7 +299,6 @@ function animation(args, flag) {
     });
 }
   window.addEventListener("error", handleError, true);
-
 function handleError(evt) {
     if (evt.message) { // Chrome sometimes provides this
       alert("error: "+evt.message +" at linenumber: "+evt.lineno+" of file: "+evt.filename);
@@ -307,6 +306,5 @@ function handleError(evt) {
       alert("error: "+evt.type+" from element: "+(evt.srcElement || evt.target));
     }
 }
-
 </script>
 </body></html>
