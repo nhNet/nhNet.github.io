@@ -1,0 +1,174 @@
+//Nicholas Huaman 2019
+Introduction to HTML:
+    HTML is a markup language, NOT programming!!!
+    It uses opening and closing tags to display and modify text on the screen.
+    Eg:
+        <h1 attr="this is an attribute" style="/*Style attribute*/">
+            <u>Hello!!</u>
+        </h1>
+        <!--Creates big underlined header text.-->
+    You can change the way the HTML elements look using CSS:
+        (Cascading StyleSheet)
+      -  The style attribute (<div style="/*Styles*/"></div>),
+      -  A style tag (<style>/*Styles*/</style>),
+      -  A link to a css file. (<link rel="stylesheet" href="LINK_TO_STYLES">)
+    Styles are set by the tagName/.+className /#+idName and then curly brackets.
+    The most common CSS elements you may change will be shown below:
+        /*Text colour*/
+        color:blue
+            OR
+        color:#0000FF; (without a U, annoyingly...)
+        /*Sets a background image over a black background. It repeats by 
+        default, so we tell it not to.*/
+        background:black url(https://nhnet.github.io/img/NHMus.png) no-repeat;
+        /*Size of the background image. It will fill the whole screen*/
+        background-size:100% 100vh;
+        /*FONT SIZE*/
+        font-size:10px;
+        /*FONT: Basically*/
+        font-family:'imported font in quotes',cursive/bold/sans;
+        /*Set a 2px black, lined border*/
+        border: 2px solid black;
+        /*Makes the corners of the element round - even if there is no border.*/
+        border-radius: 10px;
+        /*Creates a 100px blurred shadow in 10px x-axis 10px y-axis displacement         from the html element*/
+        box-shadow: 10px 10px 100px black;
+        /*Can underline, line-through and overline*/
+        text-decoration:underline;
+        /*Value between 0-800, or words none, bold, bolder*/
+        font-weight:bolder;
+        /*Set cursor type*/
+        /*All cursors:         
+        https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor
+        Put in iframe if blocked
+        */
+        cursor:pointer; /*Hand, etc...*/
+        cursor:url(cursorLink.cur);
+    Eg:
+    body{
+        color:blue;
+    }
+    .ruyElement{
+        color:blue;
+        text-decoration:underline;
+        cursor:pointer;
+        /*Look like it's a link. But nothing happens onclick*/
+    }
+    /*On Element hover*/
+    .ruyElement:hover{
+        color:brown;
+        /*Hover*/
+    }
+    /*:before and :after create abstract elements that can be used to benefit.*/
+    #thisIsBad:before{
+        content:'I am an abstract element created by CSS';
+        color:black;
+    }
+      
+    You can also enrich your webpages with the programming language, JavaScript.
+        A variable is a data store in a memory location on the computer that can         be changed later on in the code.
+        Create a variable using the keyword var.
+        A constant is the same as a variable, but it's purpose is to not be 
+        changed later on in the code.
+        Constants can be defined by the keyword const or let.
+        
+        //for all js running programs
+        You can log (display) these elements in the console using the function 
+        console.log('This is what I am logging...');
+        
+        //Website only : alert();
+        If you do not have access to a console then you can alert (display as 
+        popup) these elements using the alert function:
+        alert('This is what I am alerting...');
+        Eg:
+            var ruyIsTerrible=false;
+            const sounds=['boo','echo','lol','haha','etc'];
+            let MeSee='hehe';
+            console.log(MeSee);
+            //Expected output: hehe
+            for(var i;i < sounds.length;i++){
+                alert(sounds[i])
+            }
+       How to select HTML elements:
+           document.querySelector(elementId/Class/Tag)
+           document.getElementById(elementId)
+           document.getElementByClassName(elementClass)
+       How to change text in the page:
+           Just set the innerHTML of the selected element to something 
+           different...
+           document.querySelector('body').innerHTML='Where did all the text go? 
+           🤔';
+       If statements:
+           if(condition){
+                //If true run
+           }
+           //An else can be added
+           if(!condition){
+                //if condition is false, if is true, so run
+           }else{
+                //If condition is true, if is false, so run
+           }
+           // Else ifs are if statements that are runned if the if statement 
+           before returns false and the new if returns true.
+           //  || = or
+           //  && = and
+           //  == = equals
+           //  <  = Less than
+           //  >  = Greater than
+           if(a < b < c||b==c){
+                //If true, run and break (don't run elseifs)
+           }else if(c==a){
+                //If true, run and break (stop running elseifs)
+           }
+      Arrays:
+        Arrays are JavaScript objects that contain elements inside square 
+        brackets. []
+        Arrays can be created from strings by the commands following.
+        ExistingString.split('what to split by');
+        ExistingArray.push('Add to the end of the array');
+        ExistingArray.pop(); //Remove last element
+        ExistingArray.shift('What to add to the beginning of the array');
+        ExistingArray.unshift(); //Remove first element
+        In code:
+            var myString='HisplitzMeHereRuy';
+            var myArray=myString.split('splitzMeHere');
+            //myArray=['Hi','Ruy'];
+            myString=myArray.join(' ');//Join the array together by a space
+            //myString='Hi Ruy';
+            
+            myString.replace('Ruy','Nobody');//Search for first Ruy and change 
+            him to nobody...
+            
+            //OR
+            
+            myString.replace(/Ruy/g,'Nobody!');//Search for all Ruys and change 
+            them to nobody... I'm going to go with this one, just in case there 
+            are more Ruys in my string...
+            
+            //myString='Hi Nobody!'
+        
+            //myArray still is ['Hi','Ruy']. What if I wanted to get rid of the 
+            Ruy in the array and change him to nobody?
+            //Method 1 (Remove+Add):
+                myArray.pop()//Ik that Ruy is at the end of the array, so I 
+                remove the last element...
+                myArray.push('Nobody');
+            //Method 2 (Set element that has Ruy in it to Nobody):
+                myArray[myArray.indexOf('Ruy')]='Nobody';
+Introduction to JQuery:
+    JQuery is a javascript library.
+    A library or module is a definition program that is embedded/imported into 
+    your program to facilitate or shorten your code.
+    HTML:
+        <div id="thisIsBad" class="ruyElement"></div>
+        <input placeholder="Password" class="myPasswordInput">
+    JS:
+        document.querySelector('.ruyElement').innerHTML='boo';
+        if(document.querySelector('.myPasswordInput').value=='RuyHere'){
+            //Execute code
+        }
+    JQuery:
+        $('.ruyElement').txt('boo');
+        if($('.myPasswordInput').val('RuyHere')){
+            //Execute code
+        }
