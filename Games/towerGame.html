@@ -141,21 +141,57 @@ html, body {
         <div></div>
     </div>
 </div>
-<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyD_NbQYgnlnMi8XG4RsRU-7ZKjabswcMGY",
-    authDomain: "towerleaderboard.firebaseapp.com",
-    databaseURL: "https://towerleaderboard.firebaseio.com",
-    projectId: "towerleaderboard",
-    storageBucket: "towerleaderboard.appspot.com",
-    messagingSenderId: "207603828545"
-  };
-  firebase.initializeApp(config);
-</script>
 <script src='https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.min.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js'></script>
         <script id="rendered-js">
+          // Nicholas Huaman 2018
+
+// First load all Google's scripts so that the signIn actually works!
+makeMeta("google-signin-scope","profile email");
+makeMeta("google-signin-client_id","1080825828754-b3nngrqtg5ouhfe8rmpidtjn4l8lp2ae.apps.googleusercontent.com");
+loadScript("https://nhnet.github.io/management/private/Accounts/accounts.js");
+loadScript("https://apis.google.com/js/platform.js");
+
+// If someone didn't complete the sign-in correctly, then something ought to happen!
+// This code is then executed.
+function onFail(){
+	document.querySelector('.welcome').innerHTML="<h1 style='font-size:60px;'> You haven't signed in yet! <h1>";
+}
+function signOut() {
+	// Here is Google Signing you out
+	var auth2 = gapi.auth2.getAuthInstance();
+	auth2.signOut().then(function () {
+		alert("You signed out!");
+	});
+}
+// Here is what happens when Google Signs u in correctly.
+function onSignIn(googleUser) {
+	// Refer to Google using this variable. This is the base for the useful variables for code users.
+    var profile = googleUser.getBasicProfile();
+	// Name  Google User Variables for future use!
+    var profileImg = profile.getImageUrl();
+    var profileName = profile.getName();
+    var profileEmail = profile.getEmail();
+  alert('Welcome back, '+profileName);
+}
+
+
+// This is unimportant.
+// It is what loads everything at the top!
+function loadScript(url) {
+    var script = document.createElement("script");
+    script.src = url;
+    script.async="true";
+    script.defer="true";
+
+    document.head.appendChild(script);
+}
+function makeMeta(name, content) {
+    var meta = document.createElement("meta");
+    meta.name = name;
+    meta.content = content;
+
+    document.head.appendChild(meta);
+}
           console.clear();
 var Stage = /** @class */function () {
   function Stage() {
