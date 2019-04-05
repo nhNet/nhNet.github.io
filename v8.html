@@ -1,0 +1,795 @@
+<html>
+    <head>
+        <title>NH Net Dashboard</title>
+        <link rel="shortcut icon" href="https://image.flaticon.com/icons/png/512/12/12195.png">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+        <style>
+            html, body {
+              padding: 0px;
+              margin: 0px;
+              background: #191a1d;
+              font-family: 'Roboto', sans-serif;
+              color: #fff;
+              user-select:none;
+              height: 100%;
+            }
+            body {
+              display: flex;
+              font-size: 14px;
+              padding: 1em;
+              transition: all 0.2s;
+            }
+            @media (max-width: 1400px) {
+              body {
+                font-size: 14px;
+              }
+            }
+            @media (max-width: 1300px) {
+              body {
+                font-size: 13px;
+              }
+            }
+            @media (max-width: 1200px) {
+              body {
+                font-size: 12px;
+              }
+            }
+            @media (max-width: 1100px) {
+              body {
+                font-size: 11px;
+              }
+            }
+            @media (max-width: 1000px) {
+              body {
+                font-size: 10px;
+              }
+            }
+            @media (max-width: 900px) {
+              body {
+                font-size: 9px;
+              }
+            }
+            @media (max-width: 800px) {
+              body {
+                font-size: 8px;
+              }
+            }
+            @media (max-width: 700px) {
+              body {
+                font-size: 7px;
+              }
+            }
+            @media (max-width: 600px) {
+              body {
+                font-size: 6px;
+              }
+            }
+            @media (max-width: 500px) {
+              body {
+                font-size: 5px;
+              }
+            }
+            @media (max-width: 400px) {
+              body {
+                font-size: 4px;
+              }
+            }
+            @media (max-width: 300px) {
+              body {
+                font-size: 3px;
+              }
+            }
+            @media (max-width: 200px) {
+              body {
+                font-size: 2px;
+              }
+            }
+            @media (max-width: 100px) {
+              body {
+                font-size: 1px;
+              }
+            }
+            @media (max-width: 0px) {
+              body {
+                font-size: 0px;
+              }
+            }
+            .background {
+              background-image: url(http://jimstrafficcontrol.com.au/wp-content/uploads/2016/08/Background-20.jpeg);
+              background-position: center;
+              background-size: 100% 110vh;
+              filter: blur(3px);
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 110vh;
+            }
+            body * {
+              box-sizing: border-box;
+              margin: 0;
+              padding: 0;
+              display: block;
+              background: none;
+            }
+            .container {
+              position: relative;
+              width: 1500%;
+              margin-left: 15%;
+              min-height: 200px;
+            }
+            .container--logo {
+              text-align: center;
+              margin-bottom: 4em;
+            }
+            .container--logo img {
+              max-width: 30em;
+              margin: auto;
+            }
+            .container--navigation {
+              display: flex;
+              margin: auto;
+              max-width: 65em;
+              border-radius: 5px;
+            }
+            .container--top-menu {
+              display: flex;
+              max-width: 75em;
+              margin: auto;
+              margin-top: 1em;
+            }
+            .container--bottom-menu {
+              display: flex;
+              max-width: 62.5em;
+              margin: auto;
+            }
+            .container--card-spot {
+              opacity: 0;
+              animation: flyIn 0.75s forwards;
+            }
+            .container--card-spot:nth-of-type(1) {
+              animation-delay: 0.72s;
+            }
+            .container--card-spot:nth-of-type(2) {
+              animation-delay: 0.42s;
+            }
+            .container--card-spot:nth-of-type(3) {
+              animation-delay: 0.09s;
+            }
+            .container--card-spot:nth-of-type(4) {
+              animation-delay: 0.08s;
+            }
+            .container--card-spot:nth-of-type(5) {
+              animation-delay: 0.11s;
+            }
+            .container--card-spot:nth-of-type(6) {
+              animation-delay: 0.25s;
+            }
+            .container--card-spot:nth-of-type(7) {
+              animation-delay: 0.63s;
+            }
+            .container--card-spot:nth-of-type(8) {
+              animation-delay: 0.28s;
+            }
+            .container--card-spot:nth-of-type(9) {
+              animation-delay: 0.9s;
+            }
+            .container--card-spot:nth-of-type(10) {
+              animation-delay: 0.85s;
+            }
+            .container--card-spot:nth-of-type(11) {
+              animation-delay: 0.7s;
+            }
+            .container--card-spot:nth-of-type(12) {
+              animation-delay: 0.09s;
+            }
+            .container--card-spot:nth-of-type(13) {
+              animation-delay: 0.56s;
+            }
+            .container--card-spot:nth-of-type(14) {
+              animation-delay: 0.76s;
+            }
+            .container--card-spot:nth-of-type(15) {
+              animation-delay: 0.04s;
+            }
+            .container--card-spot:nth-of-type(16) {
+              animation-delay: 0.34s;
+            }
+            .container--card-spot:nth-of-type(17) {
+              animation-delay: 0.85s;
+            }
+            .container--card-spot:nth-of-type(18) {
+              animation-delay: 0.91s;
+            }
+            .container--card-spot:nth-of-type(19) {
+              animation-delay: 0.83s;
+            }
+            .container--card-spot:nth-of-type(20) {
+              animation-delay: 0.12s;
+            }
+            .container--card-spot:nth-of-type(21) {
+              animation-delay: 0.37s;
+            }
+            .container--card-spot:nth-of-type(22) {
+              animation-delay: 0.41s;
+            }
+            .container--card-spot:nth-of-type(23) {
+              animation-delay: 0.37s;
+            }
+            .container--card-spot:nth-of-type(24) {
+              animation-delay: 0.38s;
+            }
+            .container--card-spot:nth-of-type(25) {
+              animation-delay: 0.26s;
+            }
+            .container--card-spot:nth-of-type(26) {
+              animation-delay: 0.14s;
+            }
+            .container--card-spot:nth-of-type(27) {
+              animation-delay: 0.86s;
+            }
+            .container--card-spot:nth-of-type(28) {
+              animation-delay: 0.01s;
+            }
+            .container--card-spot:nth-of-type(29) {
+              animation-delay: 0.22s;
+            }
+            .container--card-spot:nth-of-type(30) {
+              animation-delay: 0.86s;
+            }
+            .container--card-spot:nth-of-type(31) {
+              animation-delay: 0.74s;
+            }
+            .container--card-spot:nth-of-type(32) {
+              animation-delay: 0.47s;
+            }
+            .container--card-spot:nth-of-type(33) {
+              animation-delay: 0.03s;
+            }
+            .container--card-spot:nth-of-type(34) {
+              animation-delay: 0.98s;
+            }
+            .container--card-spot:nth-of-type(35) {
+              animation-delay: 0.73s;
+            }
+            .container--card-spot:nth-of-type(36) {
+              animation-delay: 0.85s;
+            }
+            .container--card-spot:nth-of-type(37) {
+              animation-delay: 0.96s;
+            }
+            .container--card-spot:nth-of-type(38) {
+              animation-delay: 0.97s;
+            }
+            .container--card-spot:nth-of-type(39) {
+              animation-delay: 0.56s;
+            }
+            .container--card-spot:nth-of-type(40) {
+              animation-delay: 0.47s;
+            }
+            .container--card-spot:nth-of-type(41) {
+              animation-delay: 0.96s;
+            }
+            .container--card-spot:nth-of-type(42) {
+              animation-delay: 0.73s;
+            }
+            .container--card-spot:nth-of-type(43) {
+              animation-delay: 0.06s;
+            }
+            .container--card-spot:nth-of-type(44) {
+              animation-delay: 0.85s;
+            }
+            .container--card-spot:nth-of-type(45) {
+              animation-delay: 0.35s;
+            }
+            .container--card-spot:nth-of-type(46) {
+              animation-delay: 0.29s;
+            }
+            .container--card-spot:nth-of-type(47) {
+              animation-delay: 0.61s;
+            }
+            .container--card-spot:nth-of-type(48) {
+              animation-delay: 0.83s;
+            }
+            .container--card-spot:nth-of-type(49) {
+              animation-delay: 0.63s;
+            }
+            .container--card-spot:nth-of-type(50) {
+              animation-delay: 0.26s;
+            }
+            .container--card-spot:nth-of-type(51) {
+              animation-delay: 0.16s;
+            }
+            .container--card-spot:nth-of-type(52) {
+              animation-delay: 0.01s;
+            }
+            .container--card-spot:nth-of-type(53) {
+              animation-delay: 0.17s;
+            }
+            .container--card-spot:nth-of-type(54) {
+              animation-delay: 0.82s;
+            }
+            .container--card-spot:nth-of-type(55) {
+              animation-delay: 0.09s;
+            }
+            .container--card-spot:nth-of-type(56) {
+              animation-delay: 0.58s;
+            }
+            .container--card-spot:nth-of-type(57) {
+              animation-delay: 0.98s;
+            }
+            .container--card-spot:nth-of-type(58) {
+              animation-delay: 0.1s;
+            }
+            .container--card-spot:nth-of-type(59) {
+              animation-delay: 0.85s;
+            }
+            .container--card-spot:nth-of-type(60) {
+              animation-delay: 0.49s;
+            }
+            .container--card-spot:nth-of-type(61) {
+              animation-delay: 0.6s;
+            }
+            .container--card-spot:nth-of-type(62) {
+              animation-delay: 0.47s;
+            }
+            .container--card-spot:nth-of-type(63) {
+              animation-delay: 0.53s;
+            }
+            .container--card-spot:nth-of-type(64) {
+              animation-delay: 0.5s;
+            }
+            .container--card-spot:nth-of-type(65) {
+              animation-delay: 0.35s;
+            }
+            .container--card-spot:nth-of-type(66) {
+              animation-delay: 0.58s;
+            }
+            .container--card-spot:nth-of-type(67) {
+              animation-delay: 0.07s;
+            }
+            .container--card-spot:nth-of-type(68) {
+              animation-delay: 0.11s;
+            }
+            .container--card-spot:nth-of-type(69) {
+              animation-delay: 0.8s;
+            }
+            .container--card-spot:nth-of-type(70) {
+              animation-delay: 0.71s;
+            }
+            .container--card-spot:nth-of-type(71) {
+              animation-delay: 0.11s;
+            }
+            .container--card-spot:nth-of-type(72) {
+              animation-delay: 0.27s;
+            }
+            .container--card-spot:nth-of-type(73) {
+              animation-delay: 0.47s;
+            }
+            .container--card-spot:nth-of-type(74) {
+              animation-delay: 0.84s;
+            }
+            .container--card-spot:nth-of-type(75) {
+              animation-delay: 0.5s;
+            }
+            .container--card-spot:nth-of-type(76) {
+              animation-delay: 0.65s;
+            }
+            .container--card-spot:nth-of-type(77) {
+              animation-delay: 0.36s;
+            }
+            .container--card-spot:nth-of-type(78) {
+              animation-delay: 0.01s;
+            }
+            .container--card-spot:nth-of-type(79) {
+              animation-delay: 0.59s;
+            }
+            .container--card-spot:nth-of-type(80) {
+              animation-delay: 0.34s;
+            }
+            .container--card-spot:nth-of-type(81) {
+              animation-delay: 0.61s;
+            }
+            .container--card-spot:nth-of-type(82) {
+              animation-delay: 0.63s;
+            }
+            .container--card-spot:nth-of-type(83) {
+              animation-delay: 0.95s;
+            }
+            .container--card-spot:nth-of-type(84) {
+              animation-delay: 0.08s;
+            }
+            .container--card-spot:nth-of-type(85) {
+              animation-delay: 0.79s;
+            }
+            .container--card-spot:nth-of-type(86) {
+              animation-delay: 0.96s;
+            }
+            .container--card-spot:nth-of-type(87) {
+              animation-delay: 0.88s;
+            }
+            .container--card-spot:nth-of-type(88) {
+              animation-delay: 0.33s;
+            }
+            .container--card-spot:nth-of-type(89) {
+              animation-delay: 0.61s;
+            }
+            .container--card-spot:nth-of-type(90) {
+              animation-delay: 0.04s;
+            }
+            .container--card-spot:nth-of-type(91) {
+              animation-delay: 0.18s;
+            }
+            .container--card-spot:nth-of-type(92) {
+              animation-delay: 0.86s;
+            }
+            .container--card-spot:nth-of-type(93) {
+              animation-delay: 0.35s;
+            }
+            .container--card-spot:nth-of-type(94) {
+              animation-delay: 0.2s;
+            }
+            .container--card-spot:nth-of-type(95) {
+              animation-delay: 0.64s;
+            }
+            .container--card-spot:nth-of-type(96) {
+              animation-delay: 0.03s;
+            }
+            .container--card-spot:nth-of-type(97) {
+              animation-delay: 0.1s;
+            }
+            .container--card-spot:nth-of-type(98) {
+              animation-delay: 0.26s;
+            }
+            .container--card-spot:nth-of-type(99) {
+              animation-delay: 0.2s;
+            }
+            .container--card-spot:nth-of-type(100) {
+              animation-delay: 0.71s;
+            }
+            .container--card-spot.size-1 {
+              flex: 1;
+            }
+            .container--card-spot.size-2 {
+              flex: 2;
+            }
+            .container--card-spot:hover {
+              z-index: 100;
+            }
+            .container--card {
+              border-radius: 5px;
+              text-align: center;
+              margin: 0.2em;
+              background: #fff;
+              position: relative;
+              align-items: flex-start;
+            }
+            .container--card--text {
+              padding: 1em 0;
+              background: #fff;
+              border-radius: 0 0 5px 5px;
+            }
+            .container--card--text.dark {
+              background: #000;
+            }
+            .container--card.border {
+              border: 0.15em solid #fff;
+            }
+            .container--card-mini {
+              height: 6em;
+              margin: 0.2em;
+              margin-bottom: 0.4em;
+            }
+            .container--card-mini--content {
+              border-radius: 5px;
+              padding: 1em;
+              background: #fff;
+              display: flex;
+              z-index: 1000;
+              position: relative;
+            }
+            .container--card-mini--image {
+              flex: 1;
+            }
+            .container--card-mini--text {
+              margin-left: 1em;
+              flex: 2;
+              display: flex;
+            }
+            .container--card-mini, .container--card {
+              position: relative;
+            }
+            .container--card-mini *, .container--card * {
+              z-index: 1;
+              position: relative;
+            }
+            .container--card-mini:after, .container--card:after {
+              content: '';
+              position: absolute;
+              top: -0.5em;
+              bottom: -0.5em;
+              left: -0.5em;
+              right: -0.5em;
+              background: linear-gradient(to right, #f75f21, #f00a4c);
+              z-index: 0;
+              border-radius: 5px;
+              box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.75);
+              opacity: 0;
+              transition: all 0.2s;
+            }
+            .container--card-mini:hover, .container--card:hover {
+              z-index: 10000;
+              cursor: pointer;
+            }
+            .container--card-mini:hover:after, .container--card:hover:after {
+              opacity: 1;
+            }
+            .item--link {
+              position: relative;
+              padding: 0.5em 1em;
+              color: #777;
+              text-transform: uppercase;
+              font-weight: 600;
+              background: #fff;
+              margin-right: -1px;
+              flex-grow: 1;
+              text-align: center;
+              user-select: none;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              min-width: 4em;
+              transition: all 0.2s;
+            }
+            .item--link.hint {
+              background: #777;
+              color: #fff;
+            }
+            .item--link.hint:first-of-type {
+              border-radius: 5px 0 0 5px;
+            }
+            .item--link.hint:last-of-type {
+              border-radius: 0 5px 5px 0;
+            }
+            .item--link:hover:not(.hint), .item--link.active {
+              cursor: pointer;
+              background: linear-gradient(to right, #f75f21, #f00a4c);
+              color: #fff;
+            }
+            .item--notification {
+              position: absolute;
+              background: #0ab193;
+              color: #fff;
+              width: 1.5em;
+              height: 1.5em;
+              line-height: 1.5em;
+              right: 0.5em;
+              top: -1em;
+              border-radius: 50%;
+              box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.75);
+            }
+            .item--icon {
+              position: absolute;
+              background: #0ab193;
+              color: #fff;
+              width: 3em;
+              height: 3em;
+              line-height: 3.5em;
+              left: 0.5em;
+              top: -2em;
+              padding-top:10px;
+              border-radius: 50%;
+              box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.75);
+            }
+            .item--icon i {
+              font-size: 1.5em;
+            }
+            .item--card-image {
+              min-height: 15em;
+              background-size: cover;
+              background-position: center;
+              border-radius: 5px 5px 2.5px 2.5px;
+            }
+            .item--card-image.med-height {
+              min-height: 12em;
+            }
+            .item--card-icon {
+              background-size: cover;
+              background-position: center;
+              height: 4em;
+              filter: brightness(125%);
+            }
+            .item--card-title {
+              color: #0ab193;
+              position: relative;
+            }
+            .item--card-title .text {
+              font-size: 1.6em;
+              text-transform: uppercase;
+              font-weight: 600;
+            }
+            .item--card-title.dark .text {
+              color: #fff;
+            }
+            .item--card-sub {
+              color: #777;
+              font-weight: 900;
+              margin: auto;
+            }
+            .item--card-sub .text {
+              font-size: 1.15em;
+            }
+            .item--card-sub.dark .text {
+              color: #0ab193;
+            }
+            @keyframes flyIn {
+              0% {
+                opacity: 0;
+                transform: scale(0.85);
+              }
+              75% {
+                opacity: 0.9;
+                transform: scale(1);
+              }
+              100% {
+                opacity: 1;
+                transform: scale(1);
+              }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="background"></div>
+        <div class="container">
+          <div class="container--logo"><img src="https://image.flaticon.com/icons/png/512/12/12195.png" style="margin-top:10px;margin-left:55%;" width="75"/></div>
+          <div style="margin-left:2%;width:150%" class="container--navigation">
+            <div class="item--link hint">NH Net</div>
+            <div class="item--link active">home</div>
+            <div onclick="window.location='https://NHChat-main--nicholashuaman.repl.co';" style="text-transform: none;" class="item--link">NHChat
+              <div class="item--notification">2</div>
+            </div>
+            <div onclick="window.location='https://nhnet.github.io/NHPatrick.html';" style="text-transform: none;" class="item--link">NH Net Assistant</div>
+            <div class="item--link hint" style="text-transform: lowercase;">v8.0</div>
+          </div>
+          <div style="width:115%" class="container--top-menu">
+            <div onclick="window.location='https://nhnet.github.io/NHBrowserProducts.html'" class="container--card-spot size-1">
+              <div class="container--card border">
+                <div class="item--card-image" style="background-image: url(https://nhnet.github.io/img/NHBrowserApps.png);"> </div>
+                <div class="container--card--text">
+        <!--           <div class="item--notification">2</div> -->
+                  <div class="item--icon"><i class="fa fa-check-circle-o"></i></div>
+                  <div class="item--card-title">
+                    <div class="text">Browser Apps</div>
+                  </div>
+                  <div class="item--card-sub">
+                    <div class="text">Incognito Google, NH YouTube,etc</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div onclick="window.location='https://nhnet.github.io/Music/';" class="container--card-spot size-2">
+              <div class="container--card border">
+                <div class="item--card-image" style="background: url(https://nhnet.github.io/img/NHMus.png) 40px 0px;background-size:400px 200px;"> </div>
+                <div class="container--card--text dark">
+                  <div class="item--card-title dark">
+                    <div class="text">NH Net Sound Tools</div>
+                  </div>
+                  <div class="item--card-sub dark">
+                    <div class="text">All your favourite sound tools, all in one place!</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div onclick="window.location='https://nhnet.github.io/NHBrowserGames.html';" class="container--card-spot size-1">
+              <div class="container--card border">
+                <div class="item--card-image" style="background-image: url(
+        https://nhnet.github.io/img/NHGamesScreen.png);"> </div>
+                <div class="container--card--text">
+                  <div class="item--icon"><i class="fa fa-gamepad"></i></div>
+                  <div class="item--card-title">
+                    <div class="text">NH Net Games</div>
+                  </div>
+                  <div class="item--card-sub">
+                    <div class="text">More Games coming soon!</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="width:108%"  class="container--bottom-menu">
+             <div class="container--card-spot size-1">
+              <div class="container--card size-1">
+                <div class="item--card-image med-height colorize" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/545665/Screen%20Shot%202019-01-03%20at%209.46.59%20PM.png);"> </div>
+                <div class="container--card--text">
+                  <div class="item--card-title">
+                    <div id="clickLevel" class="text">level 2</div>
+                  </div>
+                  <div class="item--card-sub">
+                    <div id="clickActivity" class="text">Click Activity: ()</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div onclick="var reallyRemove = confirm('Do you really want to restore NH Net Click Progress?'); if(reallyRemove){localStorage.clear();restart();}" class="container--card-spot size-1">
+              <div class="container--card">
+                <div class="item--card-image med-height" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/545665/Screen%20Shot%202019-01-03%20at%209.40.36%20PM.png);"> </div>
+                <div class="container--card--text">
+                  <div class="item--card-title">
+                    <div class="text">clear clicks</div>
+                  </div>
+                  <div class="item--card-sub"><br>
+                    <div class="text">Reset Progress</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container--card-spot size-2">
+              <div class="container--card border">
+                <div class="item--card-image" style="min-height:0px;height:165px;background: url(https://www.iplsa.org/images/Products/00000000-0000-0000-0000-000000000000_4555.PNG) 0px -10px #FFF;filter:invert(1);background-size:100% 200px;"> </div>
+                <div class="container--card--text dark">
+                  <div class="item--card-title dark">
+                <div style="text-transform:none;" class="text">AdSpace</div>
+                  </div>
+                  <div class="item--card-sub dark">
+                    <div class="text">Email spbong999@gmail.com to place your Ad on NH Net!</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div onclick="alert('Sorry, there are no settings at the moment...')" class="container--card-spot size-1">
+              <div style="width:130%;"  class="container--card-mini">
+                <div class="container--card-mini--content">
+                  <div class="container--card-mini--image">
+                    <div class="item--card-icon" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/545665/Screen%20Shot%202019-01-03%20at%209.39.19%20PM.png);"> </div>
+                  </div>
+                  <div class="container--card-mini--text">
+                    <div class="item--card-sub">
+                      <div class="text">Settings</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+            var clickLvl=0,toNextLevel=0;
+            function restart(){
+               if(!localStorage['clickCount']){
+                  localStorage['clickCount']=-1;
+               }
+            }
+            restart();
+            function clickGame(){
+               if(localStorage['clickCount']<9){
+                  toNextLevel=10;
+                  clickLvl=1;
+               }else if(localStorage['clickCount']<99){
+                  toNextLevel=100;
+                  clickLvl=2;
+               }else if(localStorage['clickCount']<499){
+                  toNextLevel=500;
+                  clickLvl=3;
+               }
+               else if(localStorage['clickCount']<999){
+                   toNextLevel=1000;
+                  clickLvl=4;
+               }else if(localStorage['clickCount']<1499){
+                  toNextLevel=1500;
+                  clickLvl=5;
+               }else if(localStorage['clickCount']<9999){
+                  toNextLevel=10000;
+                  clickLvl=6;
+               }
+               document.querySelector('#clickActivity').innerHTML='Click Activity:<br>('+localStorage['clickCount']+'/'+toNextLevel.toString()+')';
+               document.querySelector('#clickLevel').innerHTML='level '+clickLvl; 
+            }
+            clickGame();
+            document.body.addEventListener('click',function(){
+               localStorage['clickCount']++;
+               clickGame();
+               
+            });
+        </script>
+    </body>
+</html>
