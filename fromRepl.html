@@ -1,8 +1,8 @@
 
 <!DOCTYPE html><html lang='en' class=''>
 <head><script src='https://static.codepen.io/assets/editor/live/console_runner-1df7d3399bdc1f40995a35209755dcfd8c7547da127f6469fd81e5fba982f6af.js'></script><script src='https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/jkantner/pen/dLMbQq" />
-
-
+<link rel="shortcut icon" type="image/png" href="https://image.flaticon.com/icons/png/512/12/12195.png" />
+<title>Loading NH Net</title>
 <style class="cp-pen-styles">* {
 	border: 0;
 	box-sizing: border-box;
@@ -77,5 +77,10 @@ body {
 	to { transform: translateX(-0.15em) rotate(2turn) }
 }</style></head><body>
 <div class="preloader"><h1>Loading<br>NH Net v8.0</h1></div>
-
+<script>
+//   localStorage.clear()
+  if(!localStorage['updated']){localStorage['updated']=true;window.location='https://nhnet.github.io/updateTov7.html';}
+  Splitting();
+  setTimeout(function(){window.location="https://nhnet.github.io/v8.html";},5000);
+</script>
 </body></html>
