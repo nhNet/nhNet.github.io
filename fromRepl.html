@@ -1,0 +1,81 @@
+
+<!DOCTYPE html><html lang='en' class=''>
+<head><script src='https://static.codepen.io/assets/editor/live/console_runner-1df7d3399bdc1f40995a35209755dcfd8c7547da127f6469fd81e5fba982f6af.js'></script><script src='https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/jkantner/pen/dLMbQq" />
+
+
+<style class="cp-pen-styles">* {
+	border: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+@import url('https://fonts.googleapis.com/css?family=Baloo+Chettan');
+h1{
+	text-align:center;
+	color:white;
+	position:absolute;
+	top:35%;
+	left:18%;
+	font-family: 'Baloo Chettan', cursive;
+}
+body {
+	background: hsl(0,0%,20%);
+	overflow: hidden;
+}
+.preloader, .preloader:before {
+	--playState: running;
+	border-radius: 50%;
+}
+.preloader {
+	--stopC1: hsl(0,0%,20%);
+	--stopC2: hsl(0,0%,10%);
+	animation: changeColor 24s ease-in-out infinite var(--playState);
+	background-image:
+		radial-gradient(100% 100% at 50% 0,hsla(0,0%,0%,0) 92%,hsl(0,0%,0%,0.5)),
+		radial-gradient(100% 100% at 25% 0,var(--stopC1) 25%,var(--stopC2));
+	box-shadow: 0 0 15em 5em hsla(0,0%,0%,70%);
+	font-size: 12px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 20em;
+	height: 20em;
+}
+.preloader:before {
+	--c: hsl(0,89%,60%);
+	--cT: hsla(0,89%,60%,0);
+	animation: spin 2s ease-in-out infinite var(--playState);
+	background-image: radial-gradient(100% 100% at 48% 50%,var(--cT) 48%,currentColor 52%);
+	border: 0;
+	border-right: 0.3em solid;
+	box-shadow: 0.3em 0 0.3em;
+	color: var(--c);
+	content: "";
+	display: block;
+	width: 100%;
+	height: 100%;
+	transform: translateX(-0.15em) rotate(0deg);
+	transform-origin: calc(50% - 0.15em) 50%;
+}
+@keyframes changeColor {
+	from { filter: hue-rotate(0deg) }
+	8.33% { filter: hue-rotate(30deg) }
+	16.67% { filter: hue-rotate(60deg) }
+	25% { filter: hue-rotate(90deg) }
+	33.33% { filter: hue-rotate(120deg) }
+	41.67% { filter: hue-rotate(150deg) }
+	50% { filter: hue-rotate(180deg) }
+	58.33% { filter: hue-rotate(210deg) }
+	66.67% { filter: hue-rotate(240deg) }
+	75% { filter: hue-rotate(270deg) }
+	83.33% { filter: hue-rotate(300deg) }
+	91.67% { filter: hue-rotate(330deg) }
+	to { filter: hue-rotate(360deg) }
+}
+@keyframes spin {
+	to { transform: translateX(-0.15em) rotate(2turn) }
+}</style></head><body>
+<div class="preloader"><h1>Loading<br>NH Net v8.0</h1></div>
+
+</body></html>
