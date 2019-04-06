@@ -1,310 +1,504 @@
+
 <!DOCTYPE html><html lang='en' class=''>
-<head><link rel="shortcut icon" href="https://nhnet.github.io/img/NHMus.png" />
-<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+<head><script src='https://static.codepen.io/assets/editor/live/console_runner-1df7d3399bdc1f40995a35209755dcfd8c7547da127f6469fd81e5fba982f6af.js'></script><script src='https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/fuzinato/pen/PwLLjB" />
+
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
-<title>NH Sound Tools!</title>
-<style class="cp-pen-styles">body {
-  font-family: 'Bungee', cursive;
-  background-color: #4682b4;
-  margin-top:10%;
+<style class="cp-pen-styles">@import url("https://fonts.googleapis.com/css?family=Oswald");
+canvas {
+  position: absolute;
 }
-a:hover,
-a {
-  color: inherit;
-  text-decoration: inherit;
-}
-.top {
-  color: white;
+
+.button {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 45%;
+  font-family: 'Oswald', sans-serif;
+  background: #005588;
+  border-radius: 10px;
   font-size: 30px;
-  margin-left: 60px;
-  text-decoration: underline;
-  margin-top: 90px;
+  padding: 5px;
+  color: white;
+  border: none;
+  display: inline-block;
 }
-.c-menu {
-  position: relative;
-  height: 440px;
-  width: 800px;
+
+nav.link-list {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 20px;
+  display: inline-block;
+}
+nav.link-list li {
   overflow: hidden;
-  margin-left: 50px;
-  margin-top: 50px;
+  float: left;
 }
-.top, .bottom {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  background: transparent;
-}
-.top {
-  top: 0;
-  background: linear-gradient(to bottom, steelblue 0%, rgba(70, 130, 180, 0) 100%);
-}
-.bottom {
-  bottom: 0;
-  background: linear-gradient(to bottom, rgba(70, 130, 180, 0) 0%, steelblue 100%);
-}
-.img-box, .hide {
-  position: absolute;
-  left: 7px;
-  top: 177px;
-  width: 111px;
-  border-radius: 20px;
-  border: 1px solid white;
-  -webkit-transform: scaleX(1.9) scaleY(1.5);
-          transform: scaleX(1.9) scaleY(1.5);
-  height: 82px;
-  margin-left: 19%;
-  margin-top: 3%;
-  opacity: 1;
-  transition: opacity, 2s;
-}
-.hide {
-  opacity: 0;
-  transition: opacity, .5s;
-}
-.items-list {
-  position: absolute;
-  left: -400px;
-  top: -101px;
-  width: 800px;
-  height: 510px;
-  border: 2px solid #a2c0d9;
-  border-radius: 45%;
-  margin: 70px;
-}
-.item {
-  position: absolute;
-  width: 900px;
-  padding-left: 25px;
-  font-size: 18px;
-  transition: font-size 1s;
-  text-align: left;
-  margin-left: 303px;
-  cursor: pointer;
-}
-.item:nth-child(7) {
-  font-size: 28px;
-  margin-top: -4px;
-  transition: font-size .5s;
-}
-.item:before {
-  content: "";
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: #dae6ef;
+nav.link-list a {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  margin: 5px;
+  border: 2px solid black;
+  display: inline-block;
   border-radius: 50%;
-  left: 5px;
-  top: 4px;
+  background-color: #fff;
+  transition: background-color 0.5s ease;
 }
-.item:nth-child(7):before {
-  top: 10px;
+nav.link-list a.is-active {
+  background-color: #C8A36C;
 }
-.item a {
-  color: #dae6ef;
-  transition: color 0.5s;
-}
-.item a:hover {
-  color: white;
-  transition: color 0.5s;
-}
-.item:nth-child(2), .item:nth-child(3), .item:nth-child(11), .item:nth-child(12) {
-  opacity: 0.7;
-}
-.btn {
+
+nav.btns {
   position: absolute;
-  width: 20px;
-  height: 20px;
+  top: 45%;
+  width: 100%;
+}
+nav.btns button {
+  position: absolute;
+  display: inline-block;
+  width: 44px;
+  height: 44px;
+  text-align: center;
+  line-height: 44px;
+  font-weight: bold;
+  font-size: 10px;
+  font-family: serif;
+  border-radius: 50%;
+  background-color: #fff;
   cursor: pointer;
-  margin-left: 19%;
-  left: 60px;
-  font-size: 20pt;
-  margin-top: 4%;
-  color: #dae6ef;
-  -webkit-transform: scale(3, 1);
-          transform: scale(3, 1);
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  border: 0;
+  transition: all 0.5s ease;
 }
-.btn:hover {
-  color: white;
-  transition: color 0.5s;
+nav.btns button:focus {
+  outline: 0;
 }
-.prev {
-  bottom: 100px;
+nav.btns button:before {
+  content: '';
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  top: 0;
+  left: 0;
+  border: 2px solid #C8A36C;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.5s ease;
 }
-.next {
-  top: 110px;
+nav.btns button span {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+nav.btns button:hover {
+  background-color: #C8A36C;
+  width: 64px;
+  height: 64px;
+  transform: translateY(-10px);
+}
+nav.btns button:hover:before {
+  opacity: 1;
+  width: 104px;
+  height: 104px;
+  top: -22px;
+  left: -22px;
+}
+nav.btns button:hover span {
+  opacity: 1;
+}
+nav.btns button.show-prev {
+  left: 15%;
+}
+nav.btns button.show-next {
+  right: 15%;
+}
+
+footer {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-family: sans-serif;
+  color: #ccc;
+  font-size: 12px;
+  line-height: 12px;
+}
+footer a {
+  color: inherit;
+}
+
+.loading-txt {
+  text-align: center;
+  width: 100%;
+  font-size: 24px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.loading-txt.is-hidden {
+  display: none;
 }
 </style></head><body>
-<div class="container">
-  <div class="c-menu">
-    <div id="list" class="items-list">
-          <div class="item">
-            <a href="https://nhnet.github.io/pro/" 
-               data-img="https://image.flaticon.com/icons/png/512/12/12195.png">
-               Go back to NH Net
-            </a>
-          </div>
-          <div class="item">
-            <a href="#" 
-               data-img="https://image.flaticon.com/icons/png/512/12/12195.png">
-               More,
-            </a>
-          </div>
-          <div class="item">
-            <a href="#" 
-               data-img="https://image.flaticon.com/icons/png/512/12/12195.png">
-               Coming Soon!
-            </a>
-          </div>
-          <div class="item">
-            <a href="#" 
-               data-img="https://image.flaticon.com/icons/png/512/12/12195.png">
-               Empty space!
-            </a>
-          </div>
-          <div class="item">
-            <a href="https://nhnet.github.io/pro/" 
-               data-img="https://image.flaticon.com/icons/png/512/12/12195.png">
-               Back to NH Net
-            </a>
-          </div>
-          <div class="item">
-            <a href="#" 
-               data-img="https://image.flaticon.com/icons/png/512/12/12195.png">
-              Please ignore the current structure
-            </a>
-          </div>
-          <div class="item">
-            <a href="https://nhnet.github.io/Music/pitch.html" 
-               data-img="https://nhnet.github.io/img/NHMus.png">
-               NH Pitch Changer
-            </a>
-          </div>
-          <div class="item">
-            <a href="https://nhnet.github.io/Music/midiJS.html" 
-               data-img="https://nhnet.github.io/img/NHMid.png">
-               NH Midi Player
-            </a>
-         </div>
-          <div class="item">
-            <a href="https://nhnet.github.io/youtube/?from=Mus"
-               data-img="https://nhnet.github.io/Music/ytLogo.png">
-               Youtube audio
-            </a>
-          </div>
-          <div class="item">
-            <a href="https://nhnet.github.io/Music/SpeechNotes.html" 
-               data-img="https://nhnet.github.io/img/NHSpeech-Text.png">
-               NH Speech Notes
-            </a>
-          </div>
-          <div class="item">
-            <a href="https://nhnet.github.io/Music/Text-Speech.html" 
-               data-img="https://nhnet.github.io/img/NHText-Speech.png">
-               NH Text to Speech
-            </a>
-          </div>
-          <div class="item">
-            <a href="https://nhnet.github.io/Music/arpeggioGenerator.html" data-img="https://nhnet.github.io/img/NHArpeggio.png">
-               Arpeggio Generator
-            </a>
-          </div>
-          <div class="item">
-            <a href="javascript:alert('Available soon!')"
-               data-img="https://nhnet.github.io/img/NHDood.png">
-               Music Doodles
-            </a>
-          </div>
-    </div>
-    <div class="top">NH Net Sound Tools</div>
-    <div class="btn prev" onClick="animation({}, 1);">˅</div>
-       <div id="pic" class="img-box"></div>
-    <div class="btn next" onClick="animation({}, 0);">˄</div>
-    <div class="bottom"></div>
-  </div>  
-</div>    
-<script >
-const srart_pos = 90.75;
-const item_count = 13;
-const s = 0.52 * Math.PI / 180;
+    <canvas id="canvas0" width="800" height="480"></canvas>
+    <canvas id="canvas1" width="800" height="480"></canvas>
+    <canvas id="canvas2" width="800" height="480"></canvas>
+    <canvas id="canvas3" width="800" height="480"></canvas>
+<button class="button"> GOTO</button>
+    <nav class="link-list">
+        <ul>
+            <li><a href="" data-whereTo="NH Pitch Shifter" data-hyperlink="https://nhnet.github.io/Music/pitch.html" data-order="0" data-imagesrc="https://nhnet.github.io/img/NHMus.png"></a></li>
+            <li><a href="" data-whereTo="NH Midi Player" data-hyperlink="https://nhnet.github.io/Music/midiJS.html" data-order="1" data-imagesrc="https://nhnet.github.io/img/NHMid.png"></a></li>
+						<li><a href="" data-whereTo="NH Speech Notes" data-hyperlink="https://nhnet.github.io/Music/SpeechNotes.html" data-order="2" data-imagesrc="https://nhnet.github.io/img/NHSpeech-Text.png"></a></li>
+            <li><a href="" data-whereTo="NH Text to Speech" data-hyperlink="https://nhnet.github.io/Music/Text-Speech.html" data-order="3" data-imagesrc="https://nhnet.github.io/img/NHText-Speech.png"></a></li>
+						<li><a href="" data-whereTo="Arpeggio Generator" data-hyperlink="https://nhnet.github.io/Music/arpeggioGenerator.html" data-order="4" data-imagesrc="https://nhnet.github.io/img/NHArpeggio.png"></a></li>
+        </ul>
+    </nav>
 
-var pos = [];
-var elem = document.getElementsByClassName('item');
+    <nav class="btns">
+        <button class="show-prev"><<span> PREV</span></button>
+        <button class="show-next">&nbsp;&nbsp;&nbsp;&nbsp;><span>NEXT</span></button>
+    </nav>
+
+    <p class="loading-txt">Loading images...</p>
+
+<script src='https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js'></script><script src='//cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js'></script>
+        <script id="rendered-js">
+          (function () {
+
+  'use strict';
+
+  /* global TweenMax, Power1 */
+
+  var whereTo,hyperlink,wTArray = [],hrefArray = [];
+  //DOM
+  var canvas0 = document.getElementById('canvas0'),
+  ctx0 = canvas0.getContext('2d'),
+  canvas1 = document.getElementById('canvas1'),
+  ctx1 = canvas1.getContext('2d'),
+  canvas2 = document.getElementById('canvas2'),
+  ctx2 = canvas2.getContext('2d'),
+  canvas3 = document.getElementById('canvas3'),
+  ctx3 = canvas3.getContext('2d'),
+  linklist = document.querySelector('.link-list'),
+  btns = document.querySelector('.btns'),
+  nextBtn = btns.querySelector('.show-next'),
+  loadTxt = document.querySelector('.loading-txt');;
 
 
-function allocationItems() {
-    var i;
-    var pp = elem[6].getElementsByTagName('a')[0].getAttribute('data-img');
-    document.getElementById("pic").style.background = "url('" + pp + "') white";
-    document.getElementById("pic").style.backgroundSize = "111px 82px";
-    document.getElementById("pic").className = "img-box";
-    pos[0] = srart_pos;
-    for (i = 1; i < item_count; i++) {
-        pos[i] = pos[i - 1] - 0.2;
-        last_pos = pos[i];
+  // CONST
+  var VW, VH, AR;
+  var IS_ACTIVE = 'is-active';
+
+
+  // VARS
+  var isAnimating = false,
+  currentImage = 0,
+  prevImage = 0,
+  currentLink,
+  imagesloaded = 0,
+  partMove = {
+    val: 1 };
+
+  var slideshowInterval;
+
+
+  // IMAGES STUFF
+  var imagesList = [],
+  linkList = [];
+  var imgW, imgH, IAR;
+
+
+  // CANVAS STUFF
+  var partList = [{
+    context: ctx1,
+    xpos: 100,
+    radius: 0 // circumference of mask1
+  }, {
+    context: ctx2,
+    xpos: -70,
+    radius: 0 // circumference of mask2
+  }, {
+    context: ctx3,
+    xpos: 50,
+    radius: 0 // circumference of mask3
+  }];
+
+
+
+
+
+
+
+
+  function drawImages() {
+
+    var imgPrev = imagesList[prevImage];
+    var imgNext = imagesList[currentImage];
+    document.querySelector('.button').innerHTML = wTArray[currentImage];
+    document.querySelector('.button').onclick = function () {window.location = hrefArray[currentImage];};
+
+
+    // This is Next
+    ctx0.globalAlpha = 1;
+    ctx0.drawImage(imgNext, 0, 0, imgW, imgH);
+
+    // This is Prev
+    ctx0.globalAlpha = partMove.val;
+    ctx0.drawImage(imgPrev, 0, 0, imgW, imgH);
+
+
+
+    var obj, ctx, xPrev, xNext;
+    for (var i = 0; i < partList.length; i++) {
+
+      obj = partList[i];
+      ctx = obj.context;
+      xPrev = -obj.xpos * (1 - partMove.val);
+      xNext = obj.xpos * partMove.val;
+
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(VW / 2, VH / 2, obj.radius, 0, 2 * Math.PI, false);
+      ctx.fill();
+
+      // This is Next
+      ctx.globalAlpha = 1;
+      ctx.globalCompositeOperation = 'source-in';
+      ctx.drawImage(imgNext, xNext, 0, imgW, imgH);
+
+      // This is Prev
+      ctx.globalAlpha = partMove.val;
+      ctx.globalCompositeOperation = 'source-atop';
+      ctx.drawImage(imgPrev, xPrev, 0, imgW, imgH);
+
+
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.globalAlpha = 1;
+
+      if (i === 0) {
+        // 				if (i !== partList.length-1) {
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = '#fff';
+        ctx.stroke();
+      }
+
+      // ctx.restore();
+
     }
-    for (i = 0; i < item_count + 1; i++) {
-        elem[i].style.left = 240 + 250 * Math.sin(pos[i]) + 'px';
-        elem[i].style.top = 240 + 250 * Math.cos(pos[i]) + 'px';
-    }
-}
+  }
 
-allocationItems();
+  function changeImage() {
 
-function animation(args, flag) {
-    var $ = {
-        radius: 250,
-        speed: 10
-    };
-    var e = elem;
-    document.getElementById("pic").className = "hide";
-    function animate(draw, duration, callback) {
-        var start = performance.now();
-        requestAnimationFrame(function animate(time) {
-            var timePassed = time - start;
-            console.log(time, start);
-            if (timePassed > duration)
-            timePassed = duration;
-            draw(timePassed);
-            if (timePassed < duration) {
-                requestAnimationFrame(animate);
-            } else callback();
-        });
+    // Do not interupt previous movement
+    if (isAnimating) {
+      return;
     }
-    animate(function (timePassed) {
-        var i;
-        for (i = 0; i < item_count; i++) {
-            e[i].style.left = 240 + $.radius * Math.sin(pos[i]) + 'px';
-            e[i].style.top = 240 + $.radius * Math.cos(pos[i]) + 'px';
-            if (flag) {
-                pos[i] += s;
-            } else {
-                pos[i] -= s;
-            }
-        } /* callback function */
-    }, 400, function changeItems() {
-        var list = document.getElementById('list');
-        var ch = flag ? list.firstElementChild : list.lastElementChild;
-        ch.remove();
-        if (flag) {
-            list.appendChild(ch);
-        } else {
-            list.insertBefore(ch, list.firstChild);
-        }
-        allocationItems();
-    });
-}
-  window.addEventListener("error", handleError, true);
-function handleError(evt) {
-    if (evt.message) { // Chrome sometimes provides this
-      alert("error: "+evt.message +" at linenumber: "+evt.lineno+" of file: "+evt.filename);
+
+    isAnimating = true;
+
+    TweenMax.to(partMove, 1, {
+      val: 0,
+      ease: Power1.easeInOut,
+      onUpdate: drawImages,
+      onComplete: function () {
+        partMove.val = 1;
+        isAnimating = false;
+      } });
+
+
+  }
+
+
+
+  function onBtnsClick(e) {
+
+    e.preventDefault();
+    // Do not interupt previous animation
+    if (isAnimating) {
+      return;
+    }
+
+    var trgt = e.target;
+    if (trgt.nodeName === 'BUTTON') {
+
+      prevImage = currentImage;
+
+      if (trgt.classList.contains('show-next')) {
+        currentImage + 1 >= imagesList.length ? currentImage = 0 : currentImage++;
+      } else {
+        currentImage - 1 < 0 ? currentImage = imagesList.length - 1 : currentImage--;
+      }
+
+      changeImage();
+      selectLink();
+
+      clearInterval(slideshowInterval);
+    }
+
+
+
+  }
+
+  function onListClick(e) {
+
+    e.preventDefault();
+
+    // Do not interupt previous animation
+    if (isAnimating) {
+      return;
+    }
+
+    var trgt = e.target;
+
+    if (trgt.nodeName === 'A') {
+
+      prevImage = currentImage;
+      currentImage = parseInt(trgt.getAttribute('data-order'), 10);
+      changeImage();
+
+      selectLink();
+
+      clearInterval(slideshowInterval);
+    }
+  }
+
+  function selectLink() {
+
+    if (currentLink !== undefined) {
+      currentLink.classList.remove(IS_ACTIVE);
+    }
+    currentLink = linkList[currentImage];
+    currentLink.classList.add(IS_ACTIVE);
+
+  }
+
+
+
+  function calculateScreen() {
+    VW = window.innerWidth;
+    VH = window.innerHeight;
+    AR = VW / VH;
+
+    canvas0.width = canvas1.width = canvas2.width = canvas3.width = VW;
+    canvas0.height = canvas1.height = canvas2.height = canvas3.height = VH;
+
+    partList[0].radius = VW * 0.4;
+    partList[1].radius = VW * 0.25;
+    partList[2].radius = VW * 0.08;
+  }
+
+  function resizeBg() {
+    var image1 = imagesList[0];
+    IAR = image1.width / image1.height;
+    if (IAR < AR) {
+      imgW = window.innerWidth;
+      imgH = window.innerHeight;
     } else {
-      alert("error: "+evt.type+" from element: "+(evt.srcElement || evt.target));
+      imgW = window.innerWidth;
+      imgH = window.innerHeight;
     }
-}
-</script>
+  }
+
+  function slideshowChange() {
+    prevImage = currentImage;
+    currentImage + 1 >= imagesList.length ? currentImage = 0 : currentImage++;
+    changeImage();
+    selectLink();
+  }
+
+  function addEL() {
+
+    var debounceResize = debounce(function () {
+      calculateScreen();
+      resizeBg();
+      changeImage();
+    }, 200);
+
+    window.addEventListener('resize', debounceResize);
+    btns.addEventListener('click', onBtnsClick);
+    linklist.addEventListener('click', onListClick);
+
+  }
+
+
+  function preloadImages() {
+    imagesList.forEach(function (img) {
+
+      if (img.complete) {
+        handleImageComplete();
+
+      } else {
+        img.onload = handleImageComplete;
+      }
+
+    });
+  }
+
+  function handleImageComplete() {
+    imagesloaded++;
+    if (imagesloaded === imagesList.length) {
+      loadTxt.classList.add('is-hidden');
+      addEL();
+      init();
+    }
+  }
+
+  function init() {
+
+    calculateScreen();
+    resizeBg();
+    selectLink();
+    changeImage();
+    slideshowInterval = setInterval(slideshowChange, 3000);
+  }
+
+
+  function preInit() {
+    var alist = linklist.querySelectorAll('a');
+    var img;
+
+    for (var i = 0; i < alist.length; i++) {
+
+      linkList.push(alist[i]);
+
+      img = new Image();
+      img.src = alist[i].getAttribute('data-imagesrc');
+      whereTo = alist[i].getAttribute('data-whereTo');
+      hyperlink = alist[i].getAttribute('data-hyperlink');
+      wTArray.push(whereTo);
+      hrefArray.push(hyperlink);
+      imagesList.push(img);
+
+    }
+
+    preloadImages();
+  }
+
+  preInit();
+
+
+
+  /**
+              * Helpers
+              */
+
+  // http://davidwalsh.name/javascript-debounce-function
+  function debounce(func, wait, immediate) {
+    var timeout;
+    return function () {
+      var context = this,
+      args = arguments;
+      var later = function () {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  }
+})();
+          //# sourceURL=pen.js
+        </script>
 </body></html>
